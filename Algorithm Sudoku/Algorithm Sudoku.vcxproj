@@ -141,6 +141,12 @@
   <ItemGroup>
     <ClCompile Include="Algorithm Sudoku.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Change.h" />
+    <ClInclude Include="Field.h" />
+    <ClInclude Include="Generator.h" />
+    <ClInclude Include="Map.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
