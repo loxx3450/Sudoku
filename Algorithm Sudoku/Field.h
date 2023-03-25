@@ -36,7 +36,6 @@ public:
                 this->arr[index1][index2] = tmp_arr[string][column];
             }
         }
-        std::cout << i << " " << j << "\n";
     }
 
 
@@ -73,8 +72,6 @@ public:
 
             arr2[i] = 0;
         }
-
-        std::cout << "True\n";
         return true;
     }
 

@@ -8,6 +8,7 @@ private:
     int** arr;
     Change* change;
 
+   
 
     bool checkFields()
     {
@@ -78,6 +79,19 @@ private:
         return true;
     }
 
+    void clear()
+    {
+        for (int i{}; i < 9; ++i)
+        {
+            for (int j{}; j < 9; ++j)
+            {
+                arr[i][j] = 0;
+            }
+
+
+        }
+    }
+
 public:
     Map() :
         arr{ new int* [9] },
@@ -89,15 +103,62 @@ public:
         }
     }
 
+    bool isMade()
+    {
+        for (int i{}; i < 9; ++i)
+        {
+            for (int j{}; j < 9; ++j)
+            {
+                if (this->arr[i][j] == 0)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     void generate()
     {
-        int id = 1;
+        /*int id = 1;
         for (int i{}; i < 9; ++i)
         {
             for (int j{}; j < 9; ++j)
             {
                 arr[i][j] = (i * 3 + i / 3 + j) % 9 + 1;
             }
+        }*/
+
+        this->clear();
+
+        int value{};
+
+        for (int i{}; i < 9; ++i)
+        {
+            for (int j{}; j < 9; ++j)
+            {
+                while (true)
+                {
+                    arr[i][j] = rand() % 9 + 1;
+
+                    if (value >= 250)
+                    {
+                        return;
+                    }
+
+                    if (checkFields() && checkColumns() && checkStrings())
+                    {
+                        break;
+                    }
+
+                    ++value;
+                }
+
+                value = 0;
+            }
+
+            value = 0;
         }
     }
 
@@ -125,7 +186,10 @@ public:
                 if (checkColumns())
                 {
                     std::cout << "Etap 3" << "\n";
-                    return true;
+                    if (isMade())
+                    {
+                        return true;
+                    }
                 }
             }
         }

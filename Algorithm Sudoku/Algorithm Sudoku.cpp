@@ -13,13 +13,20 @@ int main()
     rand();
 
     Map map{};
-    map.generate();
-    map.show();
+    while (true)
+    {
+        map.generate();
+        if (map.isMade())
+        {
+            map.show();
+            break;
+        }
+    }
+    
 
-    Generator a{};
-    a.generation(&map);
-    map.show();
-   
+
+
+    
     
     
 }
