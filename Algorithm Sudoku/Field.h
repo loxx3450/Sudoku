@@ -15,7 +15,7 @@ public:
     {
         for (int i{}; i < 3; ++i)
         {
-            arr[i] = new int[3];
+            arr[i] = new int[3]{};
         }
 
         for (int i{}; i < 3; ++i)
@@ -38,6 +38,18 @@ public:
         }
     }
 
+    void generate()
+    {
+        id = 1;
+        for (int i{}; i < 3; ++i)
+        {
+            for (int j{}; j < 3; ++j)
+            {
+                arr[i][j] = this->id++;
+            }
+        }
+    }
+
 
     void show()
     {
@@ -49,6 +61,24 @@ public:
             }
             std::cout << "\n";
         }
+    }
+
+    bool isFull()
+    {
+        for (int i{}; i < 3; ++i)
+        {
+            for (int j{}; j < 3; ++j)
+            {
+                if (this->arr[i][j] >= 1 && this->arr[i][j] <= 9)
+                {
+                    continue;
+                }
+
+                return false;
+            }
+        }
+
+        return true;
     }
 
 
@@ -75,5 +105,14 @@ public:
         return true;
     }
 
+    int getNum(int i, int j)
+    {
+        return this->arr[i][j];
+    }
+
+    void setNum(int value, int i, int j)
+    {
+        this->arr[i][j] = value;
+    }
 };
 

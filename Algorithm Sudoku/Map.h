@@ -103,6 +103,20 @@ public:
         }
     }
 
+    Map(int** arr) :
+        arr{ new int* [9] },
+        change{ new Change{} }
+    {
+        for (int i{}; i < 9; ++i)
+        {
+            this->arr[i] = new int[9]{};
+            for (int j{}; j < 9; ++j)
+            {
+                this->arr[i][j] = arr[i][j];
+            }
+        }
+    }
+
     bool isMade()
     {
         for (int i{}; i < 9; ++i)
@@ -140,9 +154,9 @@ public:
             {
                 while (true)
                 {
-                    arr[i][j] = rand() % 9 + 1;
+                    arr[i][j] = rand() % 9 + 1;//изменить
 
-                    if (value >= 250)
+                    if (value >= 30)
                     {
                         return;
                     }
@@ -197,6 +211,17 @@ public:
         return false;
     }
 
+    void takeField(Field* field, int tmp_i, int tmp_j)
+    {
+        for (int i{ tmp_i }, field_i{}; i < tmp_i + 3; ++i, ++field_i)
+        {
+            for (int j{ tmp_j }, field_j{}; j < tmp_j + 3; ++j, ++field_j)
+            {
+                this->arr[i][j] = field->getNum(field_i, field_j);
+            }
+        }
+    }
+
     void changeStrToCol()
     {
         this->arr = change->strToCol(this->arr);
@@ -246,5 +271,35 @@ public:
     void setNum(int value, int i, int j)
     {
         this->arr[i][j] = value;
+    }
+
+    int** getArr()
+    {
+        return this->arr;
+    }
+
+    int* getString(int i)
+    {
+        return this->arr[i];
+    }
+
+    int* getColumn(int index)
+    {
+        int* tmp = new int[9]{};
+
+        for (int i{}; i < 9; ++i)
+        {
+            tmp[i] = this->arr[i][index];
+        }
+
+        return tmp;
+    }
+
+    void setColumn(int* tmp, int index)
+    {
+        for (int i{}; i < 9; ++i)
+        {
+            this->arr[i][index] = tmp[i];
+        }
     }
 };
