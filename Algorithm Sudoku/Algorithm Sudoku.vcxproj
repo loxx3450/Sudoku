@@ -141,11 +141,10 @@
   <ItemGroup>
     <ClCompile Include="Algorithm Sudoku.cpp" />
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="Map.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Change.h" />
     <ClInclude Include="Field.h" />
-    <ClInclude Include="Generator.h" />
     <ClInclude Include="LevelCreation.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Solution.h" />

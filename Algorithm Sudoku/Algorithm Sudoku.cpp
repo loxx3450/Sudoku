@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include "Map.h"
-#include "Generator.h"
 #include "Solution.h"
 #include "LevelCreation.h"
 
