@@ -14,17 +14,19 @@ int main()
     srand(time(NULL));
     rand();
 
-    /*Map map{};
+    Map map{};
     while (true)
     {
         map.generate();
         if (map.isMade())
         {
             map.show();
+
+            break;
         }
     }
 
-    map.check();*/
+    map.check();
     
    /* Field* field = new Field{};
 
@@ -47,7 +49,7 @@ int main()
         new int[9]{ 9, 1, 2, 3, 0, 5, 0, 7, 8 }
     };*/
 
-    int** arr = new int* [9]{
+    /*int** arr = new int* [9]{
         new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
         new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -65,7 +67,7 @@ int main()
 
     a.check1();
 
-    map->show();
+    map->show();*/
 
     
     
