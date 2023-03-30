@@ -58,7 +58,7 @@ private:
 		return false;
 	}
 
-	void checkFieldsExceptions()
+	bool checkFieldsExceptions()
 	{
 		Field* temp = new Field{};
 		for (int i{}; i < 3; ++i)
@@ -66,9 +66,14 @@ private:
 			for (int j{}; j < 3; ++j)
 			{
 				temp->generate(this->map->getArr(), i * 3, j * 3);
-				solution.exceptcionInField(this->map->getArr(), temp, i, j);
+				if (solution.exceptionInField(this->map->getArr(), temp, i, j))
+				{
+					return true;
+				}
 			}
 		}
+
+		return false;
 	}
 
 public:
@@ -77,23 +82,29 @@ public:
 		this->map = new Map{ *map };
 	}
 
-	void check1()
+	bool check1()
 	{
 		if (checkFields())
 		{
 			std::cout << "LastInField\n";
-			return;
+			return true;
 		}
 		if (checkStrings())
 		{
 			std::cout << "LastInString\n";
-			return;
+			return true;
 		}
 		if (checkColumns())
 		{
 			std::cout << "LastInColumn\n";
-			return;
+			return true;
 		}
-		//checkFieldsExceptions();
+		if (checkFieldsExceptions())
+		{
+			std::cout << "ExceptionInField\n";
+			return true;
+		}
+
+		return false;
 	}
 };

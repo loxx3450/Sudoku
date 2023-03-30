@@ -13,33 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\Field">
+      <UniqueIdentifier>{b173d68f-701f-4503-bc0a-4012c748f987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Map">
+      <UniqueIdentifier>{66d02b60-39a9-4324-b76f-6f96efbb436c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution">
+      <UniqueIdentifier>{5dcf213e-2245-4360-baa9-72121fd81514}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm Sudoku.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Field.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Field</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Map</Filter>
     </ClCompile>
     <ClCompile Include="Solution.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Solution</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Map.h">
+    <ClInclude Include="LevelCreation.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Field.h">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Исходные файлы\Map</Filter>
     </ClInclude>
     <ClInclude Include="Solution.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelCreation.h">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Solution</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

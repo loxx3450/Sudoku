@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm Sudoku.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Solution.cpp" />

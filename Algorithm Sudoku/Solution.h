@@ -9,66 +9,15 @@ private:
 
     int* numbers;
 
-    void func(int** arr, int** temp_field, Field* temp, int value, int temp_i, int temp_j)
-    {
-        for (int i{ temp_i }; i < temp_i + 3; ++i)
-        {
-            for (int j{}; j < 9; ++j)
-            {
-                if (arr[i][j] == value)
-                {
-                    for (int field_j{}; field_j < 3; ++field_j)
-                    {
-                        temp_field[i % 3][field_j] = 10;
-                    }
-                }
-            }
-        }
+    void resetTempField(int** temp_field);
 
-        for (int i{  }; i < 9; ++i)
-        {
-            for (int j{ temp_j }; j < temp_j + 3; ++j)
-            {
-                if (arr[i][j] == value)
-                {
-                    for (int field_i{}; field_i < 3; ++field_i)
-                    {
-                        temp_field[field_i][j] = 10;
-                    }
-                }
-            }
-        }
+    void checkException_Strings(int** arr, int** temp_field, int value, int temp_i);
 
-        int* arr2 = new int[9]{};
+    void checkException_Columns(int** arr, int** temp_field, int value, int temp_j);
 
-        int count{};
+    bool checkException(int** arr, int** temp_field, int value, int temp_i, int temp_j);
 
-        for (int i{}; i < 3; ++i)
-        {
-            for (int j{}; j < 3; ++j)
-            {
-                if (temp_field[i][j] != 0)
-                {
-                    ++count;
-                }
-            }
-        }
-
-        if (count == 8)
-        {
-            for (int i{}; i < 3; ++i)
-            {
-                for (int j{}; j < 3; ++j)
-                {
-                    if (temp_field[i][j] == 0)
-                    {
-                        arr[temp_i * 3 + i][temp_j * 3 + j] = value;
-                    }
-                }
-            }
-        }
-
-    }
+    int** createTempField(Field* temp);
 
     int checkCountInField(Field* temp);
 
@@ -87,42 +36,13 @@ public:
 
     bool lastInRow(int* arr);
 
-    void exceptcionInField(int** arr, Field* temp, int temp_i, int temp_j)
+    bool exceptionInField(int** arr, Field* temp, int temp_i, int temp_j);
+
+    ~Solution()
     {
-        int* arr2 = new int[9]{};
-
-        int** temp_field = new int* [3];
-
-        for (int i{}; i < 3; ++i)
+        if (this->numbers != nullptr)
         {
-            temp_field[i] = new int[3];
-        }
-
-        for (int i{}; i < 3; ++i)
-        {
-            for (int j{}; j < 3; ++j)
-            {
-                temp_field[i][j] = temp->getNum(i, j);
-            }
-        }
-
-        int count{}, value{};
-
-        for (int i{}; i < 3; ++i)
-        {
-            for (int j{}; j < 3; ++j)
-            {
-                arr2[temp->getNum(i, j) - 1]++;
-            }
-        }
-
-
-        for (int i{}; i < 9; ++i)
-        {
-            if (arr2[i] == 0)
-            {
-                func(arr, temp_field, temp, i + 1, temp_i, temp_j);
-            }
+            //delete[] this->numbers;   //!!!!!!!!!!!!!
         }
     }
 };
