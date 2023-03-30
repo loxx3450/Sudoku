@@ -5,48 +5,24 @@
 class LevelCreation
 {
 private:
+	const int map_count = 9;
+	const int field_count = 3;
+
 	Map* map;
     Solution solution;
 
-	bool checkFields()
-	{
-		Field* temp = new Field{};
-		for (int i{}; i < 3; ++i)
-		{
-			for (int j{}; j < 3; ++j)
-			{
-				temp->generate(map->getArr(), i * 3, j * 3);
-				if (solution.lastInField(temp))
-				{
-					this->map->takeField(temp, i * 3, j * 3);
+	bool checkFields();
 
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	bool checkStrings()
-	{
-		for (int i{}; i < 9; ++i)
-		{
-			if (solution.lastInRow(this->map->getString(i)))
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
+	bool checkStrings();
 
 	bool checkColumns()
 	{
 		int* tmp;
-		for (int i{}; i < 9; ++i)
+
+		for (int i{}; i < this->map_count; ++i)
 		{
 			tmp = this->map->getColumn(i);
+
 			if (solution.lastInRow(tmp))
 			{
 				this->map->setColumn(tmp, i);
@@ -55,26 +31,12 @@ private:
 			}
 		}
 
-		return false;
-	}
-
-	bool checkFieldsExceptions()
-	{
-		Field* temp = new Field{};
-		for (int i{}; i < 3; ++i)
-		{
-			for (int j{}; j < 3; ++j)
-			{
-				temp->generate(this->map->getArr(), i * 3, j * 3);
-				if (solution.exceptionInField(this->map->getArr(), temp, i, j))
-				{
-					return true;
-				}
-			}
-		}
+		//delete tmp;	!!!!!!!!!!
 
 		return false;
 	}
+
+	bool checkFieldsExceptions();
 
 public:
 	LevelCreation(Map* map)
@@ -82,29 +44,12 @@ public:
 		this->map = new Map{ *map };
 	}
 
-	bool check1()
-	{
-		if (checkFields())
-		{
-			std::cout << "LastInField\n";
-			return true;
-		}
-		if (checkStrings())
-		{
-			std::cout << "LastInString\n";
-			return true;
-		}
-		if (checkColumns())
-		{
-			std::cout << "LastInColumn\n";
-			return true;
-		}
-		if (checkFieldsExceptions())
-		{
-			std::cout << "ExceptionInField\n";
-			return true;
-		}
+	bool check1();
 
-		return false;
+	~LevelCreation()
+	{
+		if (this->map != nullptr){
+			delete this->map;
+		}
 	}
 };

@@ -24,7 +24,10 @@ void Solution::checkException_Strings(int** arr, int** temp_field, int value, in
             {
                 for (int field_j{}; field_j < this->field_count; ++field_j)
                 {
-                    temp_field[i % this->field_count][field_j] = 10;
+                    if (temp_field[i % this->field_count][field_j] == 0)
+                    {
+                        temp_field[i % this->field_count][field_j] = 10;
+                    }
                 }
             }
         }
@@ -41,7 +44,10 @@ void Solution::checkException_Columns(int** arr, int** temp_field, int value, in
             {
                 for (int field_i{}; field_i < this->field_count; ++field_i)
                 {
-                    temp_field[field_i][j % this->field_count] = 10;
+                    if (temp_field[field_i][j % this->field_count] == 0)
+                    {
+                        temp_field[field_i][j % this->field_count] = 10;
+                    }
                 }
             }
         }
@@ -50,6 +56,7 @@ void Solution::checkException_Columns(int** arr, int** temp_field, int value, in
 
 bool Solution::checkException(int** arr, int** temp_field, int value, int temp_i, int temp_j)
 {
+
     this->resetTempField(temp_field);
 
     checkException_Strings(arr, temp_field, value, temp_i * 3);

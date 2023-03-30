@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LevelCreation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Map.cpp" />
