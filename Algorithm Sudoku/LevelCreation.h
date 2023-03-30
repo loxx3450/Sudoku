@@ -8,7 +8,7 @@ private:
 	Map* map;
     Solution solution;
 
-	void checkFields()
+	bool checkFields()
 	{
 		Field* temp = new Field{};
 		for (int i{}; i < 3; ++i)
@@ -16,29 +16,46 @@ private:
 			for (int j{}; j < 3; ++j)
 			{
 				temp->generate(map->getArr(), i * 3, j * 3);
-				solution.lastInField(temp);
-				this->map->takeField(temp, i * 3, j * 3);
+				if (solution.lastInField(temp))
+				{
+					this->map->takeField(temp, i * 3, j * 3);
+
+					return true;
+				}
 			}
 		}
+
+		return false;
 	}
 
-	void checkStrings()
+	bool checkStrings()
 	{
 		for (int i{}; i < 9; ++i)
 		{
-			solution.lastInRow(this->map->getString(i));
+			if (solution.lastInRow(this->map->getString(i)))
+			{
+				return true;
+			}
 		}
+
+		return false;
 	}
 
-	void checkColumns()
+	bool checkColumns()
 	{
 		int* tmp;
 		for (int i{}; i < 9; ++i)
 		{
 			tmp = this->map->getColumn(i);
-			solution.lastInRow(tmp);
-			this->map->setColumn(tmp, i);
+			if (solution.lastInRow(tmp))
+			{
+				this->map->setColumn(tmp, i);
+
+				return true;
+			}
 		}
+
+		return false;
 	}
 
 	void checkFieldsExceptions()
@@ -62,9 +79,21 @@ public:
 
 	void check1()
 	{
-		checkFields();
-		checkStrings();
-		checkColumns();
-		checkFieldsExceptions();
+		if (checkFields())
+		{
+			std::cout << "LastInField\n";
+			return;
+		}
+		if (checkStrings())
+		{
+			std::cout << "LastInString\n";
+			return;
+		}
+		if (checkColumns())
+		{
+			std::cout << "LastInColumn\n";
+			return;
+		}
+		//checkFieldsExceptions();
 	}
 };

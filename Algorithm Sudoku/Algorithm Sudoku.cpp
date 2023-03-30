@@ -13,7 +13,7 @@ int main()
     srand(time(NULL));
     rand();
 
-    Map map{};
+    /*Map map{};
     while (true)
     {
         map.generate();
@@ -25,9 +25,9 @@ int main()
         }
     }
 
-    map.check();
+    map.check();*/
     
-   /* Field* field = new Field{};
+    /*Field* field = new Field{};
 
     field->generate();
     field->setNum(0, 2, 2);
@@ -36,7 +36,7 @@ int main()
     sol.lastInField(field);
     field->show();*/
 
-    /*int** arr = new int* [9]{
+    int** arr = new int* [9]{
         new int[9]{ 1, 2, 0, 4, 0, 6, 7, 8, 9 },
         new int[9]{ 0, 5, 6, 7, 8, 9, 1, 2, 3 },
         new int[9]{ 7, 8, 9, 1, 2, 3, 4, 0, 6 },
@@ -46,7 +46,7 @@ int main()
         new int[9]{ 3, 4, 0, 6, 7, 8, 9, 1, 2 },
         new int[9]{ 6, 7, 8, 9, 1, 2, 3, 0, 5 },
         new int[9]{ 9, 1, 2, 3, 0, 5, 0, 7, 8 }
-    };*/
+    };
 
     /*int** arr = new int* [9]{
         new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -58,15 +58,19 @@ int main()
         new int[9]{ 0, 0, 0, 0, 0, 8, 0, 0, 0 },
         new int[9]{ 0, 6, 0, 0, 0, 0, 0, 0, 0 },
         new int[9]{ 9, 6, 1, 0, 0, 0, 0, 0, 0 },
-    };
+    };*/
 
     Map* map = new Map{ arr };
 
     LevelCreation a{ map };
 
-    a.check1();
+    while (!map->isMade())
+    {
+        a.check1();
+    }
+    
 
-    map->show();*/
+    map->show();
 
     
     

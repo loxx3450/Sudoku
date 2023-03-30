@@ -84,7 +84,7 @@ public:
 
         if (this->numbers != nullptr)
         {
-            delete[] this->numbers;
+            //delete[] this->numbers;  //!!!!!!!!!!!!!!!!
         }
     }
 };

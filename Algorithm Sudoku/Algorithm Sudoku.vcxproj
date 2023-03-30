@@ -142,6 +142,7 @@
     <ClCompile Include="Algorithm Sudoku.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Solution.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.h" />
