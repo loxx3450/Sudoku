@@ -1,11 +1,11 @@
 #pragma once
-#include "Field.h"
+#include "Map.h"
 
 class Solution
 {
 private:
-    const int field_count = 3;
-    const int map_count = 9;
+    const int field_size = 3;
+    const int map_size = 9;
 
     int* numbers;
 
@@ -17,11 +17,15 @@ private:
 
     bool checkException(int** arr, int** temp_field, int value, int temp_i, int temp_j);
 
+    int checkLastNumberInStr_Col_Field(Field* temp, int* string, int* column);
+
     int** createTempField(Field* temp);
 
-    int checkCountInField(Field* temp);
+    void overrideNumbersWithField(Field* temp);
 
-    int checkCountInRow(int* arr);
+    int checkCountInNumbers();
+
+    void overrideNumbersWithRow(int* arr);
 
     void clearNumbers();
 
@@ -29,7 +33,7 @@ private:
 
 public:
     Solution():
-        numbers{new int [this->map_count]{}}
+        numbers{new int [this->map_size]{}}
     {}
 
     bool lastInField(Field* temp);
@@ -37,6 +41,8 @@ public:
     bool lastInRow(int* arr);
 
     bool exceptionInField(int** arr, Field* temp, int temp_i, int temp_j);
+
+    bool lastNumberInStr_Col_Field(Map* map, Field* temp, int temp_i, int temp_j);
 
     ~Solution()
     {

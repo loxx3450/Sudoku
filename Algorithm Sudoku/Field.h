@@ -5,7 +5,7 @@ class Field
 {
 private:
     const int count = 3;
-    const int numbers_count = 9;
+    const int numbers_size = 9;
 
     int** arr;
     int* numbers;
@@ -15,7 +15,7 @@ private:
 public:
     Field() :
         arr{ new int* [this->count] },
-        numbers{ new int[this->numbers_count]{} }
+        numbers{ new int[this->numbers_size]{} }
     {
         for (int i{}; i < this->count; ++i)
         {

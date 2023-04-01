@@ -59,7 +59,7 @@ bool Field::check()
 {
     this->numbersInField();
 
-    for (int i{}; i < this->numbers_count; ++i)
+    for (int i{}; i < this->numbers_size; ++i)
     {
         if (this->numbers[i] > 1)
         {

@@ -4,8 +4,8 @@
 class Map
 {
 private:
-    const int field_count = 3;
-    const int map_count = 9;
+    const int field_size = 3;
+    const int map_size = 9;
 
     int** arr;
     int* numbers;
@@ -22,23 +22,23 @@ private:
 
 public:
     Map() :
-        arr{ new int* [this->map_count] },
-        numbers{ new int[this->map_count]{} }
+        arr{ new int* [this->map_size] },
+        numbers{ new int[this->map_size]{} }
     {
-        for (int i{}; i < this->map_count; ++i)
+        for (int i{}; i < this->map_size; ++i)
         {
-            arr[i] = new int[this->map_count]{};
+            arr[i] = new int[this->map_size]{};
         }
     }
 
     Map(int** arr) :
-        arr{ new int* [this->map_count] },
-        numbers{ new int[this->map_count]{} }
+        arr{ new int* [this->map_size] },
+        numbers{ new int[this->map_size]{} }
     {
-        for (int i{}; i < this->map_count; ++i)
+        for (int i{}; i < this->map_size; ++i)
         {
-            this->arr[i] = new int[this->map_count]{};
-            for (int j{}; j < this->map_count; ++j)
+            this->arr[i] = new int[this->map_size]{};
+            for (int j{}; j < this->map_size; ++j)
             {
                 this->arr[i][j] = arr[i][j];
             }
@@ -71,7 +71,7 @@ public:
     {
         if (this->arr != nullptr)
         {
-            for (int i{}; i < this->map_count; ++i)
+            for (int i{}; i < this->map_size; ++i)
             {
                 if (this->arr[i] != nullptr)
                 {

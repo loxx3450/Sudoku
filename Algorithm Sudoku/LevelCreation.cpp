@@ -4,15 +4,15 @@ bool LevelCreation::checkFields()
 {
 	Field* temp = new Field{};
 
-	for (int i{}; i < this->field_count; ++i)
+	for (int i{}; i < this->field_size; ++i)
 	{
-		for (int j{}; j < this->field_count; ++j)
+		for (int j{}; j < this->field_size; ++j)
 		{
-			temp->generate(map->getArr(), i * this->field_count, j * this->field_count);
+			temp->generate(map->getArr(), i * this->field_size, j * this->field_size);
 
 			if (solution.lastInField(temp))
 			{
-				this->map->takeField(temp, i * this->field_count, j * this->field_count);
+				this->map->takeField(temp, i * this->field_size, j * this->field_size);
 
 				delete temp;
 
@@ -28,7 +28,7 @@ bool LevelCreation::checkFields()
 
 bool LevelCreation::checkStrings()
 {
-	for (int i{}; i < this->map_count; ++i)
+	for (int i{}; i < this->map_size; ++i)
 	{
 		if (solution.lastInRow(this->map->getString(i)))
 		{
@@ -43,13 +43,37 @@ bool LevelCreation::checkFieldsExceptions()
 {
 	Field* temp = new Field{};
 
-	for (int i{}; i < this->field_count; ++i)
+	for (int i{}; i < this->field_size; ++i)
 	{
-		for (int j{}; j < this->field_count; ++j)
+		for (int j{}; j < this->field_size; ++j)
 		{
-			temp->generate(this->map->getArr(), i * this->field_count, j * this->field_count);
+			temp->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
 
 			if (solution.exceptionInField(this->map->getArr(), temp, i, j))
+			{
+				delete temp;
+
+				return true;
+			}
+		}
+	}
+
+	delete temp;
+
+	return false;
+}
+
+bool LevelCreation::checkExceptInStr_Col_Field()
+{
+	Field* temp = new Field{};
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			temp->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
+
+			if (solution.lastNumberInStr_Col_Field(this->map, temp, i, j))
 			{
 				delete temp;
 
@@ -83,6 +107,11 @@ bool LevelCreation::check1()
 	if (checkFieldsExceptions())
 	{
 		std::cout << "ExceptionInField\n";
+		return true;
+	}
+	if (checkExceptInStr_Col_Field())
+	{
+		std::cout << "LastNumberInString_Column_Field\n";
 		return true;
 	}
 

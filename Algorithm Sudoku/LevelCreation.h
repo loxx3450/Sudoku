@@ -5,8 +5,8 @@
 class LevelCreation
 {
 private:
-	const int map_count = 9;
-	const int field_count = 3;
+	const int map_size = 9;
+	const int field_size = 3;
 
 	Map* map;
     Solution solution;
@@ -19,7 +19,7 @@ private:
 	{
 		int* tmp;
 
-		for (int i{}; i < this->map_count; ++i)
+		for (int i{}; i < this->map_size; ++i)
 		{
 			tmp = this->map->getColumn(i);
 
@@ -37,6 +37,8 @@ private:
 	}
 
 	bool checkFieldsExceptions();
+
+	bool checkExceptInStr_Col_Field();
 
 public:
 	LevelCreation(Map* map)

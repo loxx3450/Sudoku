@@ -3,11 +3,11 @@
 bool Map::checkFields()
 {
     Field* temp = new Field{};
-    for (int i{}; i < this->field_count; ++i)
+    for (int i{}; i < this->field_size; ++i)
     {
-        for (int j{}; j < this->field_count; ++j)
+        for (int j{}; j < this->field_size; ++j)
         {
-            temp->generate(this->arr, i * this->field_count, j * this->field_count);
+            temp->generate(this->arr, i * this->field_size, j * this->field_size);
 
             if (!temp->check())
             {
@@ -27,14 +27,14 @@ bool Map::checkStrings()
 {
     this->clearNumbers();
 
-    for (int i{}; i < this->map_count; ++i)
+    for (int i{}; i < this->map_size; ++i)
     {
-        for (int j{}; j < this->map_count; ++j)
+        for (int j{}; j < this->map_size; ++j)
         {
             this->numbers[this->arr[i][j] - 1]++;
         }
 
-        for (int i{}; i < this->map_count; ++i)
+        for (int i{}; i < this->map_size; ++i)
         {
             if (this->numbers[i] > 1)
             {
@@ -116,13 +116,13 @@ void Map::generate()
 
     int value{};
 
-    for (int i{}; i < this->map_count; ++i)
+    for (int i{}; i < this->map_size; ++i)
     {
-        for (int j{}; j < this->map_count; ++j)
+        for (int j{}; j < this->map_size; ++j)
         {
             while (true)
             {
-                this->arr[i][j] = rand() % this->map_count + 1;
+                this->arr[i][j] = rand() % this->map_size + 1;
 
                 if (value >= 30)
                 {
@@ -144,13 +144,30 @@ void Map::generate()
 
 void Map::show()
 {
+    std::cout << "----------------------\n";
+
     for (int i{}; i < 9; ++i)
     {
         for (int j{}; j < 9; ++j)
         {
+            if (j == 0 || j == 3 || j == 6)
+            {
+                std::cout << "|";
+            }
             std::cout << arr[i][j] << " ";
+
+            if (j == 8)
+            {
+                std::cout << "|";
+            }
         }
+
         std::cout << "\n";
+
+        if ((i + 1) % 3 == 0)
+        {
+            std::cout << "----------------------\n";
+        }
     }
     std::cout << "\n\n\n";
 }
@@ -215,9 +232,9 @@ int* Map::getString(int i)
 
 int* Map::getColumn(int index)
 {
-    int* tmp = new int[this->map_count]{};
+    int* tmp = new int[this->map_size]{};
 
-    for (int i{}; i < this->map_count; ++i)
+    for (int i{}; i < this->map_size; ++i)
     {
         tmp[i] = this->arr[i][index];
     }
@@ -227,7 +244,7 @@ int* Map::getColumn(int index)
 
 void Map::setColumn(int* tmp, int index)
 {
-    for (int i{}; i < this->map_count; ++i)
+    for (int i{}; i < this->map_size; ++i)
     {
         this->arr[i][index] = tmp[i];
     }

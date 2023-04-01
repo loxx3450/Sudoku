@@ -22,6 +22,9 @@
     <Filter Include="Исходные файлы\Solution">
       <UniqueIdentifier>{5dcf213e-2245-4360-baa9-72121fd81514}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\LevelCreation">
+      <UniqueIdentifier>{1c2369a3-1cc1-41fa-a4e3-a675850ad062}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -37,13 +40,10 @@
       <Filter>Исходные файлы\Solution</Filter>
     </ClCompile>
     <ClCompile Include="LevelCreation.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\LevelCreation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LevelCreation.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Field.h">
       <Filter>Исходные файлы\Field</Filter>
     </ClInclude>
@@ -52,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="Solution.h">
       <Filter>Исходные файлы\Solution</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelCreation.h">
+      <Filter>Исходные файлы\LevelCreation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
