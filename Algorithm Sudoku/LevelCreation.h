@@ -38,6 +38,8 @@ private:
 
 	bool checkFieldsExceptions();
 
+	bool checkExceptInRow();
+
 	bool checkExceptInStr_Col_Field();
 
 public:

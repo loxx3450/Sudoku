@@ -1,20 +1,58 @@
 #include "Solution.h"
 
-void Solution::resetTempField(int** temp_field)
+void Solution::resetTempField(Field* temp)
 {
     for (int i{}; i < this->field_size; ++i)
     {
         for (int j{}; j < this->field_size; ++j)
         {
-            if (temp_field[i][j] == 10)
+            if (temp->getNum(i, j) == 10)
             {
-                temp_field[i][j] = 0;
+                temp->setNum(0, i, j);
             }
         }
     }
 }
 
-void Solution::checkException_Strings(int** arr, int** temp_field, int value, int temp_i)
+int Solution::findExceptValue()
+{
+    for (int i{}; i < this->map_size; ++i)
+    {
+        if (this->numbers[i] == 0)
+        {
+            return i + 1;
+        }
+    }
+}
+
+int Solution::findExceptIndex(int* arr)
+{
+    for (int i{}; i < this->map_size; ++i)
+    {
+        if (arr[i] == 0)
+        {
+            return i;
+        }
+    }
+}
+
+bool Solution::findValueInField(Field* temp, int value)
+{
+    for (int i{}; i < this->field_size; ++i)
+    {
+        for (int j{}; j < this->field_size; ++j)
+        {
+            if (temp->getNum(i, j) == value)
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+void Solution::checkException_Strings(int** arr, Field* temp_field, int value, int temp_i)
 {
     for (int i{ temp_i }; i < temp_i + this->field_size; ++i)
     {
@@ -24,9 +62,9 @@ void Solution::checkException_Strings(int** arr, int** temp_field, int value, in
             {
                 for (int field_j{}; field_j < this->field_size; ++field_j)
                 {
-                    if (temp_field[i % this->field_size][field_j] == 0)
+                    if (temp_field->getNum(i % this->field_size, field_j) == 0)
                     {
-                        temp_field[i % this->field_size][field_j] = 10;
+                        temp_field->setNum(10, i % this->field_size, field_j);
                     }
                 }
             }
@@ -34,7 +72,7 @@ void Solution::checkException_Strings(int** arr, int** temp_field, int value, in
     }
 }
 
-void Solution::checkException_Columns(int** arr, int** temp_field, int value, int temp_j)
+void Solution::checkException_Columns(int** arr, Field* temp_field, int value, int temp_j)
 {
     for (int i{  }; i < this->map_size; ++i)
     {
@@ -44,9 +82,9 @@ void Solution::checkException_Columns(int** arr, int** temp_field, int value, in
             {
                 for (int field_i{}; field_i < this->field_size; ++field_i)
                 {
-                    if (temp_field[field_i][j % this->field_size] == 0)
+                    if (temp_field->getNum(field_i, j % this->field_size) == 0)
                     {
-                        temp_field[field_i][j % this->field_size] = 10;
+                        temp_field->setNum(10, field_i, j % this->field_size);
                     }
                 }
             }
@@ -54,27 +92,17 @@ void Solution::checkException_Columns(int** arr, int** temp_field, int value, in
     }
 }
 
-bool Solution::checkException(int** arr, int** temp_field, int value, int temp_i, int temp_j)
+bool Solution::checkException(int** arr, Field* temp_field, int value, int temp_i, int temp_j)
 {
-
     this->resetTempField(temp_field);
 
-    checkException_Strings(arr, temp_field, value, temp_i * 3);
+    this->checkException_Strings(arr, temp_field, value, temp_i * 3);
 
-    checkException_Columns(arr, temp_field, value, temp_j * 3);
+    this->checkException_Columns(arr, temp_field, value, temp_j * 3);
 
     int count{};
 
-    for (int i{}; i < this->field_size; ++i)
-    {
-        for (int j{}; j < this->field_size; ++j)
-        {
-            if (temp_field[i][j] != 0)
-            {
-                ++count;
-            }
-        }
-    }
+    count = this->checkCountInField(temp_field);
 
     if (count == 8)
     {
@@ -82,7 +110,7 @@ bool Solution::checkException(int** arr, int** temp_field, int value, int temp_i
         {
             for (int j{}; j < this->field_size; ++j)
             {
-                if (temp_field[i][j] == 0)
+                if (temp_field->getNum(i, j) == 0)
                 {
                     arr[temp_i * this->field_size + i][temp_j * this->field_size + j] = value;
 
@@ -95,27 +123,15 @@ bool Solution::checkException(int** arr, int** temp_field, int value, int temp_i
     return false;
 }
 
-int Solution::checkLastNumberInStr_Col_Field(Field* temp, int* string, int* column)
+bool Solution::checkLastNumberInStr_Col_Field(Map* map, Field* temp, int* string, int* column, int temp_i, int temp_j)
 {
     this->clearNumbers();
 
-    for (int i{}; i < this->field_size; ++i)
-    {
-        for (int j{}; j < this->field_size; ++j)
-        {
-            this->numbers[temp->getNum(i, j) - 1]++;
-        }
-    }
+    this->overrideNumbersWithField(temp);
 
-    for (int i{}; i < this->map_size; ++i)
-    {
-        this->numbers[string[i] - 1]++;
-    }
+    this->overrideNumbersWithRow(string);
 
-    for (int i{}; i < this->map_size; ++i)
-    {
-        this->numbers[column[i] - 1]++;
-    }
+    this->overrideNumbersWithRow(column);
 
     int count = this->checkCountInNumbers();
 
@@ -125,33 +141,15 @@ int Solution::checkLastNumberInStr_Col_Field(Field* temp, int* string, int* colu
         {
             if (this->numbers[i] == 0)
             {
-                return i + 1;
+                map->setNum(i + 1, temp_i, temp_j);
+
+                return true;
             }
         }
     }
 
-    throw "Nothing";
-}
-
-int** Solution::createTempField(Field* temp)
-{
-    int** temp_field = new int* [this->field_size];
-
-    for (int i{}; i < this->field_size; ++i)
-    {
-        temp_field[i] = new int[this->field_size];
-    }
-
-    for (int i{}; i < this->field_size; ++i)
-    {
-        for (int j{}; j < this->field_size; ++j)
-        {
-            temp_field[i][j] = temp->getNum(i, j);
-        }
-    }
-
-    return temp_field;
-}
+    return false;
+}  
 
 void Solution::overrideNumbersWithField(Field* temp)
 {
@@ -161,6 +159,14 @@ void Solution::overrideNumbersWithField(Field* temp)
         {
             this->numbers[temp->getNum(i, j) - 1]++;
         }
+    }
+}
+
+void Solution::overrideNumbersWithRow(int* arr)
+{
+    for (int i{}; i < this->map_size; ++i)
+    {
+        this->numbers[arr[i] - 1]++;
     }
 }
 
@@ -179,12 +185,37 @@ int Solution::checkCountInNumbers()
     return count;
 }
 
-void Solution::overrideNumbersWithRow(int* arr)
+int Solution::checkCount(int* arr)
 {
+    int count{};
+
     for (int i{}; i < this->map_size; ++i)
     {
-        this->numbers[arr[i] - 1]++;
+        if (arr[i] != 0)
+        {
+            ++count;
+        }
     }
+
+    return count;
+}
+
+int Solution::checkCountInField(Field* temp)
+{
+    int count{};
+
+    for (int i{}; i < this->field_size; ++i)
+    {
+        for (int j{}; j < this->field_size; ++j)
+        {
+            if (temp->getNum(i, j) != 0)
+            {
+                ++count;
+            }
+        }
+    }
+
+    return count;
 }
 
 void Solution::clearNumbers()
@@ -195,7 +226,7 @@ void Solution::clearNumbers()
     }
 }
 
-bool Solution::isFull(int* arr)
+bool Solution::isRowFull(int* arr)
 {
     this->clearNumbers();
 
@@ -229,14 +260,7 @@ bool Solution::lastInField(Field* temp)
 
         if (count == 8)
         {
-            for (int i{}; i < this->map_size; ++i)
-            {
-                if (this->numbers[i] == 0)
-                {
-                    value = i + 1;
-                    break;
-                }
-            }
+            value = this->findExceptValue();
 
             for (int i{}; i < this->field_size; ++i)
             {
@@ -258,7 +282,7 @@ bool Solution::lastInField(Field* temp)
 
 bool Solution::lastInRow(int* arr)
 {
-    if (!this->isFull(arr))
+    if (!this->isRowFull(arr))
     {
         int count{}, value{};
 
@@ -268,15 +292,7 @@ bool Solution::lastInRow(int* arr)
 
         if (count == 8)
         {
-            for (int i{}; i < this->map_size; ++i)
-            {
-                if (this->numbers[i] == 0)
-                {
-                    value = i + 1;
-
-                    break;
-                }
-            }
+            value = this->findExceptValue();
 
             for (int i{}; i < this->map_size; ++i)
             {
@@ -298,17 +314,11 @@ bool Solution::exceptionInField(int** arr, Field* temp, int temp_i, int temp_j)
 {
     this->clearNumbers();
 
-    int** temp_field = this->createTempField(temp);
+    Field* temp_field = new Field{*temp};
 
     int count{}, value{};
 
-    for (int i{}; i < this->field_size; ++i)
-    {
-        for (int j{}; j < this->field_size; ++j)
-        {
-            this->numbers[temp->getNum(i, j) - 1]++;
-        }
-    }
+    this->overrideNumbersWithField(temp);
 
     for (int i{}; i < this->map_size; ++i)
     {
@@ -326,24 +336,15 @@ bool Solution::exceptionInField(int** arr, Field* temp, int temp_i, int temp_j)
 
 bool Solution::lastNumberInStr_Col_Field(Map* map, Field* temp, int temp_i, int temp_j)
 {
-    int value;
-
     for (int i{}; i < this->field_size; ++i)
     {
         for (int j{}; j < this->field_size; ++j)
         {
             if (temp->getNum(i, j) == 0)
             {
-                try {
-                    value = this->checkLastNumberInStr_Col_Field(temp, map->getString(temp_i * 3 + i), map->getColumn(temp_j * 3 + j));
-
-                    map->setNum(value, temp_i * 3 + i, temp_j * 3 + j);
-
-                    return true;
-                }
-                catch (const char* ex)
+                if (this->checkLastNumberInStr_Col_Field(map, temp, map->getString(temp_i * 3 + i), map->getColumn(temp_j * 3 + j), temp_i * 3 + i, temp_j * 3 + j))
                 {
-
+                    return true;
                 }
             }
         }

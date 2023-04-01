@@ -63,6 +63,25 @@ bool LevelCreation::checkFieldsExceptions()
 	return false;
 }
 
+bool LevelCreation::checkExceptInRow()
+{
+	Field* temp = new Field{};
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		if (solution.exceptionInRow(this->map->getArr(), this->map->getString(i), i))
+		{
+			delete temp;
+
+			return true;
+		}
+	}
+
+	delete temp;
+
+	return false;
+}
+
 bool LevelCreation::checkExceptInStr_Col_Field()
 {
 	Field* temp = new Field{};
@@ -87,6 +106,8 @@ bool LevelCreation::checkExceptInStr_Col_Field()
 	return false;
 }
 
+
+
 bool LevelCreation::check1()
 {
 	if (checkFields())
@@ -107,6 +128,11 @@ bool LevelCreation::check1()
 	if (checkFieldsExceptions())
 	{
 		std::cout << "ExceptionInField\n";
+		return true;
+	}
+	if (checkExceptInRow())
+	{
+		std::cout << "ExceptionInRow\n";
 		return true;
 	}
 	if (checkExceptInStr_Col_Field())
