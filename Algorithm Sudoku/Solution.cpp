@@ -14,6 +14,18 @@ void Solution::resetTempField(Field* temp)
     }
 }
 
+int* Solution::createGhostArray(int* arr)
+{
+    int* newarr = new int[this->map_size];
+
+    for (int i{}; i < this->map_size; ++i)
+    {
+        newarr[i] = arr[i];
+    }
+
+    return newarr;
+}
+
 int Solution::findExceptValue()
 {
     for (int i{}; i < this->map_size; ++i)
@@ -149,7 +161,171 @@ bool Solution::checkLastNumberInStr_Col_Field(Map* map, Field* temp, int* string
     }
 
     return false;
-}  
+}
+
+void Solution::checkExceptionInString_Field(int** arr, Field* temp, int* ghost_string, int value, int str_index)
+{
+    for (int i{}; i < this->field_size; ++i)
+    {
+        temp->generate(arr, (int)(str_index / 3) * 3, i * 3);
+
+        if (this->findValueInField(temp, value))
+        {
+            for (int j{}; j < this->field_size; ++j)
+            {
+                ghost_string[i * 3 + j] = 10;
+            }
+        }
+    }
+}
+
+void Solution::checkExceptionInString_Columns(int** arr, int* ghost_string, int value)
+{
+    for (int i{}; i < this->map_size; ++i)
+    {
+        if (ghost_string[i] == 0)
+        {
+            for (int j{}; j < this->map_size; ++j)
+            {
+                if (arr[j][i] == value)
+                {
+                    ghost_string[i] = 10;
+                }
+            }
+        }
+    }
+}
+
+bool Solution::checkExceptionInString(int** arr, int value, int* string, int str_index)
+{
+    Field* temp = new Field{};
+
+    int* ghost_string = this->createGhostArray(string);
+
+    int count;
+
+    this->checkExceptionInString_Field(arr, temp, ghost_string, value, str_index);
+
+    count = this->checkCount(ghost_string);
+
+    if (count == 8)
+    {
+        int index = this->findExceptIndex(ghost_string);
+
+        string[index] = value;
+
+        delete[] ghost_string;
+
+        delete temp;
+
+        return true;
+    }
+
+    this->checkExceptionInString_Columns(arr, ghost_string, value);
+
+    count = this->checkCount(ghost_string);
+
+    if (count == 8)
+    {
+        int index = this->findExceptIndex(ghost_string);
+
+        string[index] = value;
+
+        delete[] ghost_string;
+
+        delete temp;
+
+        return true;
+    }
+
+    delete[] ghost_string;
+
+    delete temp;
+
+    return false;
+}
+
+void Solution::checkExceptionInColumn_Field(int** arr, Field* temp, int* ghost_column, int value, int col_index)
+{
+    for (int i{}; i < this->field_size; ++i)
+    {
+        temp->generate(arr, i * 3, (int)(col_index / 3) * 3);
+
+        if (this->findValueInField(temp, value))
+        {
+            for (int j{}; j < this->field_size; ++j)
+            {
+                ghost_column[i * 3 + j] = 10;
+            }
+        }
+    }
+}
+
+void Solution::checkExceptionInColumn_Strings(int** arr, int* ghost_column, int value)
+{
+    for (int i{}; i < this->map_size; ++i)
+    {
+        if (ghost_column[i] == 0)
+        {
+            for (int j{}; j < this->map_size; ++j)
+            {
+                if (arr[i][j] == value)
+                {
+                    ghost_column[i] = 10;
+                }
+            }
+        }
+    }
+}
+
+bool Solution::checkExceptionInColumn(int** arr, int value, int* column, int col_index)
+{
+    Field* temp = new Field{};
+
+    int* ghost_column = this->createGhostArray(column);
+
+    int count;
+
+    this->checkExceptionInColumn_Field(arr, temp, ghost_column, value, col_index);
+
+    count = this->checkCount(ghost_column);
+
+    if (count == 8)
+    {
+        int index = this->findExceptIndex(ghost_column);
+
+        column[index] = value;
+
+        delete[] ghost_column;
+
+        delete temp;
+
+        return true;
+    }
+
+    this->checkExceptionInColumn_Strings(arr, ghost_column, value);
+
+    count = this->checkCount(ghost_column);
+
+    if (count == 8)
+    {
+        int index = this->findExceptIndex(ghost_column);
+
+        column[index] = value;
+
+        delete[] ghost_column;
+
+        delete temp;
+
+        return true;
+    }
+
+    delete[] ghost_column;
+
+    delete temp;
+
+    return false;
+}
 
 void Solution::overrideNumbersWithField(Field* temp)
 {
@@ -325,6 +501,46 @@ bool Solution::exceptionInField(int** arr, Field* temp, int temp_i, int temp_j)
         if (this->numbers[i] == 0)
         {
             if (checkException(arr, temp_field, i + 1, temp_i, temp_j))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool Solution::exceptionInString(int** arr, int* string, int str_index)
+{
+    this->clearNumbers();
+
+    this->overrideNumbersWithRow(string);
+
+    for (int i{}; i < this->map_size; ++i)
+    {
+        if (numbers[i] == 0)
+        {
+            if (this->checkExceptionInString(arr, i + 1, string, str_index))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool Solution::exceptionInColumn(int** arr, int* column, int col_index)
+{
+    this->clearNumbers();
+
+    this->overrideNumbersWithRow(column);
+
+    for (int i{}; i < this->map_size; ++i)
+    {
+        if (numbers[i] == 0)
+        {
+            if (this->checkExceptionInColumn(arr, i + 1, column, col_index))
             {
                 return true;
             }

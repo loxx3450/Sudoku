@@ -38,7 +38,9 @@ private:
 
 	bool checkFieldsExceptions();
 
-	bool checkExceptInRow();
+	bool checkExceptInString();
+
+	bool checkExceptInColumn();
 
 	bool checkExceptInStr_Col_Field();
 

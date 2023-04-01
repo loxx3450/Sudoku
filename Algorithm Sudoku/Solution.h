@@ -11,6 +11,8 @@ private:
 
     void resetTempField(Field* temp);
 
+    int* createGhostArray(int* arr);
+
     int findExceptValue();
 
     int findExceptIndex(int* arr);
@@ -25,82 +27,17 @@ private:
 
     bool checkLastNumberInStr_Col_Field(Map* map, Field* temp, int* string, int* column, int temp_i, int temp_j);
 
-    bool checkExceptionInRow(int** arr, int value, int* string, int str_index)
-    {
-        Field* temp = new Field{};
+    void checkExceptionInString_Field(int** arr, Field* temp, int* ghost_string, int value, int str_index);
 
-        int* ghost_string = new int[this->map_size];
+    void checkExceptionInString_Columns(int** arr, int* ghost_string, int value);
 
-        for (int i{}; i < this->map_size; ++i)
-        {
-            ghost_string[i] = string[i];
-        }
+    bool checkExceptionInString(int** arr, int value, int* string, int str_index);
 
-        int count;
+    void checkExceptionInColumn_Field(int** arr, Field* temp, int* ghost_column, int value, int col_index);
 
-        for (int i{}; i < this->field_size; ++i)
-        {
-            temp->generate(arr, (int)(str_index / 3) * 3, i * 3);
+    void checkExceptionInColumn_Strings(int** arr, int* ghost_column, int value);
 
-            if (this->findValueInField(temp, value))
-            {
-                for (int j{}; j < this->field_size; ++j)
-                {
-                    ghost_string[i * 3 + j] = 10;
-                }
-            }
-        }
-
-        count = this->checkCount(ghost_string);
-
-        if (count == 8)
-        {
-            int index = this->findExceptIndex(ghost_string);
-
-            string[index] = value;
-
-            delete[] ghost_string;
-
-            delete temp;
-
-            return true;
-        }
-
-        for (int i{}; i < this->map_size; ++i)
-        {
-            if (ghost_string[i] == 0)
-            {
-                for (int j{}; j < this->map_size; ++j)
-                {
-                    if (arr[j][i] == value)
-                    {
-                        ghost_string[i] = 10;
-                    }
-                }
-            }
-        }
-
-        count = this->checkCount(ghost_string);
-
-        if (count == 8)
-        {
-            int index = this->findExceptIndex(ghost_string);
-
-            string[index] = value;
-
-            delete[] ghost_string;
-
-            delete temp;
-
-            return true;
-        }
-
-        delete[] ghost_string;
-
-        delete temp;
-
-        return false;
-    }
+    bool checkExceptionInColumn(int** arr, int value, int* column, int col_index);
 
     void overrideNumbersWithField(Field* temp);
 
@@ -127,25 +64,9 @@ public:
 
     bool exceptionInField(int** arr, Field* temp, int temp_i, int temp_j);
 
-    bool exceptionInRow(int** arr, int* string, int str_index)
-    {
-        this->clearNumbers();
+    bool exceptionInString(int** arr, int* string, int str_index);
 
-        this->overrideNumbersWithRow(string);
-
-        for (int i{}; i < this->map_size; ++i)
-        {
-            if (numbers[i] == 0)
-            {
-                if (checkExceptionInRow(arr, i + 1, string, str_index))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
+    bool exceptionInColumn(int** arr, int* column, int col_index);
 
     bool lastNumberInStr_Col_Field(Map* map, Field* temp, int temp_i, int temp_j);
 
