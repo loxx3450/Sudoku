@@ -8,7 +8,7 @@ private:
     const int map_size = 9;
 
     int** arr;
-    int* numbers;
+    int* map_numbers;
 
     bool checkFields();
 
@@ -23,7 +23,7 @@ private:
 public:
     Map() :
         arr{ new int* [this->map_size] },
-        numbers{ new int[this->map_size]{} }
+        map_numbers{ new int[this->map_size]{} }
     {
         for (int i{}; i < this->map_size; ++i)
         {
@@ -33,7 +33,7 @@ public:
 
     Map(int** arr) :
         arr{ new int* [this->map_size] },
-        numbers{ new int[this->map_size]{} }
+        map_numbers{ new int[this->map_size]{} }
     {
         for (int i{}; i < this->map_size; ++i)
         {
@@ -46,6 +46,8 @@ public:
     }
 
     bool isMade();
+
+    void tryToGenerate();
 
     void generate();
 
@@ -60,6 +62,8 @@ public:
     void setNum(int value, int i, int j);
 
     int** getArr();
+
+    void setArr(int** arr);
 
     int* getString(int i);
 
@@ -82,9 +86,9 @@ public:
             delete[] this->arr;
         }
 
-        if (this->numbers != nullptr)
+        if (this->map_numbers != nullptr)
         {
-            //delete[] this->numbers;  //!!!!!!!!!!!!!!!!
+            //delete[] this->map_numbers;       //!!!!!!!!!!!!!
         }
     }
 };

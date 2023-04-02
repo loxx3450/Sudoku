@@ -1,61 +1,36 @@
 #pragma once
-#include "Solution.h"
 #include "Map.h"
+#include "CheckDifficult.h"
+
 
 class LevelCreation
 {
 private:
-	const int map_size = 9;
-	const int field_size = 3;
-
+	Map* made_map;
 	Map* map;
-    Solution solution;
-
-	bool checkFields();
-
-	bool checkStrings();
-
-	bool checkColumns()
-	{
-		int* tmp;
-
-		for (int i{}; i < this->map_size; ++i)
-		{
-			tmp = this->map->getColumn(i);
-
-			if (solution.lastInRow(tmp))
-			{
-				this->map->setColumn(tmp, i);
-
-				return true;
-			}
-		}
-
-		//delete tmp;	!!!!!!!!!!
-
-		return false;
-	}
-
-	bool checkFieldsExceptions();
-
-	bool checkExceptInString();
-
-	bool checkExceptInColumn();
-
-	bool checkExceptInStr_Col_Field();
+	CheckDifficult* d;
+	int complexity = 0;
 
 public:
-	LevelCreation(Map* map)
-	{
-		this->map = new Map{ *map };
-	}
+	LevelCreation(Map* made_map):
+		made_map{new Map{*made_map}},
+		map{new Map{}},
+		d { new CheckDifficult{map}}
+	{}
 
-	bool check1();
+	Map* generate(int value);
+
+	int getComplexity();
 
 	~LevelCreation()
 	{
-		if (this->map != nullptr){
-			delete this->map;
+		if (this->made_map != nullptr)
+		{
+			delete made_map;
+		}
+		if (this->d != nullptr)
+		{
+			delete d;
 		}
 	}
 };

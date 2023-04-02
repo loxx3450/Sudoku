@@ -31,17 +31,17 @@ bool Map::checkStrings()
     {
         for (int j{}; j < this->map_size; ++j)
         {
-            this->numbers[this->arr[i][j] - 1]++;
+            this->map_numbers[this->arr[i][j] - 1]++;
         }
 
         for (int i{}; i < this->map_size; ++i)
         {
-            if (this->numbers[i] > 1)
+            if (this->map_numbers[i] > 1)
             {
                 return false;
             }
 
-            this->numbers[i] = 0;
+            this->map_numbers[i] = 0;
         }
     }
 
@@ -56,17 +56,17 @@ bool Map::checkColumns()
     {
         for (int j{}; j < 9; ++j)
         {
-            this->numbers[this->arr[j][i] - 1]++;
+            this->map_numbers[this->arr[j][i] - 1]++;
         }
 
         for (int i{}; i < 9; ++i)
         {
-            if (this->numbers[i] > 1)
+            if (this->map_numbers[i] > 1)
             {
                 return false;
             }
 
-            this->numbers[i] = 0;
+            this->map_numbers[i] = 0;
         }
     }
 
@@ -82,7 +82,7 @@ void Map::clear()
             arr[i][j] = 0;
         }
 
-        numbers[i] = 0;
+        this->map_numbers[i] = 0;
     }
 }
 
@@ -90,7 +90,7 @@ void Map::clearNumbers()
 {
     for (int i{}; i < 9; ++i)
     {
-        numbers[i] = 0;
+        this->map_numbers[i] = 0;
     }
 }
 
@@ -110,7 +110,7 @@ bool Map::isMade()
     return true;
 }
 
-void Map::generate()
+void Map::tryToGenerate()
 {
     this->clear();
 
@@ -140,6 +140,21 @@ void Map::generate()
             value = 0;
         }
     }
+}
+
+void Map::generate()
+{
+    this->clear();
+
+    while (true)
+    {
+        this->tryToGenerate();
+        if (this->isMade() && this->check())
+        {
+            break;
+        }
+    }
+    
 }
 
 void Map::show()
@@ -176,15 +191,15 @@ bool Map::check()
 {
     if (checkFields())
     {
-        std::cout << "Etap 1" << "\n";
+        //std::cout << "Etap 1" << "\n";
 
         if (checkStrings())
         {
-            std::cout << "Etap 2" << "\n";
+            //std::cout << "Etap 2" << "\n";
 
             if (checkColumns())
             {
-                std::cout << "Etap 3" << "\n";
+                //std::cout << "Etap 3" << "\n";
 
                 if (isMade())
                 {
@@ -194,7 +209,7 @@ bool Map::check()
         }
     }
 
-    std::cout << "Etap 0" << "\n";
+    //std::cout << "Etap 0" << "\n";
 
     return false;
 }
@@ -223,6 +238,17 @@ void Map::setNum(int value, int i, int j)
 int** Map::getArr()
 {
     return this->arr;
+}
+
+void Map::setArr(int** arr)
+{
+    for (int i{}; i < this->map_size; ++i)
+    {
+        for (int j{}; j < this->map_size; ++j)
+        {
+            this->arr[i][j] = arr[i][j];
+        }
+    }
 }
 
 int* Map::getString(int i)

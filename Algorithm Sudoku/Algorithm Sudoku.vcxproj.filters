@@ -42,6 +42,9 @@
     <ClCompile Include="LevelCreation.cpp">
       <Filter>Исходные файлы\LevelCreation</Filter>
     </ClCompile>
+    <ClCompile Include="CheckDifficult.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="LevelCreation.h">
       <Filter>Исходные файлы\LevelCreation</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckDifficult.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
