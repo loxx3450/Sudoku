@@ -25,6 +25,12 @@
     <Filter Include="Исходные файлы\LevelCreation">
       <UniqueIdentifier>{1c2369a3-1cc1-41fa-a4e3-a675850ad062}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Map\CheckMap">
+      <UniqueIdentifier>{28b4a565-5402-4320-9aad-088cbba65fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\CheckDifficult">
+      <UniqueIdentifier>{e43c8048-b367-483e-8559-7d5e3c525bd4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,8 +48,11 @@
     <ClCompile Include="LevelCreation.cpp">
       <Filter>Исходные файлы\LevelCreation</Filter>
     </ClCompile>
+    <ClCompile Include="CheckMap.cpp">
+      <Filter>Исходные файлы\Map\CheckMap</Filter>
+    </ClCompile>
     <ClCompile Include="CheckDifficult.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\CheckDifficult</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,8 +68,11 @@
     <ClInclude Include="LevelCreation.h">
       <Filter>Исходные файлы\LevelCreation</Filter>
     </ClInclude>
+    <ClInclude Include="CheckMap.h">
+      <Filter>Исходные файлы\Map\CheckMap</Filter>
+    </ClInclude>
     <ClInclude Include="CheckDifficult.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Исходные файлы\CheckDifficult</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

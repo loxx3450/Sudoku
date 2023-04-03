@@ -117,17 +117,7 @@ int main()
         new int[9]{ 0, 6, 4, 0, 0, 0, 0, 0, 0 },
     };*/
 
-    /*int** arr = new int* [9]{         //Level 0
-        new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    };*/
+    /**/
 
     /*int** arr = new int* [9]{         //Level 3
         new int[9]{ 2, 0, 0, 4, 0, 6, 0, 0, 9 },
@@ -206,22 +196,38 @@ int main()
 
     for (int i{}; i < 10; ++i)
     {
-        value = rand() % 3 + 0;
-
-        temp = a->generate(1);
+        temp = a->generate(i % 3);
 
         recroding(a, temp, map);
 
         std::cout << i + 1 << "\n";
     }
 
+    //int** arr = new int* [9]{         //Level 0
+    //    new int[9]{ 0, 0, 0, 0, 0, 1, 4, 7, 0 },
+    //    new int[9]{ 0, 0, 9, 0, 3, 2, 0, 8, 0 },
+    //    new int[9]{ 6, 0, 0, 0, 0, 0, 0, 0, 0 },
+    //    new int[9]{ 0, 0, 0, 3, 8, 0, 0, 0, 4 },
+    //    new int[9]{ 0, 8, 0, 6, 0, 0, 0, 0, 2 },
+    //    new int[9]{ 0, 0, 0, 2, 0, 5, 3, 0, 0 },
+    //    new int[9]{ 0, 3, 7, 0, 4, 0, 6, 0, 9 },
+    //    new int[9]{ 2, 0, 0, 0, 0, 0, 0, 0, 0 },
+    //    new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+    //};
 
+    //Map* map = new Map{ arr };
+
+    //CheckDifficult a{ map };
+
+    //a.checkComplexity();
+    //
+
+    //map->show();
+    //map->check();
+    
 
     
-    
-
-    
-    delete a;
+    //delete a;
     
     
     

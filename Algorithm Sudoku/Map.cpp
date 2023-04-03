@@ -1,78 +1,5 @@
 #include "Map.h"
 
-bool Map::checkFields()
-{
-    Field* temp = new Field{};
-    for (int i{}; i < this->field_size; ++i)
-    {
-        for (int j{}; j < this->field_size; ++j)
-        {
-            temp->generate(this->arr, i * this->field_size, j * this->field_size);
-
-            if (!temp->check())
-            {
-                delete temp;
-
-                return false;
-            }
-        }
-    }
-
-    delete temp;
-
-    return true;
-}
-
-bool Map::checkStrings()
-{
-    this->clearNumbers();
-
-    for (int i{}; i < this->map_size; ++i)
-    {
-        for (int j{}; j < this->map_size; ++j)
-        {
-            this->map_numbers[this->arr[i][j] - 1]++;
-        }
-
-        for (int i{}; i < this->map_size; ++i)
-        {
-            if (this->map_numbers[i] > 1)
-            {
-                return false;
-            }
-
-            this->map_numbers[i] = 0;
-        }
-    }
-
-    return true;
-}
-
-bool Map::checkColumns()
-{
-    this->clearNumbers();
-
-    for (int i{}; i < 9; ++i)
-    {
-        for (int j{}; j < 9; ++j)
-        {
-            this->map_numbers[this->arr[j][i] - 1]++;
-        }
-
-        for (int i{}; i < 9; ++i)
-        {
-            if (this->map_numbers[i] > 1)
-            {
-                return false;
-            }
-
-            this->map_numbers[i] = 0;
-        }
-    }
-
-    return true;
-}
-
 void Map::clear()
 {
     for (int i{}; i < 9; ++i)
@@ -129,7 +56,7 @@ void Map::tryToGenerate()
                     return;
                 }
 
-                if (checkFields() && checkColumns() && checkStrings())
+                if (this->checking.checkFields(this->getArr()) && this->checking.checkColumns(this->getArr(), this->map_numbers) && this->checking.checkStrings(this->getArr(), this->map_numbers))
                 {
                     break;
                 }
@@ -149,7 +76,7 @@ void Map::generate()
     while (true)
     {
         this->tryToGenerate();
-        if (this->isMade() && this->check())
+        if (this->check())
         {
             break;
         }
@@ -189,15 +116,15 @@ void Map::show()
 
 bool Map::check()
 {
-    if (checkFields())
+    if (this->checking.checkFields(this->getArr()))
     {
         //std::cout << "Etap 1" << "\n";
 
-        if (checkStrings())
+        if (this->checking.checkStrings(this->getArr(), this->map_numbers))
         {
-            //std::cout << "Etap 2" << "\n";
+           //std::cout << "Etap 2" << "\n";
 
-            if (checkColumns())
+            if (this->checking.checkColumns(this->getArr(), this->map_numbers))
             {
                 //std::cout << "Etap 3" << "\n";
 

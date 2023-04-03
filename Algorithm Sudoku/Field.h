@@ -8,14 +8,14 @@ private:
     const int numbers_size = 9;
 
     int** arr;
-    int* numbers;
+    int* field_numbers;
 
-    void numbersInField();
+    void overrideNumbersInField();
 
 public:
     Field() :
         arr{ new int* [this->count] },
-        numbers{ new int[this->numbers_size]{} }
+        field_numbers{ new int[this->numbers_size]{} }
     {
         for (int i{}; i < this->count; ++i)
         {
@@ -50,9 +50,9 @@ public:
             delete[] this->arr;
         }
 
-        if (this->numbers != nullptr)
+        if (this->field_numbers != nullptr)
         {
-            delete[] numbers;
+            delete[] field_numbers;
         }
     }
 };

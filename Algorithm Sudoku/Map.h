@@ -1,5 +1,6 @@
 #pragma once
 #include "Field.h"
+#include "CheckMap.h"
 
 class Map
 {
@@ -9,21 +10,19 @@ private:
 
     int** arr;
     int* map_numbers;
-
-    bool checkFields();
-
-    bool checkStrings();
-
-    bool checkColumns();
+    CheckMap checking;
 
     void clear();
 
     void clearNumbers();
 
+    void tryToGenerate();
+
 public:
     Map() :
         arr{ new int* [this->map_size] },
-        map_numbers{ new int[this->map_size]{} }
+        map_numbers{ new int[this->map_size]{} },
+        checking{}
     {
         for (int i{}; i < this->map_size; ++i)
         {
@@ -33,7 +32,8 @@ public:
 
     Map(int** arr) :
         arr{ new int* [this->map_size] },
-        map_numbers{ new int[this->map_size]{} }
+        map_numbers{ new int[this->map_size]{} },
+        checking{}
     {
         for (int i{}; i < this->map_size; ++i)
         {
@@ -47,13 +47,13 @@ public:
 
     bool isMade();
 
-    void tryToGenerate();
-
     void generate();
 
     void show();
 
     bool check();
+
+
 
     void takeField(Field* field, int tmp_i, int tmp_j);
 

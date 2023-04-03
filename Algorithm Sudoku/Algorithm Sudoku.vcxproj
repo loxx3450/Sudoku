@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CheckDifficult.cpp" />
+    <ClCompile Include="CheckMap.cpp" />
     <ClCompile Include="LevelCreation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Field.cpp" />
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CheckDifficult.h" />
+    <ClInclude Include="CheckMap.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="LevelCreation.h" />
     <ClInclude Include="Map.h" />

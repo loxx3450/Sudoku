@@ -2,7 +2,7 @@
 
 Map* LevelCreation::generate(int value)
 {
-	this->made_map->generate();
+	this->made_map->generate();			//I need it?
 
 	this->map->setArr(this->made_map->getArr());
 

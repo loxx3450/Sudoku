@@ -1,6 +1,6 @@
 #include "Field.h"
 
-void Field::numbersInField()
+void Field::overrideNumbersInField()
 {
     for (int i{}; i < this->count; ++i)
     {
@@ -8,7 +8,7 @@ void Field::numbersInField()
         {
             if (arr[i][j] != 0)
             {
-                this->numbers[arr[i][j] - 1]++;
+                this->field_numbers[arr[i][j] - 1]++;
             }
         }
     }
@@ -57,16 +57,16 @@ bool Field::isFull()
 
 bool Field::check()
 {
-    this->numbersInField();
+    this->overrideNumbersInField();
 
     for (int i{}; i < this->numbers_size; ++i)
     {
-        if (this->numbers[i] > 1)
+        if (this->field_numbers[i] > 1)
         {
             return false;
         }
 
-        this->numbers[i] = 0;
+        this->field_numbers[i] = 0;
     }
     return true;
 }
