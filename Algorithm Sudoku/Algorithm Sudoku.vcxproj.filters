@@ -31,6 +31,21 @@
     <Filter Include="Исходные файлы\CheckDifficult">
       <UniqueIdentifier>{e43c8048-b367-483e-8559-7d5e3c525bd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Solution\NormalMethods">
+      <UniqueIdentifier>{8c2cc510-503f-4b34-83bb-cca784334a9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\NormalMethods\Exceptions">
+      <UniqueIdentifier>{639cb436-7acf-42e2-a642-9328bd225374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\EasyMethods">
+      <UniqueIdentifier>{d0889465-b015-49d0-b4cd-7a4d822ef30d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\HardMethods">
+      <UniqueIdentifier>{4ba42982-9c9a-49a9-875e-cf8fb1422398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\Methods">
+      <UniqueIdentifier>{ea8959aa-b05d-49d4-abb1-44ae3fdc6e59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +69,21 @@
     <ClCompile Include="CheckDifficult.cpp">
       <Filter>Исходные файлы\CheckDifficult</Filter>
     </ClCompile>
+    <ClCompile Include="EasyMethods.cpp">
+      <Filter>Исходные файлы\Solution\EasyMethods</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalMethods.cpp">
+      <Filter>Исходные файлы\Solution\NormalMethods</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions.cpp">
+      <Filter>Исходные файлы\Solution\NormalMethods\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="HardMethods.cpp">
+      <Filter>Исходные файлы\Solution\HardMethods</Filter>
+    </ClCompile>
+    <ClCompile Include="Methods.cpp">
+      <Filter>Исходные файлы\Solution\Methods</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.h">
@@ -73,6 +103,21 @@
     </ClInclude>
     <ClInclude Include="CheckDifficult.h">
       <Filter>Исходные файлы\CheckDifficult</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyMethods.h">
+      <Filter>Исходные файлы\Solution\EasyMethods</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalMethods.h">
+      <Filter>Исходные файлы\Solution\NormalMethods</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions.h">
+      <Filter>Исходные файлы\Solution\NormalMethods\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="HardMethods.h">
+      <Filter>Исходные файлы\Solution\HardMethods</Filter>
+    </ClInclude>
+    <ClInclude Include="Methods.h">
+      <Filter>Исходные файлы\Solution\Methods</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

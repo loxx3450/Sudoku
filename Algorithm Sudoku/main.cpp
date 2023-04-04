@@ -5,7 +5,7 @@
 #include <fstream>
 
 
-void recroding(LevelCreation* a, Map* temp, Map* map)
+void recording(LevelCreation* a, Map* temp, Map* map)
 {
     std::ofstream out;
     out.open("C:\\Users\\egork\\source\\repos\\Algorithm Sudoku\\Kozachok.txt", std::ios::app);
@@ -184,7 +184,7 @@ int main()
     //map->check();
     
     
-    Map* map = new Map{};
+   /* Map* map = new Map{};
 
     map->generate();
 
@@ -198,32 +198,32 @@ int main()
     {
         temp = a->generate(i % 3);
 
-        recroding(a, temp, map);
+        recording(a, temp, map);
 
         std::cout << i + 1 << "\n";
-    }
+    }*/
 
-    //int** arr = new int* [9]{         //Level 0
-    //    new int[9]{ 0, 0, 0, 0, 0, 1, 4, 7, 0 },
-    //    new int[9]{ 0, 0, 9, 0, 3, 2, 0, 8, 0 },
-    //    new int[9]{ 6, 0, 0, 0, 0, 0, 0, 0, 0 },
-    //    new int[9]{ 0, 0, 0, 3, 8, 0, 0, 0, 4 },
-    //    new int[9]{ 0, 8, 0, 6, 0, 0, 0, 0, 2 },
-    //    new int[9]{ 0, 0, 0, 2, 0, 5, 3, 0, 0 },
-    //    new int[9]{ 0, 3, 7, 0, 4, 0, 6, 0, 9 },
-    //    new int[9]{ 2, 0, 0, 0, 0, 0, 0, 0, 0 },
-    //    new int[9]{ 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-    //};
+    int** arr = new int* [9]{         //Level 4
+        new int[9]{ 9, 2, 3, 0, 0, 0, 0, 1, 6 },
+        new int[9]{ 0, 0, 0, 0, 5, 0, 0, 0, 0 },
+        new int[9]{ 5, 0, 0, 1, 0, 0, 8, 0, 7 },
+        new int[9]{ 6, 1, 0, 0, 0, 8, 7, 0, 0 },
+        new int[9]{ 0, 0, 0, 2, 1, 9, 0, 0, 0 },
+        new int[9]{ 0, 0, 9, 3, 0, 0, 0, 8, 2 },
+        new int[9]{ 3, 0, 1, 0, 0, 6, 0, 0, 4 },
+        new int[9]{ 0, 0, 0, 0, 3, 0, 0, 0, 0 },
+        new int[9]{ 8, 4, 0, 0, 0, 0, 2, 3, 1 },
+    };
 
-    //Map* map = new Map{ arr };
+    Map* map = new Map{ arr };
 
-    //CheckDifficult a{ map };
+    CheckDifficult a{ map };
 
-    //a.checkComplexity();
-    //
+    a.checkComplexity();
+    
 
-    //map->show();
-    //map->check();
+    map->show();
+    map->check();
     
 
     

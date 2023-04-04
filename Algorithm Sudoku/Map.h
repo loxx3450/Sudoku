@@ -88,7 +88,7 @@ public:
 
         if (this->map_numbers != nullptr)
         {
-            //delete[] this->map_numbers;       //!!!!!!!!!!!!!
+            //delete[] this->map_numbers;
         }
     }
 };

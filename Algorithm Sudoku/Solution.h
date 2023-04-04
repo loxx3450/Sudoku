@@ -1,5 +1,8 @@
 #pragma once
 #include "Map.h"
+#include "EasyMethods.h"
+#include "NormalMethods.h"
+#include "HardMethods.h"
 
 class Solution
 {
@@ -8,50 +11,9 @@ private:
     const int map_size = 9;
 
     int* numbers;
-
-    void resetTempField(Field* temp);
-
-    int* createGhostArray(int* arr);
-
-    int findExceptValue();
-
-    int findExceptIndex(int* arr);
-
-    bool findValueInField(Field* temp, int value);
-
-    void checkException_Strings(int** arr, Field* temp_field, int value, int temp_i);
-
-    void checkException_Columns(int** arr, Field* temp_field, int value, int temp_j);
-
-    bool checkException(int** arr, Field* temp_field, int value, int temp_i, int temp_j);
-
-    bool checkLastNumberInStr_Col_Field(Map* map, Field* temp, int* string, int* column, int temp_i, int temp_j);
-
-    void checkExceptionInString_Field(int** arr, Field* temp, int* ghost_string, int value, int str_index);
-
-    void checkExceptionInString_Columns(int** arr, int* ghost_string, int value);
-
-    bool checkExceptionInString(int** arr, int value, int* string, int str_index);
-
-    void checkExceptionInColumn_Field(int** arr, Field* temp, int* ghost_column, int value, int col_index);
-
-    void checkExceptionInColumn_Strings(int** arr, int* ghost_column, int value);
-
-    bool checkExceptionInColumn(int** arr, int value, int* column, int col_index);
-
-    void overrideNumbersWithField(Field* temp);
-
-    int checkCountInNumbers();
-
-    int checkCount(int* arr);
-
-    int checkCountInField(Field* temp);
-
-    void overrideNumbersWithRow(int* arr);
-
-    void clearNumbers();
-
-    bool isRowFull(int* arr);
+    EasyMethods methods1;
+    NormalMethods methods2;
+    HardMethods methods3;
 
 public:
     Solution():
@@ -74,7 +36,7 @@ public:
     {
         if (this->numbers != nullptr)
         {
-            //delete[] this->numbers;   //!!!!!!!!!!!!!
+            delete[] this->numbers;   
         }
     }
 };

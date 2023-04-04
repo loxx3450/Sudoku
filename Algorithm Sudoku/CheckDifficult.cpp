@@ -39,7 +39,7 @@ bool CheckDifficult::checkStrings()
 	return false;
 }
 
-bool CheckDifficult::checkFieldsExceptions()
+bool CheckDifficult::checkExceptInField()
 {
 	Field* temp = new Field{};
 
@@ -152,7 +152,7 @@ bool CheckDifficult::check()
 		//std::cout << "LastInColumn\n";
 		return true;
 	}
-	if (checkFieldsExceptions())
+	if (checkExceptInField())
 	{
 		//std::cout << "ExceptionInField\n";
 		return true;

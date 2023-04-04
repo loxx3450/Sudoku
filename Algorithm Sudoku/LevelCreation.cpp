@@ -2,9 +2,7 @@
 
 Map* LevelCreation::generate(int value)
 {
-	this->made_map->generate();			//I need it?
-
-	this->map->setArr(this->made_map->getArr());
+	this->map->generate();
 
 	int count = rand() % 6 + 25;
 

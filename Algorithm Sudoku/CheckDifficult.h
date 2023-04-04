@@ -37,7 +37,7 @@ private:
 		return false;
 	}
 
-	bool checkFieldsExceptions();
+	bool checkExceptInField();
 
 	bool checkExceptInString();
 
