@@ -1,6 +1,6 @@
-#include "Methods.h"
+#include "Method.h"
 
-void Methods::clearNumbers()
+void Method::clearNumbers()
 {
     for (int i{}; i < this->map_size; ++i)
     {
@@ -8,7 +8,7 @@ void Methods::clearNumbers()
     }
 }
 
-void Methods::overrideNumbersWithField(Field* temp)
+void Method::overrideNumbersWithField(Field* temp)
 {
     for (int i{}; i < this->field_size; ++i)
     {
@@ -19,7 +19,7 @@ void Methods::overrideNumbersWithField(Field* temp)
     }
 }
 
-void Methods::overrideNumbersWithRow(Cell* arr)
+void Method::overrideNumbersWithRow(Cell* arr)
 {
     for (int i{}; i < this->map_size; ++i)
     {

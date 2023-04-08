@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 
 class Cell
@@ -28,145 +29,31 @@ public:
 		}
 	}
 
-	void addNote(int value)
-	{
-		if (this->number == 0)
-		{
-			if (this->notes == nullptr)
-			{
-				this->notes = new bool[9]{ false };
-			}
+	void addNote(int value);
 
-			this->notes[value - 1] = true;
-		}
-	}
+	void setNum(int temp_num);
 
-	void setNum(int temp_num)
-	{
-		this->number = temp_num;
-	}
+	void setCell(Cell* temp);
 
-	void setCell(Cell* temp)
-	{
-		this->number = temp->number;
+	Cell* getCell();
 
-		if (temp->notes != nullptr)
-		{
-			if (this->notes != nullptr)
-			{
-				delete[] notes;
-			}
+	int getNum();
 
-			this->notes = new bool[9]{};
+	void showNotes(int i = 0, int j = 0);
 
-			for (int i{}; i < 9; ++i)
-			{
-				this->notes[i] = temp->notes[i];
-			}
-		}
-	}
+	bool inNotes(int value);
 
-	Cell* getCell()
-	{
-		return this;
-	}
+	int countOfNotes();
 
-	int getNum()
-	{
-		return this->number;
-	}
+	bool* getNotes();
 
-	void showNotes(int i = 0, int j = 0)
-	{
-		if (this->notes != nullptr && this->number == 0)
-		{
-			std::cout << i << "; " << j << ": " << this->countOfNotes() << "\n";
-			for (int i{}; i < 9; ++i)
-			{
-				if (this->notes[i] == true)
-				{
-					std::cout << i + 1;
-				}
-			}
-			std::cout << "\n";
-		}
-		
-	}
+	void editNotes(bool* notes);
 
-	int countOfNotes()
-	{
-		if (this->notes != nullptr && this->number == 0)
-		{
-			int count{};
+	void deleteNotes();
 
-			for (int i{}; i < 9; ++i)
-			{
-				if (this->notes[i] == true)
-				{
-					++count;
-				}
-			}
+	void editNotes(int* hiddenNumbers, int count);
 
-			return count;
-		}
-		
-		return 0;
-	}
-
-	bool* getNotes()
-	{
-		if (this->notes != nullptr)
-		{
-			return this->notes;
-		}
-		return nullptr;
-	}
-
-	void editNotes(bool* notes)
-	{
-		if (notes != nullptr && this->notes != nullptr)
-		{
-			for (int i{}; i < 9; ++i)
-			{
-				if (notes[i] == true && this->notes[i] == true)
-				{
-					this->notes[i] = false;
-				}
-			}
-		}
-	}
-
-	bool operator==(bool* notes)
-	{
-		if (notes != nullptr && this->notes != nullptr)
-		{
-			for (int i{}; i < 9; ++i)
-			{
-				if (this->notes[i] != notes[i])
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
-		
-		return false;
-	}
-
-	void operator-(bool* notes)
-	{
-		if (notes != nullptr && this->notes != nullptr)
-		{
-			for (int i{}; i < 9; ++i)
-			{
-				if (notes[i] == true && this->notes[i] == true)
-				{
-					this->notes[i] = false;
-				}
-			}
-		}
-	}
+	bool operator==(bool* notes);
 
 	~Cell()
 	{

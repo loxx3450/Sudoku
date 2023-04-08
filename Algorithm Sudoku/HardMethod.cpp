@@ -1,6 +1,6 @@
- #include "HardMethods.h"
+ #include "HardMethod.h"
 
-int HardMethods::checkCountInNumbers()
+int HardMethod::checkCountInNumbers()
 {
     int count{};
 
@@ -15,7 +15,7 @@ int HardMethods::checkCountInNumbers()
     return count;
 }
 
-bool HardMethods::checkLastNumberInStr_Col_Field(Map* map, Field* temp, Cell* string, Cell* column, int temp_i, int temp_j)
+bool HardMethod::checkLastNumberInStr_Col_Field(Map* map, Field* temp, Cell* string, Cell* column, int temp_i, int temp_j)
 {
     this->clearNumbers();
 
@@ -43,7 +43,7 @@ bool HardMethods::checkLastNumberInStr_Col_Field(Map* map, Field* temp, Cell* st
     return false;
 }
 
-bool HardMethods::lastNumberInStr_Col_Field(Map* map, Field* temp, int temp_i, int temp_j)
+bool HardMethod::lastNumberInStr_Col_Field(Map* map, Field* temp, int temp_i, int temp_j)
 {
     for (int i{}; i < this->field_size; ++i)
     {

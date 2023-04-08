@@ -142,33 +142,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="CheckDifficult.cpp" />
     <ClCompile Include="CheckMap.cpp" />
-    <ClCompile Include="EasyMethods.cpp" />
-    <ClCompile Include="Exceptions.cpp" />
-    <ClCompile Include="ExtremeMethods.cpp" />
-    <ClCompile Include="HardMethods.cpp" />
+    <ClCompile Include="EasyMethod.cpp" />
+    <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="ExtremeMethod.cpp" />
+    <ClCompile Include="HardMethod.cpp" />
     <ClCompile Include="LevelCreation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Methods.cpp" />
-    <ClCompile Include="NormalMethods.cpp" />
+    <ClCompile Include="Method.cpp" />
+    <ClCompile Include="NormalMethod.cpp" />
     <ClCompile Include="Solution.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CheckDifficult.h" />
     <ClInclude Include="CheckMap.h" />
-    <ClInclude Include="EasyMethods.h" />
-    <ClInclude Include="Exceptions.h" />
-    <ClInclude Include="ExtremeMethods.h" />
+    <ClInclude Include="EasyMethod.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="ExtremeMethod.h" />
     <ClInclude Include="Field.h" />
-    <ClInclude Include="HardMethods.h" />
+    <ClInclude Include="HardMethod.h" />
     <ClInclude Include="LevelCreation.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="Methods.h" />
-    <ClInclude Include="NormalMethods.h" />
+    <ClInclude Include="Method.h" />
+    <ClInclude Include="NakedGroup.h" />
+    <ClInclude Include="NormalMethod.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Solution.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

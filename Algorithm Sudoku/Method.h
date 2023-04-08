@@ -3,7 +3,7 @@
 #include "Cell.h"
 
 
-class Methods
+class Method
 {
 protected:
 	const int map_size = 9;
@@ -18,11 +18,11 @@ protected:
 	void overrideNumbersWithRow(Cell* arr);
 
 public:
-	Methods():
+	Method():
 		numbers{new int[this->map_size]{}}
 	{}
 
-	~Methods()
+	~Method()
 	{
 		if (this->numbers != nullptr)
 		{

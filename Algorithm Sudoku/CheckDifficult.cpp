@@ -148,23 +148,47 @@ void CheckDifficult::makeNotes()
 	}
 }
 
-bool CheckDifficult::checkHiddenCouples()
+void CheckDifficult::checkNakedCouples()
 {
-	Field* temp = new Field{};
+	Field* tempField = new Field{};
 
 	for (int i{}; i < this->field_size; ++i)
 	{
 		for (int j{}; j < this->field_size; ++j)
 		{
-			temp->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
+			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
 
-			solution.hiddenCouplesInField(map, temp, i, j);
+			solution.nakedCouplesInField(map, tempField, i, j);
 		}
 	}
 
-	delete temp;
+	delete tempField;
 
-	return true;
+	for (int i{}; i < this->map_size; ++i)
+	{
+		solution.nakedCouplesInRow(map->getString(i));
+	}
+
+	Cell* tempRow = nullptr;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		tempRow = map->getColumn(i);
+
+		solution.nakedCouplesInRow(tempRow);
+
+		map->setColumn(tempRow, i);
+	}
+}
+
+bool CheckDifficult::isOnlyOneNote()
+{
+	if (solution.onlyOneNote(this->map))
+	{
+		return true;
+	}
+
+	return false;
 }
 
 
@@ -218,16 +242,21 @@ bool CheckDifficult::check()
 		}
 		return true;
 	}
-	if (!this->isNotes)
+	this->makeNotes();
+	std::cout << "MakeNotes!\n";
+	this->checkNakedCouples();
+	std::cout << "HiddenCouples\n";
+	map->showNotes();
+	if (this->isOnlyOneNote())
 	{
-		this->makeNotes();
-		std::cout << "MakeNotes!\n";
-		this->isNotes = true;
+		
+		map->show();
+		return true;
 	}
-	if (this->checkHiddenCouples())
+	/*if (this->checkHiddenTriplets())
 	{
-		std::cout << "HiddenCouples\n";
-	}
+		std::cout << "HiddenTriplets\n";
+	}*/
 
 	
 

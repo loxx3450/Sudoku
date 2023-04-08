@@ -140,7 +140,7 @@ bool Map::check()
 
             if (this->checking.checkColumns(this->getArr(), this->map_numbers))
             {
-                //std::cout << "Etap 3" << "\n";
+                std::cout << "Etap 3" << "\n";
 
                 if (isMade())
                 {
@@ -150,7 +150,7 @@ bool Map::check()
         }
     }
 
-    //std::cout << "Etap 0" << "\n";
+    std::cout << "Etap 0" << "\n";
 
     return false;
 }

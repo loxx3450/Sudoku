@@ -1,6 +1,6 @@
-#include "Exceptions.h"
+#include "Exception.h"
 
-void Exceptions::resetTempField(Field* temp)
+void Exception::resetTempField(Field* temp)
 {
     for (int i{}; i < this->field_size; ++i)
     {
@@ -14,7 +14,7 @@ void Exceptions::resetTempField(Field* temp)
     }
 }
 
-Cell* Exceptions::createGhostArray(Cell* arr)
+Cell* Exception::createGhostArray(Cell* arr)
 {
     Cell* newarr = new Cell[this->map_size];
 
@@ -27,7 +27,7 @@ Cell* Exceptions::createGhostArray(Cell* arr)
 }
 
 
-int Exceptions::findExceptIndex(Cell* arr)
+int Exception::findExceptIndex(Cell* arr)
 {
     for (int i{}; i < this->map_size; ++i)
     {
@@ -38,7 +38,7 @@ int Exceptions::findExceptIndex(Cell* arr)
     }
 }
 
-int Exceptions::checkCountInArr(Cell* arr)
+int Exception::checkCountInArr(Cell* arr)
 {
     int count{};
 
@@ -53,7 +53,7 @@ int Exceptions::checkCountInArr(Cell* arr)
     return count;
 }
 
-int Exceptions::checkCountInField(Field* temp)
+int Exception::checkCountInField(Field* temp)
 {
     int count{};
 
@@ -71,7 +71,7 @@ int Exceptions::checkCountInField(Field* temp)
     return count;
 }
 
-bool Exceptions::IsValueInField(Field* temp, int value)
+bool Exception::IsValueInField(Field* temp, int value)
 {
     for (int i{}; i < this->field_size; ++i)
     {
@@ -87,7 +87,7 @@ bool Exceptions::IsValueInField(Field* temp, int value)
     return false;
 }
 
-void Exceptions::checkException_Strings(Cell** arr, Field* temp_field, int value, int temp_i)
+void Exception::checkException_Strings(Cell** arr, Field* temp_field, int value, int temp_i)
 {
     for (int i{ temp_i }; i < temp_i + this->field_size; ++i)
     {
@@ -107,7 +107,7 @@ void Exceptions::checkException_Strings(Cell** arr, Field* temp_field, int value
     }
 }
 
-void Exceptions::checkException_Columns(Cell** arr, Field* temp_field, int value, int temp_j)
+void Exception::checkException_Columns(Cell** arr, Field* temp_field, int value, int temp_j)
 {
     for (int i{  }; i < this->map_size; ++i)
     {
@@ -127,7 +127,7 @@ void Exceptions::checkException_Columns(Cell** arr, Field* temp_field, int value
     }
 }
 
-bool Exceptions::checkException(Cell** arr, Field* temp_field, int value, int temp_i, int temp_j)
+bool Exception::checkException(Cell** arr, Field* temp_field, int value, int temp_i, int temp_j)
 {
     this->resetTempField(temp_field);
 
@@ -158,7 +158,7 @@ bool Exceptions::checkException(Cell** arr, Field* temp_field, int value, int te
     return false;
 }
 
-void Exceptions::checkExceptionInString_Field(Cell** arr, Field* temp, Cell* ghost_string, int value, int str_index)
+void Exception::checkExceptionInString_Field(Cell** arr, Field* temp, Cell* ghost_string, int value, int str_index)
 {
     for (int i{}; i < this->field_size; ++i)
     {
@@ -174,7 +174,7 @@ void Exceptions::checkExceptionInString_Field(Cell** arr, Field* temp, Cell* gho
     }
 }
 
-void Exceptions::checkExceptionInString_Columns(Cell** arr, Cell* ghost_string, int value)
+void Exception::checkExceptionInString_Columns(Cell** arr, Cell* ghost_string, int value)
 {
     for (int i{}; i < this->map_size; ++i)
     {
@@ -191,7 +191,7 @@ void Exceptions::checkExceptionInString_Columns(Cell** arr, Cell* ghost_string, 
     }
 }
 
-bool Exceptions::checkExceptionInString(Cell** arr, int value, Cell* string, int str_index)
+bool Exception::checkExceptionInString(Cell** arr, int value, Cell* string, int str_index)
 {
     Field* temp = new Field{};
 
@@ -226,7 +226,7 @@ bool Exceptions::checkExceptionInString(Cell** arr, int value, Cell* string, int
 
         string[index].setNum(value);
 
-        delete[] ghost_string;
+        //delete[] ghost_string;
 
         delete temp;
 
@@ -240,7 +240,7 @@ bool Exceptions::checkExceptionInString(Cell** arr, int value, Cell* string, int
     return false;
 }
 
-void Exceptions::checkExceptionInColumn_Field(Cell** arr, Field* temp, Cell* ghost_column, int value, int col_index)
+void Exception::checkExceptionInColumn_Field(Cell** arr, Field* temp, Cell* ghost_column, int value, int col_index)
 {
     for (int i{}; i < this->field_size; ++i)
     {
@@ -256,7 +256,7 @@ void Exceptions::checkExceptionInColumn_Field(Cell** arr, Field* temp, Cell* gho
     }
 }
 
-void Exceptions::checkExceptionInColumn_Strings(Cell** arr, Cell* ghost_column, int value)
+void Exception::checkExceptionInColumn_Strings(Cell** arr, Cell* ghost_column, int value)
 {
     for (int i{}; i < this->map_size; ++i)
     {
@@ -273,7 +273,7 @@ void Exceptions::checkExceptionInColumn_Strings(Cell** arr, Cell* ghost_column, 
     }
 }
 
-bool Exceptions::checkExceptionInColumn(Cell** arr, int value, Cell* column, int col_index)
+bool Exception::checkExceptionInColumn(Cell** arr, int value, Cell* column, int col_index)
 {
     Field* temp = new Field{};
 
@@ -308,7 +308,7 @@ bool Exceptions::checkExceptionInColumn(Cell** arr, int value, Cell* column, int
 
         column[index].setNum(value);
 
-        delete[] ghost_column;
+        //delete[] ghost_column;
 
         delete temp;
 

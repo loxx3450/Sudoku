@@ -1,9 +1,9 @@
 #pragma once
 #include "Map.h"
-#include "EasyMethods.h"
-#include "NormalMethods.h"
-#include "HardMethods.h"
-#include "ExtremeMethods.h"
+#include "EasyMethod.h"
+#include "NormalMethod.h"
+#include "HardMethod.h"
+#include "ExtremeMethod.h"
 
 class Solution
 {
@@ -12,10 +12,10 @@ private:
     const int map_size = 9;
 
     int* numbers;
-    EasyMethods methods1;
-    NormalMethods methods2;
-    HardMethods methods3;
-    ExtremeMethods methods4;
+    EasyMethod methods1;
+    NormalMethod methods2;
+    HardMethod methods3;
+    ExtremeMethod methods4;
 
 public:
     Solution():
@@ -36,7 +36,11 @@ public:
 
     void makeNotes(Map* map, Field* temp, int temp_i, int temp_j);
 
-    void hiddenCouplesInField(Map* map, Field* temp, int temp_i, int temp_j);
+    void nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j);
+
+    void nakedCouplesInRow(Cell* row);
+
+    bool onlyOneNote(Map* map);
 
     ~Solution()
     {

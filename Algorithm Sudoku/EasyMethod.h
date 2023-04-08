@@ -1,8 +1,8 @@
 #pragma once
 #include "Field.h"
-#include "Methods.h"
+#include "Method.h"
 
-class EasyMethods : private Methods
+class EasyMethod : private Method
 {
 private:
 
@@ -14,8 +14,8 @@ private:
 
 public:
 
-	EasyMethods():
-		Methods{}
+	EasyMethod():
+		Method{}
 	{}
 	
 	bool lastInField(Field* temp);

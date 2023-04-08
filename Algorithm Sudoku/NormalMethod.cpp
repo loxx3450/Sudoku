@@ -1,6 +1,6 @@
-#include "NormalMethods.h"
+#include "NormalMethod.h"
 
-bool NormalMethods::exceptionInField(Cell** arr, Field* temp, int temp_i, int temp_j)           //!!!!!!!!!!!!!!!!!!!!!!!!
+bool NormalMethod::exceptionInField(Cell** arr, Field* temp, int temp_i, int temp_j)           //!!!!!!!!!!!!!!!!!!!!!!!!
 {
     this->clearNumbers();
 
@@ -20,7 +20,7 @@ bool NormalMethods::exceptionInField(Cell** arr, Field* temp, int temp_i, int te
     return false;
 }
 
-bool NormalMethods::exceptionInString(Cell** arr, Cell* string, int str_index)
+bool NormalMethod::exceptionInString(Cell** arr, Cell* string, int str_index)
 {
     this->clearNumbers();
 
@@ -40,7 +40,7 @@ bool NormalMethods::exceptionInString(Cell** arr, Cell* string, int str_index)
     return false;
 }
 
-bool NormalMethods::exceptionInColumn(Cell** arr, Cell* column, int col_index)
+bool NormalMethod::exceptionInColumn(Cell** arr, Cell* column, int col_index)
 {
     this->clearNumbers();
 

@@ -1,16 +1,16 @@
 #pragma once
 #include "Field.h"
-#include "Exceptions.h"
-#include "Methods.h"
+#include "Exception.h"
+#include "Method.h"
 
-class NormalMethods : private Methods
+class NormalMethod : private Method
 {
 private:
-    Exceptions exception;
+    Exception exception;
 
 public:
-    NormalMethods() :
-        Methods{}
+    NormalMethod() :
+        Method{}
     {}
 
     bool exceptionInField(Cell** arr, Field* temp, int temp_i, int temp_j);

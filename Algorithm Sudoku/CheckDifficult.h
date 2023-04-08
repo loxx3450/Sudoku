@@ -48,7 +48,9 @@ private:
 
 	void makeNotes();
 
-	bool checkHiddenCouples();
+	void checkNakedCouples();
+
+	bool isOnlyOneNote();
 
 	bool check();
 

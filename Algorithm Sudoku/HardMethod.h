@@ -1,8 +1,8 @@
 #pragma once
 #include "Map.h"
-#include "Methods.h"
+#include "Method.h"
 
-class HardMethods : private Methods
+class HardMethod : private Method
 {
 private:
 	int checkCountInNumbers();
@@ -10,8 +10,8 @@ private:
 	bool checkLastNumberInStr_Col_Field(Map* map, Field* temp, Cell* string, Cell* column, int temp_i, int temp_j);
 
 public:
-	HardMethods() :
-		Methods{}
+	HardMethod() :
+		Method{}
 	{}
 
 	bool lastNumberInStr_Col_Field(Map* map, Field* temp, int temp_i, int temp_j);

@@ -1,6 +1,6 @@
-#include "EasyMethods.h"
+#include "EasyMethod.h"
 
-int EasyMethods::checkCountInNumbers()
+int EasyMethod::checkCountInNumbers()
 {
     int count{};
 
@@ -15,7 +15,7 @@ int EasyMethods::checkCountInNumbers()
     return count;
 }
 
-bool EasyMethods::isRowFull(Cell* arr)
+bool EasyMethod::isRowFull(Cell* arr)
 {
     this->clearNumbers();
 
@@ -32,7 +32,7 @@ bool EasyMethods::isRowFull(Cell* arr)
     return true;
 }
 
-int EasyMethods::findExceptValue()
+int EasyMethod::findExceptValue()
 {
     for (int i{}; i < this->map_size; ++i)
     {
@@ -43,7 +43,7 @@ int EasyMethods::findExceptValue()
     }
 }
 
-bool EasyMethods::lastInField(Field* temp)
+bool EasyMethod::lastInField(Field* temp)
 {
     if (!temp->isFull())
     {
@@ -77,7 +77,7 @@ bool EasyMethods::lastInField(Field* temp)
     return false;
 }
 
-bool EasyMethods::lastInRow(Cell* arr)
+bool EasyMethod::lastInRow(Cell* arr)
 {
     if (!this->isRowFull(arr))
     {

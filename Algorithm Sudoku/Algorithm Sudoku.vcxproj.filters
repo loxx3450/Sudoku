@@ -31,26 +31,29 @@
     <Filter Include="Исходные файлы\CheckDifficult">
       <UniqueIdentifier>{e43c8048-b367-483e-8559-7d5e3c525bd4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Solution\NormalMethods">
-      <UniqueIdentifier>{8c2cc510-503f-4b34-83bb-cca784334a9f}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\Solution\ExtremeMethod">
+      <UniqueIdentifier>{6e96845f-b3bc-4cae-9dab-117218b35e1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Solution\NormalMethods\Exceptions">
-      <UniqueIdentifier>{639cb436-7acf-42e2-a642-9328bd225374}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\Solution\EasyMethods">
+    <Filter Include="Исходные файлы\Solution\EasyMethod">
       <UniqueIdentifier>{d0889465-b015-49d0-b4cd-7a4d822ef30d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Solution\HardMethods">
+    <Filter Include="Исходные файлы\Solution\HardMethod">
       <UniqueIdentifier>{4ba42982-9c9a-49a9-875e-cf8fb1422398}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Solution\Methods">
+    <Filter Include="Исходные файлы\Solution\NormalMethod">
+      <UniqueIdentifier>{8c2cc510-503f-4b34-83bb-cca784334a9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\NormalMethod\Exception">
+      <UniqueIdentifier>{639cb436-7acf-42e2-a642-9328bd225374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\Method">
       <UniqueIdentifier>{ea8959aa-b05d-49d4-abb1-44ae3fdc6e59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\NewFilter1">
-      <UniqueIdentifier>{aeca8ab0-d017-4b62-ade6-9bdf196c0f4d}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\Solution\ExtremeMethod\NakedGroup">
+      <UniqueIdentifier>{774e42e1-a327-4673-92f0-e4328be7cf7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Solution\ExtremeMethods">
-      <UniqueIdentifier>{6e96845f-b3bc-4cae-9dab-117218b35e1f}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\Cell">
+      <UniqueIdentifier>{aeca8ab0-d017-4b62-ade6-9bdf196c0f4d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,23 +78,26 @@
     <ClCompile Include="CheckDifficult.cpp">
       <Filter>Исходные файлы\CheckDifficult</Filter>
     </ClCompile>
-    <ClCompile Include="EasyMethods.cpp">
-      <Filter>Исходные файлы\Solution\EasyMethods</Filter>
+    <ClCompile Include="EasyMethod.cpp">
+      <Filter>Исходные файлы\Solution\EasyMethod</Filter>
     </ClCompile>
-    <ClCompile Include="NormalMethods.cpp">
-      <Filter>Исходные файлы\Solution\NormalMethods</Filter>
+    <ClCompile Include="NormalMethod.cpp">
+      <Filter>Исходные файлы\Solution\NormalMethod</Filter>
     </ClCompile>
-    <ClCompile Include="Exceptions.cpp">
-      <Filter>Исходные файлы\Solution\NormalMethods\Exceptions</Filter>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Исходные файлы\Solution\NormalMethod\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="HardMethods.cpp">
-      <Filter>Исходные файлы\Solution\HardMethods</Filter>
+    <ClCompile Include="HardMethod.cpp">
+      <Filter>Исходные файлы\Solution\HardMethod</Filter>
     </ClCompile>
-    <ClCompile Include="Methods.cpp">
-      <Filter>Исходные файлы\Solution\Methods</Filter>
+    <ClCompile Include="Method.cpp">
+      <Filter>Исходные файлы\Solution\Method</Filter>
     </ClCompile>
-    <ClCompile Include="ExtremeMethods.cpp">
-      <Filter>Исходные файлы\Solution\ExtremeMethods</Filter>
+    <ClCompile Include="ExtremeMethod.cpp">
+      <Filter>Исходные файлы\Solution\ExtremeMethod</Filter>
+    </ClCompile>
+    <ClCompile Include="Cell.cpp">
+      <Filter>Исходные файлы\Cell</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,26 +119,32 @@
     <ClInclude Include="CheckDifficult.h">
       <Filter>Исходные файлы\CheckDifficult</Filter>
     </ClInclude>
-    <ClInclude Include="EasyMethods.h">
-      <Filter>Исходные файлы\Solution\EasyMethods</Filter>
+    <ClInclude Include="EasyMethod.h">
+      <Filter>Исходные файлы\Solution\EasyMethod</Filter>
     </ClInclude>
-    <ClInclude Include="NormalMethods.h">
-      <Filter>Исходные файлы\Solution\NormalMethods</Filter>
+    <ClInclude Include="NormalMethod.h">
+      <Filter>Исходные файлы\Solution\NormalMethod</Filter>
     </ClInclude>
-    <ClInclude Include="Exceptions.h">
-      <Filter>Исходные файлы\Solution\NormalMethods\Exceptions</Filter>
+    <ClInclude Include="Exception.h">
+      <Filter>Исходные файлы\Solution\NormalMethod\Exception</Filter>
     </ClInclude>
-    <ClInclude Include="HardMethods.h">
-      <Filter>Исходные файлы\Solution\HardMethods</Filter>
+    <ClInclude Include="HardMethod.h">
+      <Filter>Исходные файлы\Solution\HardMethod</Filter>
     </ClInclude>
-    <ClInclude Include="Methods.h">
-      <Filter>Исходные файлы\Solution\Methods</Filter>
+    <ClInclude Include="Method.h">
+      <Filter>Исходные файлы\Solution\Method</Filter>
     </ClInclude>
     <ClInclude Include="Cell.h">
-      <Filter>Исходные файлы\NewFilter1</Filter>
+      <Filter>Исходные файлы\Cell</Filter>
     </ClInclude>
-    <ClInclude Include="ExtremeMethods.h">
-      <Filter>Исходные файлы\Solution\ExtremeMethods</Filter>
+    <ClInclude Include="ExtremeMethod.h">
+      <Filter>Исходные файлы\Solution\ExtremeMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="NakedGroup.h">
+      <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

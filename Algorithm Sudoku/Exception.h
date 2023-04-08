@@ -2,7 +2,7 @@
 #include "Field.h"
 #include "Cell.h"
 
-class Exceptions
+class Exception
 {
 private:
 	const int map_size = 9;

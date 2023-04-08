@@ -66,7 +66,27 @@ void Solution::makeNotes(Map* map, Field* temp, int temp_i, int temp_j)
     this->methods4.makeNotes(map, temp, temp_i, temp_j);
 }
 
-void Solution::hiddenCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
+void Solution::nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
 {
-    this->methods4.hiddenCouplesInField(map, temp, temp_i, temp_j);
+    this->methods4.nakedCouplesInField(map, temp, temp_i, temp_j);
 }
+
+void Solution::nakedCouplesInRow(Cell* row)
+{
+    this->methods4.nakedCouplesInRow(row);
+}
+
+bool Solution::onlyOneNote(Map* map)
+{
+    if (this->methods4.isOnlyOneNote(map))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+//void Solution::hiddenTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
+//{
+//    this->methods4.hiddenGruppesInField(map, temp, 3, temp_i, temp_j);
+//}
