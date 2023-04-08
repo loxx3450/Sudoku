@@ -10,7 +10,7 @@ bool Solution::lastInField(Field* temp)
     return false;
 }
 
-bool Solution::lastInRow(int* arr)
+bool Solution::lastInRow(Cell* arr)
 {
     if (this->methods1.lastInRow(arr))
     {
@@ -21,7 +21,7 @@ bool Solution::lastInRow(int* arr)
 
 }
 
-bool Solution::exceptionInField(int** arr, Field* temp, int temp_i, int temp_j)
+bool Solution::exceptionInField(Cell** arr, Field* temp, int temp_i, int temp_j)
 {
     if (this->methods2.exceptionInField(arr, temp, temp_i, temp_j))
     {
@@ -31,7 +31,7 @@ bool Solution::exceptionInField(int** arr, Field* temp, int temp_i, int temp_j)
     return false;
 }
 
-bool Solution::exceptionInString(int** arr, int* string, int str_index)
+bool Solution::exceptionInString(Cell** arr, Cell* string, int str_index)
 {
     if (this->methods2.exceptionInString(arr, string, str_index))
     {
@@ -41,7 +41,7 @@ bool Solution::exceptionInString(int** arr, int* string, int str_index)
     return false;
 }
 
-bool Solution::exceptionInColumn(int** arr, int* column, int col_index)
+bool Solution::exceptionInColumn(Cell** arr, Cell* column, int col_index)
 {
     if (this->methods2.exceptionInColumn(arr, column, col_index))
     {
@@ -59,4 +59,14 @@ bool Solution::lastNumberInStr_Col_Field(Map* map, Field* temp, int temp_i, int 
     }
 
     return false;
+}
+
+void Solution::makeNotes(Map* map, Field* temp, int temp_i, int temp_j)
+{
+    this->methods4.makeNotes(map, temp, temp_i, temp_j);
+}
+
+void Solution::hiddenCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
+{
+    this->methods4.hiddenCouplesInField(map, temp, temp_i, temp_j);
 }

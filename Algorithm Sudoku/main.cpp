@@ -18,7 +18,7 @@ int main()
     srand(time(NULL));
     rand();
 
-    sql::Driver* driver;
+    /*sql::Driver* driver;
     sql::Connection* con;
     sql::Statement* stmt;
     sql::PreparedStatement* pstmt;
@@ -48,14 +48,14 @@ int main()
     {
         std::string level{}, solution{};
 
-        temp = a->generate(i % 3);
+        temp = a->generate(2);
 
         for (int i{}; i < 9; ++i)
         {
             for (int j{}; j < 9; ++j)
             {
-                level += std::to_string(temp->getArr()[i][j]);
-                solution += std::to_string(map->getArr()[i][j]);
+                level += std::to_string(temp->getArr()[i][j].getNum());
+                solution += std::to_string(map->getArr()[i][j].getNum());
             }
         }
 
@@ -69,7 +69,7 @@ int main()
     }
 
     delete pstmt;
-    delete con;
+    delete con;*/
 
     /*stmt = con->createStatement();
     stmt->execute("DROP TABLE IF EXISTS inventory");
@@ -97,7 +97,6 @@ int main()
     delete pstmt;
     delete con;
     system("pause");*/
-    return 0;
     /*Map map{};
     while (true)
     {
@@ -243,27 +242,44 @@ int main()
         std::cout << i + 1 << "\n";
     }*/
 
+//'147328596598167342263459871721546983456893217389271654672984135915732468834615729', '2', '0'
+
+
+
     //int** arr = new int* [9]{         //Level 4
-    //    new int[9]{ 9, 2, 3, 0, 0, 0, 0, 1, 6 },
-    //    new int[9]{ 0, 0, 0, 0, 5, 0, 0, 0, 0 },
-    //    new int[9]{ 5, 0, 0, 1, 0, 0, 8, 0, 7 },
-    //    new int[9]{ 6, 1, 0, 0, 0, 8, 7, 0, 0 },
-    //    new int[9]{ 0, 0, 0, 2, 1, 9, 0, 0, 0 },
-    //    new int[9]{ 0, 0, 9, 3, 0, 0, 0, 8, 2 },
-    //    new int[9]{ 3, 0, 1, 0, 0, 6, 0, 0, 4 },
-    //    new int[9]{ 0, 0, 0, 0, 3, 0, 0, 0, 0 },
-    //    new int[9]{ 8, 4, 0, 0, 0, 0, 2, 3, 1 },
+    //    new int[9]{ 9,1,3,5,6,8,7,2,4 },
+    //    new int[9]{ 6,8,7,0,4,2,0,0,0 },
+    //    new int[9]{ 2,5,4,1,0,0,0,8,0 },
+    //    new int[9]{ 5,0,0,0,0,9,4,0,0 },
+    //    new int[9]{ 1,0,0,7,0,4,0,9,5 },
+    //    new int[9]{ 4,0,9,0,0,0,0,3,0 },
+    //    new int[9]{ 3,4,5,0,0,6,1,7,8 },
+    //    new int[9]{ 7,2,6,8,0,0,9,4,3 },
+    //    new int[9]{ 8,9,1,4,0,0,0,0,2 },
     //};
 
-    //Map* map = new Map{ arr };
+    int** arr = new int* [9]{         //Level 4
+            new int[9]{ 0,1,3,0,6,0,7,0,0 },
+            new int[9]{ 0,0,7,0,0,2,0,0,0 },
+            new int[9]{ 2,0,4,1,0,0,0,8,0 },
+            new int[9]{ 5,0,0,0,0,9,4,0,0 },
+            new int[9]{ 0,0,0,7,0,0,0,9,5 },
+            new int[9]{ 4,0,0,0,0,0,0,3,0 },
+            new int[9]{ 0,0,5,0,0,6,1,0,0 },
+            new int[9]{ 0,2,0,8,0,0,9,0,3 },
+            new int[9]{ 0,9,1,4,0,0,0,0,2 },
+    };
 
-    //CheckDifficult a{ map };
+    Map* map = new Map{ arr };
 
-    //a.checkComplexity();
-    //
+    CheckDifficult a{ map };
 
-    //map->show();
-    //map->check();
+    a.checkComplexity();
+    
+
+    map->show();
+    map->check();
+    map->showNotes();
 
     //std::ofstream out;
     //out.open("C:\\Users\\egork\\source\\repos\\Algorithm Sudoku\\Kozachok.txt", std::ios::app);

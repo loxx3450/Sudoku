@@ -1,6 +1,7 @@
 #pragma once
 #include "Field.h"
 #include "CheckMap.h"
+#include "Cell.h"
 
 class Map
 {
@@ -8,7 +9,7 @@ private:
     const int field_size = 3;
     const int map_size = 9;
 
-    int** arr;
+    Cell** arr;
     int* map_numbers;
     CheckMap checking;
 
@@ -20,27 +21,42 @@ private:
 
 public:
     Map() :
-        arr{ new int* [this->map_size] },
+        arr{ new Cell* [this->map_size] },
         map_numbers{ new int[this->map_size]{} },
         checking{}
     {
         for (int i{}; i < this->map_size; ++i)
         {
-            arr[i] = new int[this->map_size]{};
+            arr[i] = new Cell[this->map_size]{};
         }
     }
 
     Map(int** arr) :
-        arr{ new int* [this->map_size] },
+        arr{ new Cell * [this->map_size] },
         map_numbers{ new int[this->map_size]{} },
         checking{}
     {
         for (int i{}; i < this->map_size; ++i)
         {
-            this->arr[i] = new int[this->map_size]{};
+            this->arr[i] = new Cell[this->map_size]{};
             for (int j{}; j < this->map_size; ++j)
             {
-                this->arr[i][j] = arr[i][j];
+                this->arr[i][j].setNum(arr[i][j]);
+            }
+        }
+    }
+
+    Map(Cell** arr) :
+        arr{ new Cell * [this->map_size] },
+        map_numbers{ new int[this->map_size]{} },
+        checking{}
+    {
+        for (int i{}; i < this->map_size; ++i)
+        {
+            this->arr[i] = new Cell[this->map_size]{};
+            for (int j{}; j < this->map_size; ++j)
+            {
+                this->arr[i][j].setNum(arr[i][j].getNum());
             }
         }
     }
@@ -50,6 +66,8 @@ public:
     void generate();
 
     void show();
+
+    void showNotes();
 
     bool check();
 
@@ -61,15 +79,15 @@ public:
 
     void setNum(int value, int i, int j);
 
-    int** getArr();
+    Cell** getArr();
 
-    void setArr(int** arr);
+    void setArr(Cell** arr);
 
-    int* getString(int i);
+    Cell* getString(int i);
 
-    int* getColumn(int index);
+    Cell* getColumn(int index);
 
-    void setColumn(int* tmp, int index);
+    void setColumn(Cell* tmp, int index);
 
     ~Map()
     {

@@ -46,6 +46,12 @@
     <Filter Include="Исходные файлы\Solution\Methods">
       <UniqueIdentifier>{ea8959aa-b05d-49d4-abb1-44ae3fdc6e59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\NewFilter1">
+      <UniqueIdentifier>{aeca8ab0-d017-4b62-ade6-9bdf196c0f4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\ExtremeMethods">
+      <UniqueIdentifier>{6e96845f-b3bc-4cae-9dab-117218b35e1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,6 +90,9 @@
     <ClCompile Include="Methods.cpp">
       <Filter>Исходные файлы\Solution\Methods</Filter>
     </ClCompile>
+    <ClCompile Include="ExtremeMethods.cpp">
+      <Filter>Исходные файлы\Solution\ExtremeMethods</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.h">
@@ -118,6 +127,12 @@
     </ClInclude>
     <ClInclude Include="Methods.h">
       <Filter>Исходные файлы\Solution\Methods</Filter>
+    </ClInclude>
+    <ClInclude Include="Cell.h">
+      <Filter>Исходные файлы\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtremeMethods.h">
+      <Filter>Исходные файлы\Solution\ExtremeMethods</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@ void Map::clear()
     {
         for (int j{}; j < 9; ++j)
         {
-            arr[i][j] = 0;
+            arr[i][j].setNum(0);
         }
 
         this->map_numbers[i] = 0;
@@ -27,7 +27,7 @@ bool Map::isMade()
     {
         for (int j{}; j < 9; ++j)
         {
-            if (this->arr[i][j] == 0)
+            if (this->arr[i][j].getNum() == 0)
             {
                 return false;
             }
@@ -49,7 +49,7 @@ void Map::tryToGenerate()
         {
             while (true)
             {
-                this->arr[i][j] = rand() % this->map_size + 1;
+                this->arr[i][j].setNum(rand() % this->map_size + 1);
 
                 if (value >= 30)
                 {
@@ -96,7 +96,7 @@ void Map::show()
             {
                 std::cout << "|";
             }
-            std::cout << arr[i][j] << " ";
+            std::cout << this->arr[i][j].getNum() << " ";
 
             if (j == 8)
             {
@@ -112,6 +112,20 @@ void Map::show()
         }
     }
     std::cout << "\n\n\n";
+}
+
+void Map::showNotes()
+{
+    for (int i{}; i < 9; ++i)
+    {
+        for (int j{}; j < 9; ++j)
+        {
+            this->arr[i][j].showNotes(i, j);
+            
+        }
+
+        std::cout << "\n";
+    }
 }
 
 bool Map::check()
@@ -147,45 +161,45 @@ void Map::takeField(Field* field, int tmp_i, int tmp_j)
     {
         for (int j{ tmp_j }, field_j{}; j < tmp_j + 3; ++j, ++field_j)
         {
-            this->arr[i][j] = field->getNum(field_i, field_j);
+            this->arr[i][j].setCell(field->getCell(field_i, field_j));
         }
     }
 }
 
 int Map::getNum(int i, int j)
 {
-    return this->arr[i][j];
+    return this->arr[i][j].getNum();
 }
 
 void Map::setNum(int value, int i, int j)
 {
-    this->arr[i][j] = value;
+    this->arr[i][j].setNum(value);
 }
 
-int** Map::getArr()
+Cell** Map::getArr()
 {
     return this->arr;
 }
 
-void Map::setArr(int** arr)
+void Map::setArr(Cell** arr)
 {
     for (int i{}; i < this->map_size; ++i)
     {
         for (int j{}; j < this->map_size; ++j)
         {
-            this->arr[i][j] = arr[i][j];
+            this->arr[i][j].setNum(arr[i][j].getNum());
         }
     }
 }
 
-int* Map::getString(int i)
+Cell* Map::getString(int i)
 {
     return this->arr[i];
 }
 
-int* Map::getColumn(int index)
+Cell* Map::getColumn(int index)
 {
-    int* tmp = new int[this->map_size]{};
+    Cell* tmp = new Cell[this->map_size]{};
 
     for (int i{}; i < this->map_size; ++i)
     {
@@ -195,10 +209,10 @@ int* Map::getColumn(int index)
     return tmp;
 }
 
-void Map::setColumn(int* tmp, int index)
+void Map::setColumn(Cell* tmp, int index)
 {
     for (int i{}; i < this->map_size; ++i)
     {
-        this->arr[i][index] = tmp[i];
+        this->arr[i][index].setNum(tmp[i].getNum());
     }
 }

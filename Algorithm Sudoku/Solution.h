@@ -3,6 +3,7 @@
 #include "EasyMethods.h"
 #include "NormalMethods.h"
 #include "HardMethods.h"
+#include "ExtremeMethods.h"
 
 class Solution
 {
@@ -14,6 +15,7 @@ private:
     EasyMethods methods1;
     NormalMethods methods2;
     HardMethods methods3;
+    ExtremeMethods methods4;
 
 public:
     Solution():
@@ -22,15 +24,19 @@ public:
 
     bool lastInField(Field* temp);
 
-    bool lastInRow(int* arr);
+    bool lastInRow(Cell* arr);
 
-    bool exceptionInField(int** arr, Field* temp, int temp_i, int temp_j);
+    bool exceptionInField(Cell** arr, Field* temp, int temp_i, int temp_j);
 
-    bool exceptionInString(int** arr, int* string, int str_index);
+    bool exceptionInString(Cell** arr, Cell* string, int str_index);
 
-    bool exceptionInColumn(int** arr, int* column, int col_index);
+    bool exceptionInColumn(Cell** arr, Cell* column, int col_index);
 
     bool lastNumberInStr_Col_Field(Map* map, Field* temp, int temp_i, int temp_j);
+
+    void makeNotes(Map* map, Field* temp, int temp_i, int temp_j);
+
+    void hiddenCouplesInField(Map* map, Field* temp, int temp_i, int temp_j);
 
     ~Solution()
     {

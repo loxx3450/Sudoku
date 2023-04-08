@@ -10,6 +10,7 @@ private:
 
 	Map* map;
 	Solution solution;
+	bool isNotes = 0;
 	int complexity = 0;
 
 	bool checkFields();
@@ -18,7 +19,7 @@ private:
 
 	bool checkColumns()
 	{
-		int* tmp;
+		Cell* tmp;
 
 		for (int i{}; i < this->map_size; ++i)
 		{
@@ -44,6 +45,10 @@ private:
 	bool checkExceptInColumn();
 
 	bool checkExceptInStr_Col_Field();
+
+	void makeNotes();
+
+	bool checkHiddenCouples();
 
 	bool check();
 

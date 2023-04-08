@@ -8,7 +8,7 @@ private:
 
 	int checkCountInNumbers();
 
-	bool isRowFull(int* arr);
+	bool isRowFull(Cell* arr);
 
 	int findExceptValue();
 
@@ -20,6 +20,6 @@ public:
 	
 	bool lastInField(Field* temp);
 
-	bool lastInRow(int* arr);
+	bool lastInRow(Cell* arr);
 };
 

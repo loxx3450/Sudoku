@@ -7,7 +7,7 @@ class HardMethods : private Methods
 private:
 	int checkCountInNumbers();
 
-	bool checkLastNumberInStr_Col_Field(Map* map, Field* temp, int* string, int* column, int temp_i, int temp_j);
+	bool checkLastNumberInStr_Col_Field(Map* map, Field* temp, Cell* string, Cell* column, int temp_i, int temp_j);
 
 public:
 	HardMethods() :

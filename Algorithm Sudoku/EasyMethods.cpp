@@ -15,7 +15,7 @@ int EasyMethods::checkCountInNumbers()
     return count;
 }
 
-bool EasyMethods::isRowFull(int* arr)
+bool EasyMethods::isRowFull(Cell* arr)
 {
     this->clearNumbers();
 
@@ -77,7 +77,7 @@ bool EasyMethods::lastInField(Field* temp)
     return false;
 }
 
-bool EasyMethods::lastInRow(int* arr)
+bool EasyMethods::lastInRow(Cell* arr)
 {
     if (!this->isRowFull(arr))
     {
@@ -93,9 +93,9 @@ bool EasyMethods::lastInRow(int* arr)
 
             for (int i{}; i < this->map_size; ++i)
             {
-                if (arr[i] == 0)
+                if (arr[i].getNum() == 0)
                 {
-                    arr[i] = value;
+                    arr[i].setNum(value);
 
                     return true;
                 }

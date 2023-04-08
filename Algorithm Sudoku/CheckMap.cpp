@@ -9,7 +9,7 @@ void CheckMap::clearNumbers(int* numbers)
     }
 }
 
-bool CheckMap::checkFields(int** arr)
+bool CheckMap::checkFields(Cell** arr)
 {
     Field* temp = new Field{};
     for (int i{}; i < this->field_size; ++i)
@@ -32,7 +32,7 @@ bool CheckMap::checkFields(int** arr)
     return true;
 }
 
-bool CheckMap::checkStrings(int** arr, int* numbers)
+bool CheckMap::checkStrings(Cell** arr, int* numbers)
 {
     this->clearNumbers(numbers);
 
@@ -40,7 +40,7 @@ bool CheckMap::checkStrings(int** arr, int* numbers)
     {
         for (int j{}; j < this->map_size; ++j)
         {
-            numbers[arr[i][j] - 1]++;
+            numbers[arr[i][j].getNum() - 1]++;
         }
 
         for (int i{}; i < this->map_size; ++i)
@@ -57,7 +57,7 @@ bool CheckMap::checkStrings(int** arr, int* numbers)
     return true;
 }
 
-bool CheckMap::checkColumns(int** arr, int* numbers)
+bool CheckMap::checkColumns(Cell** arr, int* numbers)
 {
     this->clearNumbers(numbers);
 
@@ -65,7 +65,7 @@ bool CheckMap::checkColumns(int** arr, int* numbers)
     {
         for (int j{}; j < this->map_size; ++j)
         {
-            numbers[arr[j][i] - 1]++;
+            numbers[arr[j][i].getNum() - 1]++;
         }
 
         for (int i{}; i < this->map_size; ++i)

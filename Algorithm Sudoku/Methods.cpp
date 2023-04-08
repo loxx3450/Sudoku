@@ -19,10 +19,10 @@ void Methods::overrideNumbersWithField(Field* temp)
     }
 }
 
-void Methods::overrideNumbersWithRow(int* arr)
+void Methods::overrideNumbersWithRow(Cell* arr)
 {
     for (int i{}; i < this->map_size; ++i)
     {
-        this->numbers[arr[i] - 1]++;
+        this->numbers[arr[i].getNum() - 1]++;
     }
 }

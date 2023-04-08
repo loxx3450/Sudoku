@@ -1,5 +1,6 @@
 #pragma once
 #include "Field.h"
+#include "Cell.h"
 
 
 class Methods
@@ -14,7 +15,7 @@ protected:
 
 	void overrideNumbersWithField(Field* temp);
 
-	void overrideNumbersWithRow(int* arr);
+	void overrideNumbersWithRow(Cell* arr);
 
 public:
 	Methods():

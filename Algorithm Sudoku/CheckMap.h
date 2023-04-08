@@ -10,10 +10,10 @@ private:
     void clearNumbers(int* numbers);
 
 public:
-    bool checkFields(int** arr);
+    bool checkFields(Cell** arr);
 
-    bool checkStrings(int** arr, int* numbers);
+    bool checkStrings(Cell** arr, int* numbers);
 
-    bool checkColumns(int** arr, int* numbers);
+    bool checkColumns(Cell** arr, int* numbers);
 };
 

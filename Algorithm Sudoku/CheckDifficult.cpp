@@ -86,7 +86,7 @@ bool CheckDifficult::checkExceptInColumn()
 {
 	Field* temp_field = new Field{};
 
-	int* temp_arr;
+	Cell* temp_arr;
 
 	for (int i{}; i < this->map_size; ++i)
 	{
@@ -131,6 +131,40 @@ bool CheckDifficult::checkExceptInStr_Col_Field()
 	delete temp;
 
 	return false;
+}
+
+void CheckDifficult::makeNotes()
+{
+	Field* temp = new Field{};
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			temp->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
+
+			solution.makeNotes(this->map, temp, i, j);
+		}
+	}
+}
+
+bool CheckDifficult::checkHiddenCouples()
+{
+	Field* temp = new Field{};
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			temp->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
+
+			solution.hiddenCouplesInField(map, temp, i, j);
+		}
+	}
+
+	delete temp;
+
+	return true;
 }
 
 
@@ -184,6 +218,18 @@ bool CheckDifficult::check()
 		}
 		return true;
 	}
+	if (!this->isNotes)
+	{
+		this->makeNotes();
+		std::cout << "MakeNotes!\n";
+		this->isNotes = true;
+	}
+	if (this->checkHiddenCouples())
+	{
+		std::cout << "HiddenCouples\n";
+	}
+
+	
 
 	return false;
 }
