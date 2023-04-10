@@ -154,6 +154,8 @@
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Method.cpp" />
+    <ClCompile Include="NakedCouple.cpp" />
+    <ClCompile Include="NakedTriplet.cpp" />
     <ClCompile Include="NormalMethod.cpp" />
     <ClCompile Include="Solution.cpp" />
   </ItemGroup>
@@ -169,7 +171,9 @@
     <ClInclude Include="LevelCreation.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Method.h" />
+    <ClInclude Include="NakedCouple.h" />
     <ClInclude Include="NakedGroup.h" />
+    <ClInclude Include="NakedTriplet.h" />
     <ClInclude Include="NormalMethod.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Solution.h" />

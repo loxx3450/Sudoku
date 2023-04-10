@@ -20,14 +20,14 @@ bool CheckMap::checkFields(Cell** arr)
 
             if (!temp->check())
             {
-                delete temp;
+                //delete temp;
 
                 return false;
             }
         }
     }
 
-    delete temp;
+    //delete temp;
 
     return true;
 }

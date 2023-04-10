@@ -50,6 +50,8 @@ private:
 
 	void checkNakedCouples();
 
+	void checkNakedTriplets();
+
 	bool isOnlyOneNote();
 
 	bool check();

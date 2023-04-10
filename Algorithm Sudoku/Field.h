@@ -5,7 +5,7 @@
 class Field
 {
 private:
-    const int count = 3;
+    const int size = 3;
     const int numbers_size = 9;
 
     Cell** arr;
@@ -15,12 +15,12 @@ private:
 
 public:
     Field() :
-        arr{ new Cell * [this->count] },
+        arr{ new Cell * [this->size] },
         field_numbers{ new int[this->numbers_size]{} }
     {
-        for (int i{}; i < this->count; ++i)
+        for (int i{}; i < this->size; ++i)
         {
-            arr[i] = new Cell[this->count]{};
+            arr[i] = new Cell[this->size]{};
         }
     }
 
@@ -38,34 +38,15 @@ public:
 
     Cell* getCell(int i, int j);
 
-    int getCount(int i, int j)
-    {
-        if (arr[i][j].getNotes() != nullptr)
-        {
-            int count{};
-
-            for (int i{}; i < 9; ++i)
-            {
-                if (arr[i][j].getNotes()[i] == true)
-                {
-                    ++count;
-                }
-            }
-
-            return count;
-        }
-
-        return 0;
-        
-    }
-
     void setNum(int value, int i, int j);
+
+    int countOfEmptyCells();
 
     ~Field()
     {
         if (this->arr != nullptr)
         {
-            for (int i{}; i < this->count; ++i)
+            for (int i{}; i < this->size; ++i)
             {
                 if(this->arr[i] != nullptr)
                 {

@@ -40,6 +40,10 @@ public:
 
     void nakedCouplesInRow(Cell* row);
 
+    void nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j);
+
+    void nakedTripletsInRow(Cell* row);
+
     bool onlyOneNote(Map* map);
 
     ~Solution()

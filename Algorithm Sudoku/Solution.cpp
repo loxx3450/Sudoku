@@ -76,6 +76,16 @@ void Solution::nakedCouplesInRow(Cell* row)
     this->methods4.nakedCouplesInRow(row);
 }
 
+void Solution::nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
+{
+    this->methods4.nakedtripletsInField(map, temp, temp_i, temp_j);
+}
+
+void Solution::nakedTripletsInRow(Cell* row)
+{
+    this->methods4.nakedTripletsInRow(row);
+}
+
 bool Solution::onlyOneNote(Map* map)
 {
     if (this->methods4.isOnlyOneNote(map))

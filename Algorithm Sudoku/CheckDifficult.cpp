@@ -21,7 +21,7 @@ bool CheckDifficult::checkFields()
 		}
 	}
 
-	delete temp;
+	//delete temp;
 
 	return false;
 }
@@ -51,33 +51,27 @@ bool CheckDifficult::checkExceptInField()
 
 			if (solution.exceptionInField(this->map->getArr(), temp, i, j))
 			{
-				delete temp;
-
 				return true;
 			}
 		}
 	}
 
-	delete temp;
+	//delete temp;
 
 	return false;
 }
 
 bool CheckDifficult::checkExceptInString()
 {
-	Field* temp = new Field{};
-
 	for (int i{}; i < this->map_size; ++i)
 	{
 		if (solution.exceptionInString(this->map->getArr(), this->map->getString(i), i))
 		{
-			delete temp;
 
 			return true;
 		}
 	}
 
-	delete temp;
 
 	return false;
 }
@@ -181,6 +175,41 @@ void CheckDifficult::checkNakedCouples()
 	}
 }
 
+void CheckDifficult::checkNakedTriplets()
+{
+	Field* tempField = new Field{};
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
+
+			solution.nakedTripletsInField(map, tempField, i, j);
+		}
+	}
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		solution.nakedTripletsInRow(map->getString(i));
+	}
+
+	Cell* tempRow = nullptr;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		tempRow = map->getColumn(i);
+
+		solution.nakedTripletsInRow(tempRow);
+
+		map->setColumn(tempRow, i);
+	}
+
+	//delete[] tempRow;
+
+	//delete tempField;
+}
+
 bool CheckDifficult::isOnlyOneNote()
 {
 	if (solution.onlyOneNote(this->map))
@@ -246,10 +275,10 @@ bool CheckDifficult::check()
 	std::cout << "MakeNotes!\n";
 	this->checkNakedCouples();
 	std::cout << "HiddenCouples\n";
-	map->showNotes();
+	this->checkNakedTriplets();
 	if (this->isOnlyOneNote())
 	{
-		
+		std::cout << "OnlyOneNote\n";
 		map->show();
 		return true;
 	}
@@ -258,7 +287,7 @@ bool CheckDifficult::check()
 		std::cout << "HiddenTriplets\n";
 	}*/
 
-	
+	this->map->showNotes();
 
 	return false;
 }

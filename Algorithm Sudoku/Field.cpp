@@ -2,9 +2,9 @@
 
 void Field::overrideNumbersInField()
 {
-    for (int i{}; i < this->count; ++i)
+    for (int i{}; i < this->size; ++i)
     {
-        for (int j{}; j < this->count; ++j)
+        for (int j{}; j < this->size; ++j)
         {
             if (arr[i][j].getNum() != 0)
             {
@@ -16,9 +16,9 @@ void Field::overrideNumbersInField()
 
 void Field::generate(Cell** tmp_arr, int i, int j)
 {
-    for (int string{ i }, index1{}; string < i + this->count; ++string, ++index1)
+    for (int string{ i }, index1{}; string < i + this->size; ++string, ++index1)
     {
-        for (int column{ j }, index2{}; column < j + this->count; ++column, ++index2)
+        for (int column{ j }, index2{}; column < j + this->size; ++column, ++index2)
         {
             this->arr[index1][index2].setCell(tmp_arr[string][column].getCell());
         }
@@ -27,9 +27,9 @@ void Field::generate(Cell** tmp_arr, int i, int j)
 
 void Field::show()
 {
-    for (int i{}; i < this->count; ++i)
+    for (int i{}; i < this->size; ++i)
     {
-        for (int j{}; j < this->count; ++j)
+        for (int j{}; j < this->size; ++j)
         {
             std::cout << arr[i][j].getNum() << " ";
         }
@@ -39,9 +39,9 @@ void Field::show()
 
 void Field::showNotes()
 {
-    for (int i{}; i < this->count; ++i)
+    for (int i{}; i < this->size; ++i)
     {
-        for (int j{}; j < this->count; ++j)
+        for (int j{}; j < this->size; ++j)
         {
             arr[i][j].showNotes();
         }
@@ -50,9 +50,9 @@ void Field::showNotes()
 
 bool Field::isFull()
 {
-    for (int i{}; i < this->count; ++i)
+    for (int i{}; i < this->size; ++i)
     {
-        for (int j{}; j < this->count; ++j)
+        for (int j{}; j < this->size; ++j)
         {
             if (this->arr[i][j].getNum() >= 1 && this->arr[i][j].getNum() <= 9)
             {
@@ -95,4 +95,22 @@ Cell* Field::getCell(int i, int j)
 void Field::setNum(int value, int i, int j)
 {
     this->arr[i][j].setNum(value);
+}
+
+int Field::countOfEmptyCells()
+{
+    int count{};
+
+    for (int i{}; i < this->size; ++i)
+    {
+        for (int j{}; j < this->size; ++j)
+        {
+            if (this->arr[i][j].getNum() == 0)
+            {
+                ++count;
+            }
+        }
+    }
+
+    return count;
 }

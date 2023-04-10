@@ -20,20 +20,24 @@ void Cell::setNum(int temp_num)
 
 void Cell::setCell(Cell* temp)
 {
-	this->number = temp->number;
-
-	if (temp->notes != nullptr)
+	if (temp != nullptr)
 	{
-		if (this->notes == nullptr)
-		{
-			this->notes = new bool[9]{ false };
-		}
+		this->number = temp->number;
 
-		for (int i{}; i < 9; ++i)
+		if (temp->notes != nullptr && temp->number == 0)
 		{
-			this->notes[i] = temp->notes[i];
+			if (this->notes == nullptr)
+			{
+				this->notes = new bool[9]{ false };
+			}
+
+			for (int i{}; i < 9; ++i)
+			{
+				this->notes[i] = temp->notes[i];
+			}
 		}
 	}
+	
 }
 
 Cell* Cell::getCell()
@@ -124,6 +128,18 @@ void Cell::deleteNotes()
 
 		notes = nullptr;
 	}
+}
+
+void Cell::clearNotes()
+{
+	if (this->notes != nullptr)
+	{
+		for (int i{}; i < 9; ++i)
+		{
+			this->notes[i] = false;
+		}
+	}
+	
 }
 
 void Cell::editNotes(int* hiddenNumbers, int count)

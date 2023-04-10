@@ -51,6 +51,8 @@ public:
 
 	void deleteNotes();
 
+	void clearNotes();
+
 	void editNotes(int* hiddenNumbers, int count);
 
 	bool operator==(bool* notes);

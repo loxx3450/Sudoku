@@ -235,7 +235,7 @@ bool Exception::checkExceptionInString(Cell** arr, int value, Cell* string, int 
 
     //delete[] ghost_string;
 
-    delete temp;
+    //delete temp;
 
     return false;
 }

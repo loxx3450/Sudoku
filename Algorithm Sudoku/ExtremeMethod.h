@@ -3,11 +3,13 @@
 #include "Method.h"
 #include "Point.h"
 #include "NakedGroup.h"
+#include "NakedCouple.h"
+#include "NakedTriplet.h"
 
 class ExtremeMethod : public Method
 {
 private:
-	NakedGroup nakedGroup;
+	NakedGroup* nakedGroup = nullptr;
 
 	void countNotes(Field* temp)
 	{
@@ -175,6 +177,8 @@ private:
 
 		this->overrideNumbersWithRow(column);
 
+		map->getArr()[temp_i][temp_j].clearNotes();
+
 		for (int index{}; index < this->map_size; ++index)
 		{
 			if (this->numbers[index] == 0)
@@ -286,12 +290,33 @@ public:
 
 	void nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
 	{
-		nakedGroup.nakedCouplesInField(map, temp, temp_i, temp_j);
+		if (this->nakedGroup != nullptr)
+		{
+			delete nakedGroup;
+		}
+		this->nakedGroup = new NakedCouple{};
+
+		nakedGroup->nakedCouplesInField(map, temp, temp_i, temp_j);
 	}
 	
 	void nakedCouplesInRow(Cell* row)
 	{
-		nakedGroup.nakedCouplesInRow(row);
+		nakedGroup->nakedCouplesInRow(row);
+	}
+
+	void nakedtripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
+	{
+		if (this->nakedGroup != nullptr)
+		{
+			delete nakedGroup;
+		}
+		this->nakedGroup = new NakedTriplet{};
+		this->nakedGroup->nakedTripletsInField(map, temp, temp_i, temp_j);
+	}
+
+	void nakedTripletsInRow(Cell* row)
+	{
+		this->nakedGroup->nakedTripletsInRow(row);
 	}
 
 	bool isOnlyOneNote(Map* map)
@@ -316,7 +341,17 @@ public:
 			}
 		}
 
+		
+
 		return false;
+	}
+
+	~ExtremeMethod()
+	{
+		if (this->nakedGroup != nullptr)
+		{
+			delete this->nakedGroup;
+		}
 	}
 
 };
