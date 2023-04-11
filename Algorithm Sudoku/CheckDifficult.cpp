@@ -21,7 +21,7 @@ bool CheckDifficult::checkFields()
 		}
 	}
 
-	//delete temp;
+	delete temp;
 
 	return false;
 }
@@ -39,6 +39,29 @@ bool CheckDifficult::checkStrings()
 	return false;
 }
 
+bool CheckDifficult::checkColumns()
+{
+	Cell* tmp;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		tmp = this->map->getColumn(i);
+
+		if (solution.lastInRow(tmp))
+		{
+			this->map->setColumn(tmp, i);
+
+			delete[] tmp;
+
+			return true;
+		}
+
+		delete[] tmp;
+	}
+
+	return false;
+}
+
 bool CheckDifficult::checkExceptInField()
 {
 	Field* temp = new Field{};
@@ -51,12 +74,14 @@ bool CheckDifficult::checkExceptInField()
 
 			if (solution.exceptionInField(this->map->getArr(), temp, i, j))
 			{
+				delete temp;
+
 				return true;
 			}
 		}
 	}
 
-	//delete temp;
+	delete temp;
 
 	return false;
 }
@@ -67,7 +92,6 @@ bool CheckDifficult::checkExceptInString()
 	{
 		if (solution.exceptionInString(this->map->getArr(), this->map->getString(i), i))
 		{
-
 			return true;
 		}
 	}
@@ -78,8 +102,6 @@ bool CheckDifficult::checkExceptInString()
 
 bool CheckDifficult::checkExceptInColumn()
 {
-	Field* temp_field = new Field{};
-
 	Cell* temp_arr;
 
 	for (int i{}; i < this->map_size; ++i)
@@ -90,15 +112,13 @@ bool CheckDifficult::checkExceptInColumn()
 		{
 			this->map->setColumn(temp_arr, i);
 
-			delete temp_field;
-
-			//delete[] temp_arr;		//!!!!!!!!!!!!!
+			delete[] temp_arr;		
 
 			return true;
 		}
-	}
 
-	delete temp_field;
+		delete[] temp_arr;
+	}
 
 	return false;
 }
@@ -140,6 +160,8 @@ void CheckDifficult::makeNotes()
 			solution.makeNotes(this->map, temp, i, j);
 		}
 	}
+
+	delete temp;
 }
 
 void CheckDifficult::checkNakedCouples()
@@ -172,6 +194,8 @@ void CheckDifficult::checkNakedCouples()
 		solution.nakedCouplesInRow(tempRow);
 
 		map->setColumn(tempRow, i);
+
+		delete[] tempRow;
 	}
 }
 
@@ -189,12 +213,14 @@ void CheckDifficult::checkNakedTriplets()
 		}
 	}
 
+	//delete tempField;
+
 	for (int i{}; i < this->map_size; ++i)
 	{
 		solution.nakedTripletsInRow(map->getString(i));
 	}
 
-	Cell* tempRow = nullptr;
+	/*Cell* tempRow = nullptr;
 
 	for (int i{}; i < this->map_size; ++i)
 	{
@@ -203,7 +229,7 @@ void CheckDifficult::checkNakedTriplets()
 		solution.nakedTripletsInRow(tempRow);
 
 		map->setColumn(tempRow, i);
-	}
+	}*/
 
 	//delete[] tempRow;
 
@@ -224,47 +250,47 @@ bool CheckDifficult::isOnlyOneNote()
 
 bool CheckDifficult::check()
 {
-	if (checkFields())
+	if (this->checkFields())
 	{
-		//std::cout << "LastInField\n";
+		std::cout << "LastInField\n";
 		return true;
 	}
-	if (checkStrings())
+	if (this->checkStrings())
 	{
-		//std::cout << "LastInString\n";
+		std::cout << "LastInString\n";
 		return true;
 	}
-	if (checkColumns())
+	if (this->checkColumns())
 	{
-		//std::cout << "LastInColumn\n";
+		std::cout << "LastInColumn\n";
 		return true;
 	}
-	if (checkExceptInField())
+	if (this->checkExceptInField())
 	{
-		//std::cout << "ExceptionInField\n";
+		std::cout << "ExceptionInField\n";
 		return true;
 	}
-	if (checkExceptInString())
+	if (this->checkExceptInString())
 	{
-		//std::cout << "ExceptionInString\n";
+		std::cout << "ExceptionInString\n";
 		if (this->complexity < 1)
 		{
 			this->complexity = 1;
 		}
 		return true;
 	}
-	if (checkExceptInColumn())
+	if (this->checkExceptInColumn())
 	{
-		//std::cout << "ExceptionInColumn\n";
+		std::cout << "ExceptionInColumn\n";
 		if (this->complexity < 1)
 		{
 			this->complexity = 1;
 		}
 		return true;
 	}
-	if (checkExceptInStr_Col_Field())
+	if (this->checkExceptInStr_Col_Field())
 	{
-		//std::cout << "LastNumberInString_Column_Field\n";
+		std::cout << "LastNumberInString_Column_Field\n";
 		if (this->complexity < 2)
 		{
 			this->complexity = 2;
@@ -274,20 +300,17 @@ bool CheckDifficult::check()
 	this->makeNotes();
 	std::cout << "MakeNotes!\n";
 	this->checkNakedCouples();
-	std::cout << "HiddenCouples\n";
-	this->checkNakedTriplets();
+	std::cout << "NakedCouples\n";
+	this->map->showNotes();
+	//this->checkNakedTriplets();
 	if (this->isOnlyOneNote())
 	{
 		std::cout << "OnlyOneNote\n";
 		map->show();
 		return true;
 	}
-	/*if (this->checkHiddenTriplets())
-	{
-		std::cout << "HiddenTriplets\n";
-	}*/
 
-	this->map->showNotes();
+	//this->map->showNotes();
 
 	return false;
 }

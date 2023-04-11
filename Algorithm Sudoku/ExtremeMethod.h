@@ -11,7 +11,7 @@ class ExtremeMethod : public Method
 private:
 	NakedGroup* nakedGroup = nullptr;
 
-	void countNotes(Field* temp)
+	/*void countNotes(Field* temp)
 	{
 		for (int i{}; i < this->field_size; ++i)
 		{
@@ -76,10 +76,10 @@ private:
 
 	void editNotes(Field* tempField, Cell* tempCell, int count, Point* array)
 	{
-		/*for (int i{}; i < count; ++i)
+		for (int i{}; i < count; ++i)
 		{
 			tempField->getCell(array[i].getX(), array[i].getY())->editNotes(hiddenNumbers, count);
-		}*/
+		}
 
 
 		for (int i{}; i < this->field_size; ++i)
@@ -165,7 +165,7 @@ private:
 				}
 			}
 		}
-	}
+	}*/
 
 	void makeNoteOnCell(Map* map, Field* temp, Cell* string, Cell* column, int temp_i, int temp_j)
 	{
@@ -207,7 +207,7 @@ public:
 		}
 	}
 
-	void hiddenCouplesInField(Map* map, Field* temp, int count, int temp_i, int temp_j)
+	/*void hiddenCouplesInField(Map* map, Field* temp, int count, int temp_i, int temp_j)
 	{
 		this->clearNumbers();
 
@@ -282,11 +282,12 @@ public:
 			}
 
 			
-		}*/
+		}
 		else {
 			return;
 		}
 	}
+	*/
 
 	void nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
 	{
@@ -310,13 +311,13 @@ public:
 		{
 			delete nakedGroup;
 		}
-		this->nakedGroup = new NakedTriplet{};
-		this->nakedGroup->nakedTripletsInField(map, temp, temp_i, temp_j);
+		//this->nakedGroup = new NakedTriplet{};
+		//this->nakedGroup->nakedTripletsInField(map, temp, temp_i, temp_j);
 	}
 
 	void nakedTripletsInRow(Cell* row)
 	{
-		this->nakedGroup->nakedTripletsInRow(row);
+		//this->nakedGroup->nakedTripletsInRow(row);
 	}
 
 	bool isOnlyOneNote(Map* map)

@@ -26,7 +26,6 @@ Cell* Exception::createGhostArray(Cell* arr)
     return newarr;
 }
 
-
 int Exception::findExceptIndex(Cell* arr)
 {
     for (int i{}; i < this->map_size; ++i)
@@ -109,7 +108,7 @@ void Exception::checkException_Strings(Cell** arr, Field* temp_field, int value,
 
 void Exception::checkException_Columns(Cell** arr, Field* temp_field, int value, int temp_j)
 {
-    for (int i{  }; i < this->map_size; ++i)
+    for (int i{}; i < this->map_size; ++i)
     {
         for (int j{ temp_j }; j < temp_j + this->field_size; ++j)
         {
@@ -201,6 +200,8 @@ bool Exception::checkExceptionInString(Cell** arr, int value, Cell* string, int 
 
     this->checkExceptionInString_Field(arr, temp, ghost_string, value, str_index);
 
+    this->checkExceptionInString_Columns(arr, ghost_string, value);
+
     count = this->checkCountInArr(ghost_string);
 
     if (count == 8)
@@ -216,26 +217,9 @@ bool Exception::checkExceptionInString(Cell** arr, int value, Cell* string, int 
         return true;
     }
 
-    this->checkExceptionInString_Columns(arr, ghost_string, value);
+    delete[] ghost_string;
 
-    count = this->checkCountInArr(ghost_string);
-
-    if (count == 8)
-    {
-        int index = this->findExceptIndex(ghost_string);
-
-        string[index].setNum(value);
-
-        //delete[] ghost_string;
-
-        delete temp;
-
-        return true;
-    }
-
-    //delete[] ghost_string;
-
-    //delete temp;
+    delete temp;
 
     return false;
 }
@@ -283,6 +267,8 @@ bool Exception::checkExceptionInColumn(Cell** arr, int value, Cell* column, int 
 
     this->checkExceptionInColumn_Field(arr, temp, ghost_column, value, col_index);
 
+    this->checkExceptionInColumn_Strings(arr, ghost_column, value);
+
     count = this->checkCountInArr(ghost_column);
 
     if (count == 8)
@@ -298,24 +284,7 @@ bool Exception::checkExceptionInColumn(Cell** arr, int value, Cell* column, int 
         return true;
     }
 
-    this->checkExceptionInColumn_Strings(arr, ghost_column, value);
-
-    count = this->checkCountInArr(ghost_column);
-
-    if (count == 8)
-    {
-        int index = this->findExceptIndex(ghost_column);
-
-        column[index].setNum(value);
-
-        //delete[] ghost_column;
-
-        delete temp;
-
-        return true;
-    }
-
-    //delete[] ghost_column;
+    delete[] ghost_column;
 
     delete temp;
 

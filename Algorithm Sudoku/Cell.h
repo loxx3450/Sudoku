@@ -5,6 +5,8 @@
 class Cell
 {
 private:
+	const int notesSize = 9;
+
 	int number;
 	bool* notes;
 
@@ -29,13 +31,35 @@ public:
 		}
 	}
 
+	Cell& operator=(const Cell& obj)
+	{
+		if (this == &obj)
+		{
+			return *this;
+		}
+
+		this->number = obj.number;
+
+		if (obj.notes != nullptr)
+		{
+			this->notes = new bool[this->notesSize];
+
+			for (int i{}; i < this->notesSize; ++i)
+			{
+				this->notes[i] = obj.notes[i];
+			}
+		}
+
+		return *this;
+	}
+
 	void addNote(int value);
 
 	void setNum(int temp_num);
 
-	void setCell(Cell* temp);
+	void setCell(Cell temp);
 
-	Cell* getCell();
+	Cell getCell();
 
 	int getNum();
 

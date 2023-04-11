@@ -20,14 +20,14 @@ bool CheckMap::checkFields(Cell** arr)
 
             if (!temp->check())
             {
-                //delete temp;
+                delete temp;
 
                 return false;
             }
         }
     }
 
-    //delete temp;
+    delete temp;
 
     return true;
 }
@@ -43,14 +43,14 @@ bool CheckMap::checkStrings(Cell** arr, int* numbers)
             numbers[arr[i][j].getNum() - 1]++;
         }
 
-        for (int i{}; i < this->map_size; ++i)
+        for (int g{}; g < this->map_size; ++g)
         {
-            if (numbers[i] > 1)
+            if (numbers[g] > 1)
             {
                 return false;
             }
 
-            numbers[i] = 0;
+            numbers[g] = 0;
         }
     }
 
@@ -68,14 +68,14 @@ bool CheckMap::checkColumns(Cell** arr, int* numbers)
             numbers[arr[j][i].getNum() - 1]++;
         }
 
-        for (int i{}; i < this->map_size; ++i)
+        for (int g{}; g < this->map_size; ++g)
         {
-            if (numbers[i] > 1)
+            if (numbers[g] > 1)
             {
                 return false;
             }
 
-            numbers[i] = 0;
+            numbers[g] = 0;
         }
     }
 

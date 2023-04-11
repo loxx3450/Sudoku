@@ -95,8 +95,3 @@ bool Solution::onlyOneNote(Map* map)
 
     return false;
 }
-
-//void Solution::hiddenTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
-//{
-//    this->methods4.hiddenGruppesInField(map, temp, 3, temp_i, temp_j);
-//}

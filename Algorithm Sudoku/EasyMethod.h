@@ -21,5 +21,7 @@ public:
 	bool lastInField(Field* temp);
 
 	bool lastInRow(Cell* arr);
+
+	
 };
 

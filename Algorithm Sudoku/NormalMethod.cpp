@@ -1,6 +1,6 @@
 #include "NormalMethod.h"
 
-bool NormalMethod::exceptionInField(Cell** arr, Field* temp, int temp_i, int temp_j)           //!!!!!!!!!!!!!!!!!!!!!!!!
+bool NormalMethod::exceptionInField(Cell** arr, Field* temp, int temp_i, int temp_j)
 {
     this->clearNumbers();
 

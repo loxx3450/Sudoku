@@ -6,7 +6,7 @@ void Cell::addNote(int value)
 	{
 		if (this->notes == nullptr)
 		{
-			this->notes = new bool[9]{ false };
+			this->notes = new bool[this->notesSize]{ false };
 		}
 
 		this->notes[value - 1] = true;
@@ -18,31 +18,28 @@ void Cell::setNum(int temp_num)
 	this->number = temp_num;
 }
 
-void Cell::setCell(Cell* temp)
+void Cell::setCell(Cell temp)
 {
-	if (temp != nullptr)
+	this->number = temp.number;
+
+	if (temp.notes != nullptr && temp.number == 0)
 	{
-		this->number = temp->number;
-
-		if (temp->notes != nullptr && temp->number == 0)
+		if (this->notes == nullptr)
 		{
-			if (this->notes == nullptr)
-			{
-				this->notes = new bool[9]{ false };
-			}
+			this->notes = new bool[this->notesSize]{ false };
+		}
 
-			for (int i{}; i < 9; ++i)
-			{
-				this->notes[i] = temp->notes[i];
-			}
+		for (int i{}; i < this->notesSize; ++i)
+		{
+			this->notes[i] = temp.notes[i];
 		}
 	}
 	
 }
 
-Cell* Cell::getCell()
+Cell Cell::getCell()
 {
-	return this;
+	return *this;
 }
 
 int Cell::getNum()
@@ -83,7 +80,7 @@ int Cell::countOfNotes()
 	{
 		int count{};
 
-		for (int i{}; i < 9; ++i)
+		for (int i{}; i < this->notesSize; ++i)
 		{
 			if (this->notes[i] == true)
 			{
@@ -110,7 +107,7 @@ void Cell::editNotes(bool* notes)
 {
 	if (notes != nullptr && this->notes != nullptr)
 	{
-		for (int i{}; i < 9; ++i)
+		for (int i{}; i < this->notesSize; ++i)
 		{
 			if (notes[i] == true && this->notes[i] == true)
 			{
@@ -122,11 +119,11 @@ void Cell::editNotes(bool* notes)
 
 void Cell::deleteNotes()
 {
-	if (notes != nullptr)
+	if (this->notes != nullptr)
 	{
-		delete[] notes;
+		delete[] this->notes;
 
-		notes = nullptr;
+		this->notes = nullptr;
 	}
 }
 
@@ -134,7 +131,7 @@ void Cell::clearNotes()
 {
 	if (this->notes != nullptr)
 	{
-		for (int i{}; i < 9; ++i)
+		for (int i{}; i < this->notesSize; ++i)
 		{
 			this->notes[i] = false;
 		}
@@ -142,7 +139,7 @@ void Cell::clearNotes()
 	
 }
 
-void Cell::editNotes(int* hiddenNumbers, int count)
+void Cell::editNotes(int* hiddenNumbers, int count)		//где используется
 {
 	if (this->notes != nullptr)
 	{
@@ -158,7 +155,6 @@ void Cell::editNotes(int* hiddenNumbers, int count)
 
 bool Cell::operator==(bool* notes)
 {
-	int chance{};
 	if (notes != nullptr && this->notes != nullptr)
 	{
 		for (int i{}; i < 9; ++i)

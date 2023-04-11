@@ -2,11 +2,12 @@
 
 void Map::clear()
 {
-    for (int i{}; i < 9; ++i)
+    for (int i{}; i < this->map_size; ++i)
     {
-        for (int j{}; j < 9; ++j)
+        for (int j{}; j < this->map_size; ++j)
         {
             arr[i][j].setNum(0);
+            arr[i][j].clearNotes();
         }
 
         this->map_numbers[i] = 0;
@@ -15,7 +16,7 @@ void Map::clear()
 
 void Map::clearNumbers()
 {
-    for (int i{}; i < 9; ++i)
+    for (int i{}; i < this->map_size; ++i)
     {
         this->map_numbers[i] = 0;
     }
@@ -23,9 +24,9 @@ void Map::clearNumbers()
 
 bool Map::isMade()
 {
-    for (int i{}; i < 9; ++i)
+    for (int i{}; i < this->map_size; ++i)
     {
-        for (int j{}; j < 9; ++j)
+        for (int j{}; j < this->map_size; ++j)
         {
             if (this->arr[i][j].getNum() == 0)
             {
@@ -51,7 +52,7 @@ void Map::tryToGenerate()
             {
                 this->arr[i][j].setNum(rand() % this->map_size + 1);
 
-                if (value >= 30)
+                if (value >= 18)
                 {
                     return;
                 }
@@ -132,11 +133,11 @@ bool Map::check()
 {
     if (this->checking.checkFields(this->getArr()))
     {
-        //std::cout << "Etap 1" << "\n";
+        std::cout << "Etap 1" << "\n";
 
         if (this->checking.checkStrings(this->getArr(), this->map_numbers))
         {
-           //std::cout << "Etap 2" << "\n";
+           std::cout << "Etap 2" << "\n";
 
             if (this->checking.checkColumns(this->getArr(), this->map_numbers))
             {
@@ -213,6 +214,6 @@ void Map::setColumn(Cell* tmp, int index)
 {
     for (int i{}; i < this->map_size; ++i)
     {
-        this->arr[i][index].setNum(tmp[i].getNum());
+        this->arr[i][index].setCell(tmp[i].getCell());
     }
 }

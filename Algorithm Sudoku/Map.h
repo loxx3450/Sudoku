@@ -56,7 +56,7 @@ public:
             this->arr[i] = new Cell[this->map_size]{};
             for (int j{}; j < this->map_size; ++j)
             {
-                this->arr[i][j].setNum(arr[i][j].getNum());
+                this->arr[i][j].setCell(arr[i][j]);
             }
         }
     }
@@ -106,7 +106,7 @@ public:
 
         if (this->map_numbers != nullptr)
         {
-            //delete[] this->map_numbers;
+            delete[] this->map_numbers;
         }
     }
 };

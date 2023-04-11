@@ -36,7 +36,9 @@ public:
 
     int getNum(int i, int j);
 
-    Cell* getCell(int i, int j);
+    Cell getCell(int i, int j);
+
+    void editCellNotes(bool* notes, int i, int j);
 
     void setNum(int value, int i, int j);
 
@@ -59,7 +61,7 @@ public:
 
         if (this->field_numbers != nullptr)
         {
-            delete[] field_numbers;
+            delete[] this->field_numbers;
         }
     }
 };

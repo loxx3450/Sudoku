@@ -87,9 +87,14 @@ int Field::getNum(int i, int j)
     return this->arr[i][j].getNum();
 }
 
-Cell* Field::getCell(int i, int j)
+Cell Field::getCell(int i, int j)
 {
     return this->arr[i][j].getCell();
+}
+
+void Field::editCellNotes(bool* notes, int i, int j)
+{
+    this->arr[i][j].editNotes(notes);
 }
 
 void Field::setNum(int value, int i, int j)
