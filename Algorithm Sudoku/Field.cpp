@@ -20,7 +20,7 @@ void Field::generate(Cell** tmp_arr, int i, int j)
     {
         for (int column{ j }, index2{}; column < j + this->size; ++column, ++index2)
         {
-            this->arr[index1][index2].setCell(tmp_arr[string][column].getCell());
+            this->arr[index1][index2].setCell(tmp_arr[string][column]);
         }
     }
 }

@@ -311,13 +311,13 @@ public:
 		{
 			delete nakedGroup;
 		}
-		//this->nakedGroup = new NakedTriplet{};
-		//this->nakedGroup->nakedTripletsInField(map, temp, temp_i, temp_j);
+		this->nakedGroup = new NakedTriplet{};
+		this->nakedGroup->nakedTripletsInField(map, temp, temp_i, temp_j);
 	}
 
 	void nakedTripletsInRow(Cell* row)
 	{
-		//this->nakedGroup->nakedTripletsInRow(row);
+		this->nakedGroup->nakedTripletsInRow(row);
 	}
 
 	bool isOnlyOneNote(Map* map)

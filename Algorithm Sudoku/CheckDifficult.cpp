@@ -213,14 +213,14 @@ void CheckDifficult::checkNakedTriplets()
 		}
 	}
 
-	//delete tempField;
+	delete tempField;
 
 	for (int i{}; i < this->map_size; ++i)
 	{
 		solution.nakedTripletsInRow(map->getString(i));
 	}
 
-	/*Cell* tempRow = nullptr;
+	Cell* tempRow = nullptr;
 
 	for (int i{}; i < this->map_size; ++i)
 	{
@@ -229,11 +229,9 @@ void CheckDifficult::checkNakedTriplets()
 		solution.nakedTripletsInRow(tempRow);
 
 		map->setColumn(tempRow, i);
-	}*/
 
-	//delete[] tempRow;
-
-	//delete tempField;
+		delete[] tempRow;
+	}
 }
 
 bool CheckDifficult::isOnlyOneNote()
@@ -301,8 +299,8 @@ bool CheckDifficult::check()
 	std::cout << "MakeNotes!\n";
 	this->checkNakedCouples();
 	std::cout << "NakedCouples\n";
+	this->checkNakedTriplets();
 	this->map->showNotes();
-	//this->checkNakedTriplets();
 	if (this->isOnlyOneNote())
 	{
 		std::cout << "OnlyOneNote\n";
