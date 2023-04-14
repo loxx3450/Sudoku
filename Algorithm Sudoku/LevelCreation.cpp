@@ -2,9 +2,10 @@
 
 Map* LevelCreation::generate(int value)
 {
+
 	this->map->generate();
 
-	int count = rand() % 6 + 25;
+	int count = rand() % 3 + (42 - 5 * (value + 1));
 
 	int x{}, y{}, old_value{}, size{ 81 }, attempts{};
 
@@ -31,7 +32,7 @@ Map* LevelCreation::generate(int value)
 
 		map->setNum(0, x, y);
 
-		if (!d->checkComplexity())
+		if (!d->checkComplexity(value))
 		{
 			map->setNum(old_value, x, y);
 

@@ -15,25 +15,28 @@ protected:
 	const int map_size = 9;
 
 public:
-	
-	virtual void nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
+	virtual bool nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
 	{
 
+		return false;
 	}
 
-	virtual void nakedCouplesInRow(Cell* row)
+	virtual bool nakedCouplesInRow(Cell* row)
 	{
 
+		return false;
 	}
 
-	virtual void nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
+	virtual bool nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
 	{
 
+		return false;
 	}
 
-	virtual void nakedTripletsInRow(Cell* row)
+	virtual bool nakedTripletsInRow(Cell* row)
 	{
 
+		return false;
 	}
 };
 

@@ -133,15 +133,15 @@ bool Map::check()
 {
     if (this->checking.checkFields(this->getArr()))
     {
-        std::cout << "Etap 1" << "\n";
+        //std::cout << "Etap 1" << "\n";
 
         if (this->checking.checkStrings(this->getArr(), this->map_numbers))
         {
-           std::cout << "Etap 2" << "\n";
+           //std::cout << "Etap 2" << "\n";
 
             if (this->checking.checkColumns(this->getArr(), this->map_numbers))
             {
-                std::cout << "Etap 3" << "\n";
+                //std::cout << "Etap 3" << "\n";
 
                 if (isMade())
                 {
@@ -151,7 +151,7 @@ bool Map::check()
         }
     }
 
-    std::cout << "Etap 0" << "\n";
+    //std::cout << "Etap 0" << "\n";
 
     return false;
 }

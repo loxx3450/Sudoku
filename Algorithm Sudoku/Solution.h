@@ -36,15 +36,17 @@ public:
 
     void makeNotes(Map* map, Field* temp, int temp_i, int temp_j);
 
-    void nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j);
+    bool nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j);
 
-    void nakedCouplesInRow(Cell* row);
+    bool nakedCouplesInRow(Cell* row);
 
-    void nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j);
+    bool nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j);
 
-    void nakedTripletsInRow(Cell* row);
+    bool nakedTripletsInRow(Cell* row);
 
     bool onlyOneNote(Map* map);
+
+    bool hiddenNote(Map* map);
 
     ~Solution()
     {

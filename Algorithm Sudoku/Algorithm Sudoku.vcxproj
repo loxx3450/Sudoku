@@ -158,6 +158,8 @@
     <ClCompile Include="NakedTriplet.cpp" />
     <ClCompile Include="NormalMethod.cpp" />
     <ClCompile Include="Solution.cpp" />
+    <ClCompile Include="sqlite\shell.c" />
+    <ClCompile Include="sqlite\sqlite3.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />

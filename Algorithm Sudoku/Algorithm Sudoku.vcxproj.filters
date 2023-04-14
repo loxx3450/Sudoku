@@ -55,6 +55,12 @@
     <Filter Include="Исходные файлы\Cell">
       <UniqueIdentifier>{aeca8ab0-d017-4b62-ade6-9bdf196c0f4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Solution\ExtremeMethod\NakedGroup\NakedCouple">
+      <UniqueIdentifier>{a117365a-6b91-478c-ab7b-a1ad1e6c9cb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\ExtremeMethod\NakedGroup\NakedTriplet">
+      <UniqueIdentifier>{1d7152f8-54f6-42f7-9bbe-9f3f910c50b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -100,9 +106,15 @@
       <Filter>Исходные файлы\Cell</Filter>
     </ClCompile>
     <ClCompile Include="NakedCouple.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup\NakedCouple</Filter>
     </ClCompile>
     <ClCompile Include="NakedTriplet.cpp">
+      <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup\NakedTriplet</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite\shell.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite\sqlite3.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -153,10 +165,10 @@
       <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup</Filter>
     </ClInclude>
     <ClInclude Include="NakedCouple.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup\NakedCouple</Filter>
     </ClInclude>
     <ClInclude Include="NakedTriplet.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup\NakedTriplet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

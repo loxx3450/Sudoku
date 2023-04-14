@@ -36,9 +36,13 @@ public:
 
     int getNum(int i, int j);
 
-    Cell getCell(int i, int j);
+    Cell* getCell(int i, int j);
 
-    void editCellNotes(bool* notes, int i, int j);
+    int countOfCellNotes(int i, int j);
+
+    bool editCellNotes(bool* notes, int i, int j);
+
+    void removeCellNote(int value, int i, int j);
 
     void setNum(int value, int i, int j);
 

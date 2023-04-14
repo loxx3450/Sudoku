@@ -162,9 +162,23 @@ void CheckDifficult::makeNotes()
 	}
 
 	delete temp;
+
+	while (true)
+	{
+		if (this->checkNakedCouples())
+		{
+			continue;
+		}
+		if (this->checkNakedTriplets())
+		{
+			continue;
+		}
+
+		break;
+	}
 }
 
-void CheckDifficult::checkNakedCouples()
+bool CheckDifficult::checkNakedCouples()
 {
 	Field* tempField = new Field{};
 
@@ -174,7 +188,12 @@ void CheckDifficult::checkNakedCouples()
 		{
 			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
 
-			solution.nakedCouplesInField(map, tempField, i, j);
+			if (solution.nakedCouplesInField(map, tempField, i, j))
+			{
+				delete tempField;
+
+				return true;
+			}
 		}
 	}
 
@@ -182,7 +201,10 @@ void CheckDifficult::checkNakedCouples()
 
 	for (int i{}; i < this->map_size; ++i)
 	{
-		solution.nakedCouplesInRow(map->getString(i));
+		if (solution.nakedCouplesInRow(map->getString(i)))
+		{
+			return true;
+		}
 	}
 
 	Cell* tempRow = nullptr;
@@ -191,15 +213,22 @@ void CheckDifficult::checkNakedCouples()
 	{
 		tempRow = map->getColumn(i);
 
-		solution.nakedCouplesInRow(tempRow);
+		if (solution.nakedCouplesInRow(tempRow))
+		{
+			map->setColumn(tempRow, i);
 
-		map->setColumn(tempRow, i);
+			delete[] tempRow;
+
+			return true;
+		}
 
 		delete[] tempRow;
 	}
+
+	return false;
 }
 
-void CheckDifficult::checkNakedTriplets()
+bool CheckDifficult::checkNakedTriplets()
 {
 	Field* tempField = new Field{};
 
@@ -209,7 +238,12 @@ void CheckDifficult::checkNakedTriplets()
 		{
 			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
 
-			solution.nakedTripletsInField(map, tempField, i, j);
+			if (solution.nakedTripletsInField(map, tempField, i, j))
+			{
+				delete tempField;
+
+				return true;
+			}
 		}
 	}
 
@@ -217,7 +251,10 @@ void CheckDifficult::checkNakedTriplets()
 
 	for (int i{}; i < this->map_size; ++i)
 	{
-		solution.nakedTripletsInRow(map->getString(i));
+		if (solution.nakedTripletsInRow(map->getString(i)))
+		{
+			return true;
+		}
 	}
 
 	Cell* tempRow = nullptr;
@@ -226,12 +263,19 @@ void CheckDifficult::checkNakedTriplets()
 	{
 		tempRow = map->getColumn(i);
 
-		solution.nakedTripletsInRow(tempRow);
+		if (solution.nakedTripletsInRow(tempRow))
+		{
+			map->setColumn(tempRow, i);
 
-		map->setColumn(tempRow, i);
+			delete[] tempRow;
+
+			return true;
+		}
 
 		delete[] tempRow;
 	}
+
+	return false;
 }
 
 bool CheckDifficult::isOnlyOneNote()
@@ -244,33 +288,51 @@ bool CheckDifficult::isOnlyOneNote()
 	return false;
 }
 
+bool CheckDifficult::hiddenNote()
+{
+	if (solution.hiddenNote(this->map))
+	{
+		return true;
+	}
 
+	return false;
+}
 
-bool CheckDifficult::check()
+bool CheckDifficult::checkEasy()
 {
 	if (this->checkFields())
 	{
-		std::cout << "LastInField\n";
+		//std::cout << "LastInField\n";
 		return true;
 	}
 	if (this->checkStrings())
 	{
-		std::cout << "LastInString\n";
+		//std::cout << "LastInString\n";
 		return true;
 	}
 	if (this->checkColumns())
 	{
-		std::cout << "LastInColumn\n";
+		//std::cout << "LastInColumn\n";
 		return true;
 	}
 	if (this->checkExceptInField())
 	{
-		std::cout << "ExceptionInField\n";
+		//std::cout << "ExceptionInField\n";
+		return true;
+	}
+
+	return false;
+}
+
+bool CheckDifficult::checkMedium()
+{
+	if (this->checkEasy())
+	{
 		return true;
 	}
 	if (this->checkExceptInString())
 	{
-		std::cout << "ExceptionInString\n";
+		//std::cout << "ExceptionInString\n";
 		if (this->complexity < 1)
 		{
 			this->complexity = 1;
@@ -279,49 +341,99 @@ bool CheckDifficult::check()
 	}
 	if (this->checkExceptInColumn())
 	{
-		std::cout << "ExceptionInColumn\n";
+		//std::cout << "ExceptionInColumn\n";
 		if (this->complexity < 1)
 		{
 			this->complexity = 1;
 		}
 		return true;
 	}
+
+	return false;
+}
+
+bool CheckDifficult::checkHard()
+{
+	if (this->checkMedium())
+	{
+		return true;
+	}
 	if (this->checkExceptInStr_Col_Field())
 	{
-		std::cout << "LastNumberInString_Column_Field\n";
+		//std::cout << "LastNumberInString_Column_Field\n";
 		if (this->complexity < 2)
 		{
 			this->complexity = 2;
 		}
 		return true;
 	}
-	this->makeNotes();
-	std::cout << "MakeNotes!\n";
-	this->checkNakedCouples();
-	std::cout << "NakedCouples\n";
-	this->checkNakedTriplets();
-	this->map->showNotes();
-	if (this->isOnlyOneNote())
-	{
-		std::cout << "OnlyOneNote\n";
-		map->show();
-		return true;
-	}
-
-	//this->map->showNotes();
 
 	return false;
 }
 
-bool CheckDifficult::checkComplexity()
+bool CheckDifficult::checkExtreme()
+{
+	if (this->checkHard())
+	{
+		return true;
+	}
+	this->makeNotes();
+	//this->map->show();
+	if (this->isOnlyOneNote())
+	{
+		//std::cout << "OnlyOneNote\n";
+		if (this->complexity < 3)
+		{
+			this->complexity = 3;
+		}
+		return true;
+	}
+	if (this->hiddenNote())
+	{
+		//std::cout << "HiddenNote\n";
+		if (this->complexity < 3)
+		{
+			this->complexity = 3;
+		}
+		return true;
+	}
+
+	return false;
+}
+
+
+bool CheckDifficult::checkComplexity(int complexity)
 {
 	this->complexity = 0;
 
 	while (!this->map->isMade())
 	{
-		if (!this->check())
+		switch (complexity)
 		{
-			return false;
+			case 0:
+				if (!this->checkEasy())
+				{
+					return false;
+				}
+				break;
+			case 1:
+				if (!this->checkMedium())
+				{
+					return false;
+				}
+				break;
+			case 2:
+				if (!this->checkHard())
+				{
+					return false;
+				}
+				break;
+			case 3:
+				if (!this->checkExtreme())
+				{
+					return false;
+				}
+				break;
 		}
 	}
 

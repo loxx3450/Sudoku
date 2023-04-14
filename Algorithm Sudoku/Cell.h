@@ -57,9 +57,9 @@ public:
 
 	void setNum(int temp_num);
 
-	void setCell(Cell temp);
+	void setCell(Cell* temp);
 
-	Cell getCell();
+	Cell* getCell();
 
 	int getNum();
 
@@ -71,7 +71,9 @@ public:
 
 	bool* getNotes();
 
-	void editNotes(bool* notes);
+	void removeNote(int value);
+
+	bool editNotes(bool* notes);
 
 	void deleteNotes();
 

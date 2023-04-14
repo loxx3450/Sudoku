@@ -28,11 +28,21 @@ private:
 
 	void makeNotes();
 
-	void checkNakedCouples();
+	bool checkNakedCouples();
 
-	void checkNakedTriplets();
+	bool checkNakedTriplets();
 
 	bool isOnlyOneNote();
+
+	bool hiddenNote();
+
+	bool checkEasy();
+
+	bool checkMedium();
+
+	bool checkHard();
+
+	bool checkExtreme();
 
 	bool check();
 
@@ -42,7 +52,7 @@ public:
 		this->map = new Map{ *map };
 	}
 
-	bool checkComplexity();
+	bool checkComplexity(int complexity);
 
 	int getComplexity();
 

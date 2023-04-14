@@ -18,11 +18,11 @@ void Cell::setNum(int temp_num)
 	this->number = temp_num;
 }
 
-void Cell::setCell(Cell temp)
+void Cell::setCell(Cell* temp)
 {
-	this->number = temp.number;
+	this->number = temp->number;
 
-	if (temp.notes != nullptr && temp.number == 0)
+	if (temp->notes != nullptr && temp->number == 0)
 	{
 		if (this->notes == nullptr)
 		{
@@ -31,15 +31,15 @@ void Cell::setCell(Cell temp)
 
 		for (int i{}; i < this->notesSize; ++i)
 		{
-			this->notes[i] = temp.notes[i];
+			this->notes[i] = temp->notes[i];
 		}
 	}
 	
 }
 
-Cell Cell::getCell()
+Cell* Cell::getCell()
 {
-	return *this;
+	return this;
 }
 
 int Cell::getNum()
@@ -103,8 +103,15 @@ bool* Cell::getNotes()
 	return nullptr;
 }
 
-void Cell::editNotes(bool* notes)
+void Cell::removeNote(int value)
 {
+	this->notes[value - 1] = false;
+}
+
+bool Cell::editNotes(bool* notes)
+{
+	bool flag{ false };
+
 	if (notes != nullptr && this->notes != nullptr)
 	{
 		for (int i{}; i < this->notesSize; ++i)
@@ -112,9 +119,12 @@ void Cell::editNotes(bool* notes)
 			if (notes[i] == true && this->notes[i] == true)
 			{
 				this->notes[i] = false;
+				flag = true;
 			}
 		}
 	}
+
+	return flag;
 }
 
 void Cell::deleteNotes()
@@ -134,21 +144,6 @@ void Cell::clearNotes()
 		for (int i{}; i < this->notesSize; ++i)
 		{
 			this->notes[i] = false;
-		}
-	}
-	
-}
-
-void Cell::editNotes(int* hiddenNumbers, int count)		//где используется
-{
-	if (this->notes != nullptr)
-	{
-		delete[] notes;
-		notes = new bool[9]{ false };
-
-		for (int i{}; i < count; ++i)
-		{
-			notes[hiddenNumbers[i] - 1] = true;
 		}
 	}
 }

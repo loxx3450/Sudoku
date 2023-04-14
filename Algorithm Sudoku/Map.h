@@ -32,7 +32,7 @@ public:
     }
 
     Map(int** arr) :
-        arr{ new Cell * [this->map_size] },
+        arr{ new Cell* [this->map_size] },
         map_numbers{ new int[this->map_size]{} },
         checking{}
     {
@@ -56,7 +56,7 @@ public:
             this->arr[i] = new Cell[this->map_size]{};
             for (int j{}; j < this->map_size; ++j)
             {
-                this->arr[i][j].setCell(arr[i][j]);
+                this->arr[i][j].setNum(arr[i][j].getNum());
             }
         }
     }

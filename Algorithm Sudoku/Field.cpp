@@ -20,7 +20,7 @@ void Field::generate(Cell** tmp_arr, int i, int j)
     {
         for (int column{ j }, index2{}; column < j + this->size; ++column, ++index2)
         {
-            this->arr[index1][index2].setCell(tmp_arr[string][column]);
+            this->arr[index1][index2].setCell(tmp_arr[string][column].getCell());
         }
     }
 }
@@ -87,14 +87,24 @@ int Field::getNum(int i, int j)
     return this->arr[i][j].getNum();
 }
 
-Cell Field::getCell(int i, int j)
+Cell* Field::getCell(int i, int j)
 {
     return this->arr[i][j].getCell();
 }
 
-void Field::editCellNotes(bool* notes, int i, int j)
+int Field::countOfCellNotes(int i, int j)
 {
-    this->arr[i][j].editNotes(notes);
+    return this->arr[i][j].countOfNotes();
+}
+
+bool Field::editCellNotes(bool* notes, int i, int j)
+{
+    return this->arr[i][j].editNotes(notes);
+}
+
+void Field::removeCellNote(int value, int i, int j)
+{
+    this->arr[i][j].removeNote(value);
 }
 
 void Field::setNum(int value, int i, int j)

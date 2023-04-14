@@ -66,29 +66,39 @@ void Solution::makeNotes(Map* map, Field* temp, int temp_i, int temp_j)
     this->methods4.makeNotes(map, temp, temp_i, temp_j);
 }
 
-void Solution::nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
+bool Solution::nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
 {
-    this->methods4.nakedCouplesInField(map, temp, temp_i, temp_j);
+    return this->methods4.nakedCouplesInField(map, temp, temp_i, temp_j);
 }
 
-void Solution::nakedCouplesInRow(Cell* row)
+bool Solution::nakedCouplesInRow(Cell* row)
 {
-    this->methods4.nakedCouplesInRow(row);
+    return this->methods4.nakedCouplesInRow(row);
 }
 
-void Solution::nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
+bool Solution::nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
 {
-    this->methods4.nakedtripletsInField(map, temp, temp_i, temp_j);
+    return this->methods4.nakedtripletsInField(map, temp, temp_i, temp_j);
 }
 
-void Solution::nakedTripletsInRow(Cell* row)
+bool Solution::nakedTripletsInRow(Cell* row)
 {
-    this->methods4.nakedTripletsInRow(row);
+    return this->methods4.nakedTripletsInRow(row);
 }
 
 bool Solution::onlyOneNote(Map* map)
 {
     if (this->methods4.isOnlyOneNote(map))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Solution::hiddenNote(Map* map)
+{
+    if (this->methods4.hiddenNote(map))
     {
         return true;
     }
