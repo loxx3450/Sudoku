@@ -196,7 +196,7 @@ bool ExtremeMethod::hiddenNote(Map* map)
 	{
 		for (int map_j{}; map_j < this->field_size; ++map_j)
 		{
-			temp->generate(map->getArr(), map_i, map_j);
+			temp->generate(map->getArr(), map_i * 3, map_j * 3);
 
 			this->fillNumbersWithFieldNotes(temp);
 

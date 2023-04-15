@@ -38,6 +38,22 @@ bool Map::isMade()
     return true;
 }
 
+bool Map::isEqualArr(Cell** temp_arr)
+{
+    for (int i{}; i < this->map_size; ++i)
+    {
+        for (int j{}; j < this->map_size; ++j)
+        {
+            if (this->arr[i][j].getNum() != temp_arr[i][j].getNum())
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 void Map::tryToGenerate()
 {
     this->clear();

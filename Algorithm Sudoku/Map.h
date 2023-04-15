@@ -63,6 +63,8 @@ public:
 
     bool isMade();
 
+    bool isEqualArr(Cell** arr);
+
     void generate();
 
     void show();
