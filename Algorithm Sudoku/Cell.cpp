@@ -52,6 +52,7 @@ void Cell::showNotes(int i, int j)
 	if (this->notes != nullptr && this->number == 0)
 	{
 		std::cout << i << "; " << j << ": " << this->countOfNotes() << "\n";
+
 		for (int i{}; i < 9; ++i)
 		{
 			if (this->notes[i] == true)
@@ -59,6 +60,7 @@ void Cell::showNotes(int i, int j)
 				std::cout << i + 1;
 			}
 		}
+
 		std::cout << "\n";
 	}
 
@@ -100,6 +102,7 @@ bool* Cell::getNotes()
 	{
 		return this->notes;
 	}
+
 	return nullptr;
 }
 

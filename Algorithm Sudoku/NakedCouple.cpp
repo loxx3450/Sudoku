@@ -86,7 +86,7 @@ bool NakedCouple::nakedCouplesInField(Map* map, Field* temp, int temp_i, int tem
 	{
 		for (int j{}; j < this->field_size; ++j)
 		{
-			if (temp->countOfCellNotes(i, j) == 2 && temp->getNum(i, j) == 0)
+			if (temp->countOfCellNotes(i, j) == Groups::Couple && temp->getNum(i, j) == 0)
 			{
 				if (this->findPossibleCouplesInField(temp, temp->getCell(i, j), i, j))
 				{

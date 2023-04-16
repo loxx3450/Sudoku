@@ -1,54 +1,7 @@
 #include "LevelCreation.h"
 
-bool LevelCreation::isOnlyOneSolution(Map* solution, Map* level, int temp_complexity)
-{
-	int x{}, y{};
-
-	Map* temp_solution = new Map{};
-
-	CheckDifficult* temp = new CheckDifficult{ temp_solution };
-
-	for (int i{}; i < 20; ++i)
-	{
-		for (int j{}; j < 5; ++j)
-		{
-			do
-			{
-				x = rand() % 9 + 0;
-				y = rand() % 9 + 0;
-			} while (level->getNum(x, y) == 0);
-
-			level->setNum(0, x, y);
-
-			do
-			{
-				x = rand() % 9 + 0;
-				y = rand() % 9 + 0;
-			} while (level->getNum(x, y) != 0);
-
-			level->setNum(solution->getNum(x, y), x, y);
-		}
-
-		temp_solution->setArr(level->getArr());
-
-		temp->checkComplexity(3);
-
-		if (temp_solution->isMade() && !solution->isEqualArr(temp_solution->getArr()))
-		{
-			delete temp;
-
-			return false;
-		}
-	}
-
-	delete temp;
-
-	return true;
-}
-
 Map* LevelCreation::generate(int value)
 {
-
 	this->map->generate();
 
 	int count = rand() % 3 + (42 - 5 * (value + 1));
@@ -59,7 +12,7 @@ Map* LevelCreation::generate(int value)
 
 	while (true)
 	{
-		if (attempts == 10 || size == 22)
+		if (attempts == 10 || size == 19)
 		{
 			delete temp;
 
@@ -95,16 +48,11 @@ Map* LevelCreation::generate(int value)
 
 		--size;
 
-		if (this->complexity == value && size <= count && this->isOnlyOneSolution(map, temp, 3))
+		if (this->complexity == value && size <= count)
 		{
 			return temp;
 		}
 	}
-
-
-	delete temp;
-
-	return nullptr;
 }
 
 int LevelCreation::getComplexity()

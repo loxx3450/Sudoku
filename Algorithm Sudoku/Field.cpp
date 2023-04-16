@@ -33,6 +33,7 @@ void Field::show()
         {
             std::cout << arr[i][j].getNum() << " ";
         }
+
         std::cout << "\n";
     }
 }

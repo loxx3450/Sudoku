@@ -70,7 +70,7 @@ bool NakedTriplet::ifPassRulesForNakedTriplets(Cell* array)
 
 	int count = this->fillRemainingNotes(array, remainingNotes);
 
-	if (count != 3)
+	if (count != Groups::Triplet)
 	{
 		delete[] remainingNotes;
 
@@ -184,7 +184,7 @@ bool NakedTriplet::findPossibleTripletsInField(Field* tempField)
 
 	int count = this->fillArraysForField(tempField, arrayCells, arrayPoints);
 
-	if (count == 3)
+	if (count == Groups::Triplet)
 	{
 		if (this->ifPassRulesForNakedTriplets(arrayCells))
 		{
@@ -194,7 +194,7 @@ bool NakedTriplet::findPossibleTripletsInField(Field* tempField)
 			}
 		}
 	}
-	else if (count > 3)
+	else if (count > Groups::Triplet)
 	{
 		Cell* temp_arrayCells = new Cell[Groups::Triplet];
 		Point* temp_arrayPoints = new Point[Groups::Triplet];
@@ -258,7 +258,7 @@ bool NakedTriplet::findPossibleTripletsInRow(Cell* row, int size)
 
 	int count = this->fillArraysForString(row, arrayCells, arrayIndexes);
 
-	if (count == 3)
+	if (count == Groups::Triplet)
 	{
 		if (this->ifPassRulesForNakedTriplets(arrayCells))
 		{
@@ -268,7 +268,7 @@ bool NakedTriplet::findPossibleTripletsInRow(Cell* row, int size)
 			}
 		}
 	}
-	else if (count > 3)
+	else if (count > Groups::Triplet)
 	{
 		Cell* temp_arrayCells = new Cell[Groups::Triplet];
 		int* temp_arrayIndexes = new int[Groups::Triplet];

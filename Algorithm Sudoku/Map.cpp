@@ -7,6 +7,7 @@ void Map::clear()
         for (int j{}; j < this->map_size; ++j)
         {
             arr[i][j].setNum(0);
+
             arr[i][j].clearNotes();
         }
 
@@ -54,7 +55,7 @@ bool Map::isEqualArr(Cell** temp_arr)
     return true;
 }
 
-void Map::tryToGenerate()
+void Map::generate()
 {
     this->clear();
 
@@ -68,12 +69,12 @@ void Map::tryToGenerate()
             {
                 this->arr[i][j].setNum(rand() % this->map_size + 1);
 
-                if (value >= 18)
+                if (value >= 12)
                 {
-                    return;
+                    return this->generate();
                 }
 
-                if (this->checking.checkFields(this->getArr()) && this->checking.checkColumns(this->getArr(), this->map_numbers) && this->checking.checkStrings(this->getArr(), this->map_numbers))
+                if (this->check())
                 {
                     break;
                 }
@@ -82,20 +83,6 @@ void Map::tryToGenerate()
             }
 
             value = 0;
-        }
-    }
-}
-
-void Map::generate()
-{
-    this->clear();
-
-    while (true)
-    {
-        this->tryToGenerate();
-        if (this->check())
-        {
-            break;
         }
     }
     
@@ -113,6 +100,7 @@ void Map::show()
             {
                 std::cout << "|";
             }
+
             std::cout << this->arr[i][j].getNum() << " ";
 
             if (j == 8)
@@ -138,7 +126,6 @@ void Map::showNotes()
         for (int j{}; j < 9; ++j)
         {
             this->arr[i][j].showNotes(i, j);
-            
         }
 
         std::cout << "\n";

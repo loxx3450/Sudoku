@@ -15,9 +15,15 @@ private:
 
 	void makeNoteOnCell(Map* map, Field* temp, Cell* string, Cell* column, int temp_i, int temp_j);
 
+	void fillNumbersWithRowNotes(Cell* row);
+
 	void fillNumbersWithFieldNotes(Field* temp);
 
-	bool findPossibleHiddenNote(Field* temp, Map* map, int map_i, int map_j, int index);
+	bool findPossibleHiddenNoteInRow(Map* map, Cell* temp, int row_i, int index);
+
+	bool findPossibleHiddenNoteInColumn(Map* map, Cell* temp, int col_i, int index);
+
+	bool findPossibleHiddenNoteInField(Field* temp, Map* map, int map_i, int map_j, int index);
 
 public:
 	ExtremeMethod() :

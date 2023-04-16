@@ -17,8 +17,6 @@ private:
 
     void clearNumbers();
 
-    void tryToGenerate();
-
 public:
     Map() :
         arr{ new Cell* [this->map_size] },

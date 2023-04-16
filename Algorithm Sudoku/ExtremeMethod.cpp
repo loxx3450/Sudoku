@@ -4,7 +4,7 @@ void ExtremeMethod::editCellsAround(Map* map, int value, int i, int j)
 {
 	Field* tempField = new Field{};
 
-	tempField->generate(map->getArr(), (int)(i / 3), (int)(j / 3));
+	tempField->generate(map->getArr(), (i / 3) * 3, (j / 3) * 3);
 
 	for (int i{}; i < this->field_size; ++i)
 	{
@@ -23,17 +23,18 @@ void ExtremeMethod::editCellsAround(Map* map, int value, int i, int j)
 
 	for (int i{}; i < this->map_size; ++i)
 	{
-		if (string[i].getNotes() == nullptr && string[i].getNum() == 0)
+		if (string[i].getNotes() != nullptr && string[i].getNum() == 0)
 		{
 			string[i].removeNote(value);
 		}
+		
 	}
 
 	Cell* column = map->getColumn(j);
 
 	for (int i{}; i < this->map_size; ++i)
 	{
-		if (column[i].getNotes() == nullptr && column[i].getNum() == 0)
+		if (column[i].getNotes() != nullptr && column[i].getNum() == 0)
 		{
 			column[i].removeNote(value);
 		}
@@ -64,6 +65,31 @@ void ExtremeMethod::makeNoteOnCell(Map* map, Field* temp, Cell* string, Cell* co
 			map->getArr()[temp_i][temp_j].addNote(index + 1);
 		}
 	}
+}
+
+void ExtremeMethod::fillNumbersWithRowNotes(Cell* row)
+{
+	this->clearNumbers();
+
+	bool* notes = new bool[9];
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int index{}; index < this->map_size; ++index)
+		{
+			notes[index] = row[i].inNotes(index + 1);
+		}
+
+		for (int j{}; j < this->map_size; ++j)
+		{
+			if (notes[j] == true)
+			{
+				numbers[j]++;
+			}
+		}
+	}
+
+	delete[] notes;
 }
 
 void ExtremeMethod::fillNumbersWithFieldNotes(Field* temp)
@@ -97,7 +123,37 @@ void ExtremeMethod::fillNumbersWithFieldNotes(Field* temp)
 	delete[] notes;
 }
 
-bool ExtremeMethod::findPossibleHiddenNote(Field* temp, Map* map, int map_i, int map_j, int index)
+bool ExtremeMethod::findPossibleHiddenNoteInRow(Map* map, Cell* temp, int row_i, int index)
+{
+	for (int i{}; i < 9; ++i)
+	{
+		if (temp[i].getNotes() != nullptr && temp[i].getNum() == 0 && temp[i].inNotes(index + 1))
+		{
+			temp[i].setNum(index + 1);
+			temp[i].deleteNotes();
+			this->editCellsAround(map, index + 1, row_i, i);
+
+			return true;
+		}
+	}
+}
+
+bool ExtremeMethod::findPossibleHiddenNoteInColumn(Map* map, Cell* temp, int col_i, int index)
+{
+	for (int i{}; i < 9; ++i)
+	{
+		if (temp[i].getNotes() != nullptr && temp[i].getNum() == 0 && temp[i].inNotes(index + 1))
+		{
+			temp[i].setNum(index + 1);
+			temp[i].deleteNotes();
+			this->editCellsAround(map, index + 1, i, col_i);
+
+			return true;
+		}
+	}
+}
+
+bool ExtremeMethod::findPossibleHiddenNoteInField(Field* temp, Map* map, int map_i, int map_j, int index)
 {
 	for (int i{}; i < this->field_size; ++i)
 	{
@@ -107,7 +163,7 @@ bool ExtremeMethod::findPossibleHiddenNote(Field* temp, Map* map, int map_i, int
 			{
 				temp->setNum(index + 1, i, j);
 				temp->getCell(i, j)->deleteNotes();
-				this->editCellsAround(map, index + 1, i, j);
+				this->editCellsAround(map, index + 1, map_i * 3 + i, map_j * 3 + j);
 
 				return true;
 			}
@@ -204,9 +260,9 @@ bool ExtremeMethod::hiddenNote(Map* map)
 			{
 				if (numbers[index] == 1)
 				{
-					if (this->findPossibleHiddenNote(temp, map, map_i, map_j, index))
+					if (this->findPossibleHiddenNoteInField(temp, map, map_i, map_j, index))
 					{
-						map->takeField(temp, map_i, map_j);
+						map->takeField(temp, map_i * 3, map_j * 3);
 
 						delete temp;
 
@@ -215,10 +271,51 @@ bool ExtremeMethod::hiddenNote(Map* map)
 				}
 			}
 		}
-
 	}
 
 	delete temp;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		this->fillNumbersWithRowNotes(map->getString(i));
+
+		for (int index{}; index < this->map_size; ++index)
+		{
+			if (numbers[index] == 1)
+			{
+				if (this->findPossibleHiddenNoteInRow(map, map->getString(i), i, index))
+				{
+					return true;
+				}
+			}
+		}
+	}
+
+	Cell* column;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		column = map->getColumn(i);
+
+		this->fillNumbersWithRowNotes(map->getString(i));
+
+		for (int index{}; index < this->map_size; ++index)
+		{
+			if (numbers[index] == 1)
+			{
+				if (this->findPossibleHiddenNoteInColumn(map, map->getString(i), i, index))
+				{
+					map->setColumn(column, i);
+
+					delete[] column;
+
+					return true;
+				}
+			}
+		}
+
+		delete[] column;
+	}
 
 	return false;
 

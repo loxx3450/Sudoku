@@ -36,6 +36,7 @@ private:
 
 	bool hiddenNote();
 
+
 	bool checkEasy();
 
 	bool checkMedium();
@@ -43,8 +44,6 @@ private:
 	bool checkHard();
 
 	bool checkExtreme();
-
-	bool check();
 
 public:
 	CheckDifficult(Map* map)
