@@ -73,18 +73,21 @@ void ExtremeMethod::fillNumbersWithRowNotes(Cell* row)
 
 	bool* notes = new bool[9];
 
-	for (int i{}; i < this->field_size; ++i)
+	for (int i{}; i < this->map_size; ++i)
 	{
-		for (int index{}; index < this->map_size; ++index)
+		if (row[i].getNotes() != nullptr)
 		{
-			notes[index] = row[i].inNotes(index + 1);
-		}
-
-		for (int j{}; j < this->map_size; ++j)
-		{
-			if (notes[j] == true)
+			for (int index{}; index < this->map_size; ++index)
 			{
-				numbers[j]++;
+				notes[index] = row[i].inNotes(index + 1);
+			}
+
+			for (int j{}; j < this->map_size; ++j)
+			{
+				if (notes[j] == true)
+				{
+					numbers[j]++;
+				}
 			}
 		}
 	}

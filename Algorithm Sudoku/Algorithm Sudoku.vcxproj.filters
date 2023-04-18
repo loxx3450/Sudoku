@@ -61,6 +61,15 @@
     <Filter Include="Исходные файлы\Solution\ExtremeMethod\NakedGroup\NakedTriplet">
       <UniqueIdentifier>{1d7152f8-54f6-42f7-9bbe-9f3f910c50b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Solution\InsaneMethod">
+      <UniqueIdentifier>{5395a668-0a67-41a5-ba69-9d130a8f632e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\InsaneMethod\HiddenGroup">
+      <UniqueIdentifier>{8b1b1641-366c-494d-b4c7-20fc42431599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenCouple">
+      <UniqueIdentifier>{f82b1cc2-c398-47f9-8e36-427ed5ccc830}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -117,6 +126,12 @@
     <ClCompile Include="sqlite\sqlite3.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="InsaneMethod.cpp">
+      <Filter>Исходные файлы\Solution\InsaneMethod</Filter>
+    </ClCompile>
+    <ClCompile Include="HiddenCouple.cpp">
+      <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenCouple</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.h">
@@ -169,6 +184,18 @@
     </ClInclude>
     <ClInclude Include="NakedTriplet.h">
       <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup\NakedTriplet</Filter>
+    </ClInclude>
+    <ClInclude Include="InsaneMethod.h">
+      <Filter>Исходные файлы\Solution\InsaneMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="HiddenGroup.h">
+      <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="HiddenCouple.h">
+      <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenCouple</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

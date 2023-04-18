@@ -1,12 +1,7 @@
 #pragma once
 #include "Map.h"
 #include "Point.h"
-
-enum Groups
-{
-	Couple = 2,
-	Triplet = 3
-};
+#include "common.h"
 
 class NakedGroup
 {

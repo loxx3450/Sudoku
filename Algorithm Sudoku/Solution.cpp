@@ -105,3 +105,23 @@ bool Solution::hiddenNote(Map* map)
 
     return false;
 }
+
+bool Solution::hiddenCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
+{
+    if (this->methods5.hiddenCouplesInField(map, temp, temp_i, temp_j))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Solution::hiddenCouplesInRow(Cell* row)
+{
+    if (this->methods5.hiddenCouplesInRow(row))
+    {
+        return true;
+    }
+
+    return false;
+}

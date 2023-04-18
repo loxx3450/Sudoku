@@ -75,6 +75,8 @@ public:
 
 	bool editNotes(bool* notes);
 
+	bool editNotes(int* hiddenNumbers, int count);
+
 	void deleteNotes();
 
 	void clearNotes();

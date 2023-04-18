@@ -11,6 +11,7 @@ private:
 	Map* map;
 	Solution solution;
 	int complexity = 0;
+	bool isNotes = 0;
 
 	bool checkFields();
 
@@ -33,6 +34,8 @@ private:
 	bool checkNakedTriplets();
 
 	bool isOnlyOneNote();
+
+	bool checkHiddenCouples();
 
 	bool hiddenNote();
 

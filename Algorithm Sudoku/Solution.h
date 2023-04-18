@@ -4,6 +4,7 @@
 #include "NormalMethod.h"
 #include "HardMethod.h"
 #include "ExtremeMethod.h"
+#include "InsaneMethod.h"
 
 class Solution
 {
@@ -16,6 +17,7 @@ private:
     NormalMethod methods2;
     HardMethod methods3;
     ExtremeMethod methods4;
+    InsaneMethod methods5;
 
 public:
     Solution():
@@ -47,6 +49,10 @@ public:
     bool onlyOneNote(Map* map);
 
     bool hiddenNote(Map* map);
+
+    bool hiddenCouplesInField(Map* map, Field* temp, int temp_i, int temp_j);
+
+    bool hiddenCouplesInRow(Cell* row);
 
     ~Solution()
     {
