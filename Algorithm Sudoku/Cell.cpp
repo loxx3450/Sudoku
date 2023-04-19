@@ -132,18 +132,23 @@ bool Cell::editNotes(bool* notes)
 
 bool Cell::editNotes(int* hiddenNumbers, int count)
 {
-	if (this->notes != nullptr && this->countOfNotes() >= count + 1)
-	{
-		delete[] notes;
+	int temp = this->countOfNotes();
 
-		notes = new bool[9]{ false };
+	if (this->notes != nullptr)
+	{
+		delete[] this->notes;
+
+		this->notes = new bool[9]{ false };
 
 		for (int i{}; i < count; ++i)
 		{
-			notes[hiddenNumbers[i] - 1] = true;
+			this->notes[hiddenNumbers[i] - 1] = true;
 		}
 
-		return true;
+		if (temp > this->countOfNotes())
+		{
+			return true;
+		}
 	}
 
 	return false;

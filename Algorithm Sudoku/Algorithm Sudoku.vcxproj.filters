@@ -132,6 +132,9 @@
     <ClCompile Include="HiddenCouple.cpp">
       <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenCouple</Filter>
     </ClCompile>
+    <ClCompile Include="HiddenTriplet.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.h">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="HiddenCouple.h">
       <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenCouple</Filter>
+    </ClInclude>
+    <ClInclude Include="HiddenTriplet.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

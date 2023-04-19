@@ -150,6 +150,7 @@
     <ClCompile Include="ExtremeMethod.cpp" />
     <ClCompile Include="HardMethod.cpp" />
     <ClCompile Include="HiddenCouple.cpp" />
+    <ClCompile Include="HiddenTriplet.cpp" />
     <ClCompile Include="InsaneMethod.cpp" />
     <ClCompile Include="LevelCreation.cpp" />
     <ClCompile Include="main.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="HardMethod.h" />
     <ClInclude Include="HiddenCouple.h" />
     <ClInclude Include="HiddenGroup.h" />
+    <ClInclude Include="HiddenTriplet.h" />
     <ClInclude Include="InsaneMethod.h" />
     <ClInclude Include="LevelCreation.h" />
     <ClInclude Include="Map.h" />

@@ -45,10 +45,9 @@ bool HiddenCouple::editNotesInRow_HiddenGroups(Cell* row, int* hiddenNumbers, in
 	return flag;
 }
 
-bool HiddenCouple::findPossibleHiddenGroupInField(Field* temp, int* hiddenNumbers)
+bool HiddenCouple::ifPassRulesForHiddenCouples(Field* temp, int* hiddenNumbers, Point* array)
 {
 	int count{};
-	Point* array = new Point[Groups::Couple]{};
 
 	for (int i{}; i < this->field_size; ++i)
 	{
@@ -69,12 +68,7 @@ bool HiddenCouple::findPossibleHiddenGroupInField(Field* temp, int* hiddenNumber
 
 					if (count == Groups::Couple)
 					{
-						if (this->editNotesInField_HiddenGroups(temp, hiddenNumbers, array))
-						{
-							delete[] array;
-
-							return true;
-						}
+						return true;
 					}
 				}
 
@@ -82,15 +76,12 @@ bool HiddenCouple::findPossibleHiddenGroupInField(Field* temp, int* hiddenNumber
 		}
 	}
 
-	delete[] array;
-
 	return false;
 }
 
-bool HiddenCouple::findPossibleHiddenGroupInRow(Cell* row, int* hiddenNumbers)
+bool HiddenCouple::ifPassRulesForHiddenCouples(Cell* row, int* hiddenNumbers, int* array)
 {
 	int count{};
-	int* array = new int[Groups::Couple]{};
 
 	for (int i{}; i < this->map_size; ++i)
 	{
@@ -109,25 +100,95 @@ bool HiddenCouple::findPossibleHiddenGroupInRow(Cell* row, int* hiddenNumbers)
 
 				if (count == Groups::Couple)
 				{
-					if (this->editNotesInRow_HiddenGroups(row, hiddenNumbers, array))
-					{
-						delete[] array;
-
-						return true;
-					}
+					return true;
 				}
 			}
 
 		}
 	}
 
+	return false;
+}
+
+bool HiddenCouple::findPossibleHiddenGroupInField(Field* temp, int count)
+{
+	int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(count);
+
+	int* tempHiddenNumbers = new int[Groups::Couple];
+
+	Point* array = new Point[Groups::Couple]{};
+
+	for (int i{}; i < count - 1; ++i)
+	{
+		for (int j{ i + 1 }; j < count; ++j)
+		{
+			tempHiddenNumbers[0] = hiddenNumbers[i];
+			tempHiddenNumbers[1] = hiddenNumbers[j];
+
+			if (this->ifPassRulesForHiddenCouples(temp, tempHiddenNumbers, array))
+			{
+				if (this->editNotesInField_HiddenGroups(temp, tempHiddenNumbers, array))
+				{
+					delete[] array;
+					delete[] hiddenNumbers;
+					delete[] tempHiddenNumbers;
+
+					return true;
+				}
+			}
+		}
+	}
+
 	delete[] array;
+	delete[] hiddenNumbers;
+	delete[] tempHiddenNumbers;
+
+	return false;
+}
+
+bool HiddenCouple::findPossibleHiddenGroupInRow(Cell* row, int count)
+{
+	int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(count);
+
+	int* tempHiddenNumbers = new int[Groups::Couple];
+
+	int* array = new int[Groups::Couple]{};
+
+	for (int i{}; i < count - 1; ++i)
+	{
+		for (int j{ i + 1 }; j < count; ++j)
+		{
+			tempHiddenNumbers[0] = hiddenNumbers[i];
+			tempHiddenNumbers[1] = hiddenNumbers[j];
+
+			if (this->ifPassRulesForHiddenCouples(row, tempHiddenNumbers, array))
+			{
+				if (this->editNotesInRow_HiddenGroups(row, tempHiddenNumbers, array))
+				{
+					delete[] array;
+					delete[] hiddenNumbers;
+					delete[] tempHiddenNumbers;
+
+					return true;
+				}
+			}
+		}
+	}
+
+	delete[] array;
+	delete[] hiddenNumbers;
+	delete[] tempHiddenNumbers;
 
 	return false;
 }
 
 bool HiddenCouple::hiddenCouplesInField(Map* map, Field* temp, int temp_i, int temp_j)
 {
+	if (temp->countOfEmptyCells() < Groups::Couple)
+	{
+		return false;
+	}
+
 	this->clearNumbers();
 	this->overrideNumbersWithFieldNotes(temp);
 
@@ -141,43 +202,16 @@ bool HiddenCouple::hiddenCouplesInField(Map* map, Field* temp, int temp_i, int t
 		}
 	}
 
-	if (count == Groups::Couple)
+	if (count < Groups::Couple)
 	{
-		int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(Groups::Couple);
-
-		if (this->findPossibleHiddenGroupInField(temp, hiddenNumbers))
-		{
-			delete[] hiddenNumbers;
-
-			map->takeField(temp, temp_i * 3, temp_j * 3);
-
-			return true;
-		}
+		return false;
 	}
-	if (count > Groups::Couple)
+
+	if (this->findPossibleHiddenGroupInField(temp, count))
 	{
-		int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(count);
+		map->takeField(temp, temp_i * 3, temp_j * 3);
 
-		int* tempHiddenNumbers = new int[Groups::Couple];
-
-		for (int i{}; i < count - 1; ++i)
-		{
-			for (int j{ i + 1 }; j < count; ++j)
-			{
-				tempHiddenNumbers[0] = hiddenNumbers[i];
-				tempHiddenNumbers[1] = hiddenNumbers[j];
-
-				if (this->findPossibleHiddenGroupInField(temp, tempHiddenNumbers))
-				{
-					delete[] hiddenNumbers;
-					delete[] tempHiddenNumbers;
-
-					map->takeField(temp, temp_i * 3, temp_j * 3);
-
-					return true;
-				}
-			}
-		}
+		return true;
 	}
 
 	return false;
@@ -198,47 +232,14 @@ bool HiddenCouple::hiddenCouplesInRow(Cell* row)
 		}
 	}
 
-	if (count == Groups::Couple)
+	if (count < Groups::Couple)
 	{
-		int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(Groups::Couple);
-
-		if (this->findPossibleHiddenGroupInRow(row, hiddenNumbers))
-		{
-			delete[] hiddenNumbers;
-
-			return true;
-		}
+		return false;
 	}
-	if (count > Groups::Couple)
+	
+	if (this->findPossibleHiddenGroupInRow(row, count))
 	{
-		int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(count);
-
-		for (int i{}, index{}; i < this->map_size; ++i)
-		{
-			if (this->numbers[i] == Groups::Couple)
-			{
-				hiddenNumbers[index++] = i + 1;
-			}
-		}
-
-		int* tempHiddenNumbers = new int[Groups::Couple];
-
-		for (int i{}; i < count - 1; ++i)
-		{
-			for (int j{ i + 1 }; j < count; ++j)
-			{
-				tempHiddenNumbers[0] = hiddenNumbers[i];
-				tempHiddenNumbers[1] = hiddenNumbers[j];
-
-				if (this->findPossibleHiddenGroupInRow(row, tempHiddenNumbers))
-				{
-					delete[] hiddenNumbers;
-					delete[] tempHiddenNumbers;
-
-					return true;
-				}
-			}
-		}
+		return true;
 	}
 
 	return false;

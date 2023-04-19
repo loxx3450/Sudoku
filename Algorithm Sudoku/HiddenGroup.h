@@ -67,6 +67,20 @@ public:
 		return false;
 	}
 
+	virtual bool hiddenTripletsInRow(Cell* row)
+	{
+
+
+		return false;
+	}
+
+	virtual bool hiddenTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
+	{
+
+
+		return false;
+	}
+
 	~HiddenGroup()
 	{
 		if (this->numbers != nullptr)

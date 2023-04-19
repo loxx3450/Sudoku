@@ -13,9 +13,13 @@ private:
 
 	bool editNotesInRow_HiddenGroups(Cell* row, int* hiddenNumbers, int* array);
 
-	bool findPossibleHiddenGroupInField(Field* temp, int* hiddenNumbers);
+	bool ifPassRulesForHiddenCouples(Field* temp, int* hiddenNumbers, Point* array);
 
-	bool findPossibleHiddenGroupInRow(Cell* row, int* hiddenNumbers);
+	bool ifPassRulesForHiddenCouples(Cell* row, int* hiddenNumbers, int* array);
+
+	bool findPossibleHiddenGroupInField(Field* temp, int count);
+
+	bool findPossibleHiddenGroupInRow(Cell* row, int count);
 
 public:
 	virtual bool hiddenCouplesInField(Map* map, Field* temp, int temp_i, int temp_j) override;

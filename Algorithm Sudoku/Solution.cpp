@@ -125,3 +125,13 @@ bool Solution::hiddenCouplesInRow(Cell* row)
 
     return false;
 }
+
+bool Solution::hiddenTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
+{
+    if (this->methods5.hiddenTripletsInField(map, temp, temp_i, temp_j))
+    {
+        return true;
+    }
+
+    return false;
+}

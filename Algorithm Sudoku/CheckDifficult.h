@@ -37,6 +37,8 @@ private:
 
 	bool checkHiddenCouples();
 
+	bool checkHiddenTriplets();
+
 	bool hiddenNote();
 
 
