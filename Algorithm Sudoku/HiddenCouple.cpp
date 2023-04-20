@@ -15,36 +15,6 @@ int* HiddenCouple::fillHiddenNumbersWithNumbers(int size)
 	return hiddenNumbers;
 }
 
-bool HiddenCouple::editNotesInField_HiddenGroups(Field* temp, int* hiddenNumbers, Point* array)
-{
-	bool flag{ false };
-
-	for (int i{}; i < Groups::Couple; ++i)
-	{
-		if (temp->getCell(array[i].getX(), array[i].getY())->editNotes(hiddenNumbers, Groups::Couple))
-		{
-			flag = true;
-		}
-	}
-
-	return flag;
-}
-
-bool HiddenCouple::editNotesInRow_HiddenGroups(Cell* row, int* hiddenNumbers, int* array)
-{
-	bool flag{ false };
-
-	for (int i{}; i < Groups::Couple; ++i)
-	{
-		if (row[array[i]].editNotes(hiddenNumbers, Groups::Couple))
-		{
-			flag = true;
-		}
-	}
-
-	return flag;
-}
-
 bool HiddenCouple::ifPassRulesForHiddenCouples(Field* temp, int* hiddenNumbers, Point* array)
 {
 	int count{};
@@ -127,7 +97,7 @@ bool HiddenCouple::findPossibleHiddenGroupInField(Field* temp, int count)
 
 			if (this->ifPassRulesForHiddenCouples(temp, tempHiddenNumbers, array))
 			{
-				if (this->editNotesInField_HiddenGroups(temp, tempHiddenNumbers, array))
+				if (this->editNotesInField(temp, tempHiddenNumbers, array, Groups::Couple))
 				{
 					delete[] array;
 					delete[] hiddenNumbers;
@@ -163,7 +133,7 @@ bool HiddenCouple::findPossibleHiddenGroupInRow(Cell* row, int count)
 
 			if (this->ifPassRulesForHiddenCouples(row, tempHiddenNumbers, array))
 			{
-				if (this->editNotesInRow_HiddenGroups(row, tempHiddenNumbers, array))
+				if (this->editNotesInRow(row, tempHiddenNumbers, array, Groups::Couple))
 				{
 					delete[] array;
 					delete[] hiddenNumbers;

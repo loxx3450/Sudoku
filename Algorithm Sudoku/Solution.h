@@ -56,6 +56,8 @@ public:
 
     bool hiddenTripletsInField(Map* map, Field* temp, int temp_i, int temp_j);
 
+    bool hiddenTripletsInRow(Cell* row);
+
     ~Solution()
     {
         if (this->numbers != nullptr)

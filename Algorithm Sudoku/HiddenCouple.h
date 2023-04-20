@@ -9,10 +9,6 @@ class HiddenCouple : public HiddenGroup
 private:
 	int* fillHiddenNumbersWithNumbers(int size);
 
-	bool editNotesInField_HiddenGroups(Field* temp, int* hiddenNumbers, Point* array);
-
-	bool editNotesInRow_HiddenGroups(Cell* row, int* hiddenNumbers, int* array);
-
 	bool ifPassRulesForHiddenCouples(Field* temp, int* hiddenNumbers, Point* array);
 
 	bool ifPassRulesForHiddenCouples(Cell* row, int* hiddenNumbers, int* array);

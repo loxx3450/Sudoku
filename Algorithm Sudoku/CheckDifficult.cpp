@@ -177,6 +177,10 @@ void CheckDifficult::makeNotes()
 		{
 			continue;
 		}
+		if (this->checkHiddenTriplets())
+		{
+			continue;
+		}
 
 		break;
 	}
@@ -344,6 +348,8 @@ bool CheckDifficult::checkHiddenCouples()
 
 bool CheckDifficult::checkHiddenTriplets()
 {
+	int count{};
+
 	Field* tempField = new Field{};
 
 	for (int i{}; i < this->field_size; ++i)
@@ -362,6 +368,28 @@ bool CheckDifficult::checkHiddenTriplets()
 	}
 
 	delete tempField;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		if (solution.hiddenTripletsInRow(this->map->getString(i)))
+		{
+			++count;
+		}
+	}
+
+	Cell* tempRow = nullptr;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		tempRow = map->getColumn(i);
+
+		if (solution.hiddenTripletsInRow(tempRow))
+		{
+			map->setColumn(tempRow, i);
+		}
+
+		delete[] tempRow;
+	}
 
 	return false;
 }
@@ -456,13 +484,7 @@ bool CheckDifficult::checkExtreme()
 		return true;
 	}
 	this->makeNotes();
-	if (this->checkHiddenTriplets())
-	{
-		std::cout << "HiddenTriplet\n";
-
-		return true;
-	}
-	if (this->isOnlyOneNote())
+	/*if (this->isOnlyOneNote())
 	{
 		std::cout << "OnlyOneNote\n";
 		if (this->complexity < 3)
@@ -479,7 +501,7 @@ bool CheckDifficult::checkExtreme()
 			this->complexity = 3;
 		}
 		return true;
-	}
+	}*/
 
 	return false;
 }

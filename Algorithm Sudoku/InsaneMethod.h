@@ -30,12 +30,6 @@ public:
 
 	bool hiddenCouplesInRow(Cell* row)
 	{
-		if (this->hiddenGroup != nullptr)
-		{
-			delete this->hiddenGroup;
-		}
-		this->hiddenGroup = new HiddenCouple{};
-
 		if(hiddenGroup->hiddenCouplesInRow(row))
 		{
 			return true;
@@ -53,6 +47,22 @@ public:
 		this->hiddenGroup = new HiddenTriplet{};
 
 		if (hiddenGroup->hiddenTripletsInField(map, temp, temp_i, temp_j))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	bool hiddenTripletsInRow(Cell* row)
+	{
+		if (this->hiddenGroup != nullptr)
+		{
+			delete this->hiddenGroup;
+		}
+		this->hiddenGroup = new HiddenTriplet{};
+
+		if (hiddenGroup->hiddenTripletsInRow(row))
 		{
 			return true;
 		}
