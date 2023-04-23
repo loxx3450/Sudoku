@@ -204,7 +204,7 @@ bool ExtremeMethod::nakedCouplesInRow(Cell* row)
 	return nakedGroup->nakedCouplesInRow(row);
 }
 
-bool ExtremeMethod::nakedtripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
+bool ExtremeMethod::nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
 {
 	if (this->nakedGroup != nullptr)
 	{
@@ -217,6 +217,21 @@ bool ExtremeMethod::nakedtripletsInField(Map* map, Field* temp, int temp_i, int 
 bool ExtremeMethod::nakedTripletsInRow(Cell* row)
 {
 	return this->nakedGroup->nakedTripletsInRow(row);
+}
+
+bool ExtremeMethod::nakedFoursomeInField(Map* map, Field* temp, int temp_i, int temp_j)
+{
+	if (this->nakedGroup != nullptr)
+	{
+		delete nakedGroup;
+	}
+	this->nakedGroup = new NakedFoursome{};
+	return this->nakedGroup->nakedFoursomeInField(map, temp, temp_i, temp_j);
+}
+
+bool ExtremeMethod::nakedFoursomeInRow(Cell* row)
+{
+	return this->nakedGroup->nakedFoursomeInRow(row);
 }
 
 bool ExtremeMethod::isOnlyOneNote(Map* map)

@@ -5,6 +5,7 @@
 #include "NakedGroup.h"
 #include "NakedCouple.h"
 #include "NakedTriplet.h"
+#include "NakedFoursome.h"
 
 class ExtremeMethod : public Method
 {
@@ -36,9 +37,13 @@ public:
 	
 	bool nakedCouplesInRow(Cell* row);
 
-	bool nakedtripletsInField(Map* map, Field* temp, int temp_i, int temp_j);
+	bool nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j);
 
 	bool nakedTripletsInRow(Cell* row);
+
+	bool nakedFoursomeInField(Map* map, Field* temp, int temp_i, int temp_j);
+
+	bool nakedFoursomeInRow(Cell* row);
 
 	bool isOnlyOneNote(Map* map);
 

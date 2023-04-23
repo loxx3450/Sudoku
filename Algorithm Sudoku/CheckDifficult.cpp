@@ -173,6 +173,10 @@ void CheckDifficult::makeNotes()
 		{
 			continue;
 		}
+		if (this->checkNakedFoursome())
+		{
+			continue;
+		}
 		if (this->checkHiddenCouples())
 		{
 			continue;
@@ -272,6 +276,56 @@ bool CheckDifficult::checkNakedTriplets()
 		tempRow = map->getColumn(i);
 
 		if (solution.nakedTripletsInRow(tempRow))
+		{
+			map->setColumn(tempRow, i);
+
+			delete[] tempRow;
+
+			return true;
+		}
+
+		delete[] tempRow;
+	}
+
+	return false;
+}
+
+bool CheckDifficult::checkNakedFoursome()
+{
+	Field* tempField = new Field{};
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
+
+			if (solution.nakedFoursomeInField(map, tempField, i, j))
+			{
+				delete tempField;
+
+				return true;
+			}
+		}
+	}
+
+	delete tempField;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		if (solution.nakedFoursomeInRow(map->getString(i)))
+		{
+			return true;
+		}
+	}
+
+	Cell* tempRow = nullptr;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		tempRow = map->getColumn(i);
+
+		if (solution.nakedFoursomeInRow(tempRow))
 		{
 			map->setColumn(tempRow, i);
 
@@ -484,7 +538,7 @@ bool CheckDifficult::checkExtreme()
 		return true;
 	}
 	this->makeNotes();
-	/*if (this->isOnlyOneNote())
+	if (this->isOnlyOneNote())
 	{
 		std::cout << "OnlyOneNote\n";
 		if (this->complexity < 3)
@@ -501,7 +555,7 @@ bool CheckDifficult::checkExtreme()
 			this->complexity = 3;
 		}
 		return true;
-	}*/
+	}
 
 	return false;
 }

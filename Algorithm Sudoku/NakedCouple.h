@@ -15,6 +15,22 @@ private:
 
 public:
 
+	int fillRemainingNotes(Cell* array, int* remainingNotes, int size) = delete;
+
+	bool ifPassRulesForNakedTriplets(Cell* array, int size) = delete;
+
+	int fillArraysForString(Cell* row, Cell* arrayCells, int* arrayIndexes, int max_size) = delete;
+
+	int fillArraysForField(Field* temp, Cell* arrayCells, Point* arrayPoints, int max_size) = delete;
+
+	bool isNewIndex(int* array, int size, int index) = delete;
+
+	bool isNewPoint(Point* array, int size, int x, int y) = delete;
+
+	bool editNotesInRow(Cell* row, Cell* array, int* arr, int size) = delete;
+
+	bool editNotesInField(Field* tempField, Cell* array, Point* arr, int size) = delete;
+
 	virtual bool nakedCouplesInField(Map* map, Field* temp, int temp_i, int temp_j) override;
 
 	virtual bool nakedCouplesInRow(Cell* row) override;

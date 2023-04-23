@@ -46,6 +46,10 @@ public:
 
     bool nakedTripletsInRow(Cell* row);
 
+    bool nakedFoursomeInField(Map* map, Field* temp, int temp_i, int temp_j);
+
+    bool nakedFoursomeInRow(Cell* row);
+
     bool onlyOneNote(Map* map);
 
     bool hiddenNote(Map* map);

@@ -78,12 +78,22 @@ bool Solution::nakedCouplesInRow(Cell* row)
 
 bool Solution::nakedTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
 {
-    return this->methods4.nakedtripletsInField(map, temp, temp_i, temp_j);
+    return this->methods4.nakedTripletsInField(map, temp, temp_i, temp_j);
 }
 
 bool Solution::nakedTripletsInRow(Cell* row)
 {
     return this->methods4.nakedTripletsInRow(row);
+}
+
+bool Solution::nakedFoursomeInField(Map* map, Field* temp, int temp_i, int temp_j)
+{
+    return this->methods4.nakedFoursomeInField(map, temp, temp_i, temp_j);
+}
+
+bool Solution::nakedFoursomeInRow(Cell* row)
+{
+    return this->methods4.nakedFoursomeInRow(row);
 }
 
 bool Solution::onlyOneNote(Map* map)

@@ -158,6 +158,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Method.cpp" />
     <ClCompile Include="NakedCouple.cpp" />
+    <ClCompile Include="NakedFoursome.cpp" />
     <ClCompile Include="NakedTriplet.cpp" />
     <ClCompile Include="NormalMethod.cpp" />
     <ClCompile Include="Solution.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Method.h" />
     <ClInclude Include="NakedCouple.h" />
+    <ClInclude Include="NakedFoursome.h" />
     <ClInclude Include="NakedGroup.h" />
     <ClInclude Include="NakedTriplet.h" />
     <ClInclude Include="NormalMethod.h" />

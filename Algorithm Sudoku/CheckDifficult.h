@@ -33,6 +33,8 @@ private:
 
 	bool checkNakedTriplets();
 
+	bool checkNakedFoursome();
+
 	bool isOnlyOneNote();
 
 	bool checkHiddenCouples();
