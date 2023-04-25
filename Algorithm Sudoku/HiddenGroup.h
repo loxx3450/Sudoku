@@ -9,75 +9,39 @@ protected:
 	const int field_size = 3;
 	int* numbers;
 
-	void clearNumbers()
-	{
-		for (int i{}; i < this->map_size; ++i)
-		{
-			this->numbers[i] = 0;
-		}
-	}
+	bool isNewPoint(int* array, int size, int i);
 
-	void overrideNumbersWithFieldNotes(Field* temp)
-	{
-		for (int i{}; i < this->field_size; ++i)
-		{
-			for (int j{}; j < this->field_size; ++j)
-			{
-				for (int g{}; g < this->map_size; ++g)
-				{
-					if (temp->getCell(i, j)->inNotes(g + 1))
-					{
-						this->numbers[g]++;
-					}
-				}
+	bool isNewPoint(Point* array, int size, int i, int j);
 
-			}
-		}
-	}
+	int getCountOfHiddenNumbers(int tmp_size1, int tmp_size2 = 2, int tmp_size3 = 2);
 
-	void overrideNumbersWithRowNotes(Cell* row)
-	{
-		for (int i{}; i < this->map_size; ++i)
-		{
-			for (int j{}; j < this->map_size; ++j)
-			{
-				if (row[i].inNotes(j + 1))
-				{
-					this->numbers[j]++;
-				}
-			}
-		}
-	}
+	int* fillHiddenNumbersWithNumbers(int size, int tmp_size1, int tmp_size2 = 2, int tmp_size3 = 2);
 
-	bool editNotesInField(Field* temp, int* hiddenNumbers, Point* array, int size)
-	{
-		bool flag{ false };
+	void clearNumbers();
 
-		for (int i{}; i < size; ++i)
-		{
-			if (temp->getCell(array[i].getX(), array[i].getY())->editNotes(hiddenNumbers, size))
-			{
-				flag = true;
-			}
-		}
+	void overrideNumbersWithFieldNotes(Field* temp);
 
-		return flag;
-	}
+	void overrideNumbersWithRowNotes(Cell* row);
 
-	bool editNotesInRow(Cell* row, int* hiddenNumbers, int* array, int size)
-	{
-		bool flag{ false };
+	bool editNotesInField(Field* temp, int* hiddenNumbers, Point* array, int size);
 
-		for (int i{}; i < size; ++i)
-		{
-			if (row[array[i]].editNotes(hiddenNumbers, size))
-			{
-				flag = true;
-			}
-		}
+	bool editNotesInRow(Cell* row, int* hiddenNumbers, int* array, int size);
 
-		return flag;
-	}
+	bool ifOtherCellsNotHaveHiddenNumbers(Cell* row, int* hiddenNumbers, int* array, int size);
+
+	bool ifOtherCellsNotHaveHiddenNumbers(Field* temp, int* hiddenNumbers, Point* array, int size);
+
+	bool ifHiddenNoteMeetTwice(Cell* row, int* hiddenNumbers, int* array, int size);
+
+	bool ifHiddenNoteMeetTwice(Field* temp, int* hiddenNumbers, Point* array, int size);
+
+	bool ifCellHasSomeOfHiddenNumbers(Cell* row, int* hiddenNumbers, int* array, int size, int tmp_size1, int tmp_size2);
+
+	bool ifCellHasSomeOfHiddenNumbers(Field* temp, int* hiddenNumbers, Point* array, int size, int tmp_size1, int tmp_size2);
+
+	bool ifPassRulesForHiddenTriplets(Cell* row, int* hiddenNumbers, int* array, int size, int tmp_size1 = 2, int tmp_size2 = 2);
+
+	bool ifPassRulesForHiddenTriplets(Field* temp, int* hiddenNumbers, Point* array, int size, int tmp_size1 = 2, int tmp_size2 = 2);
 
 public:
 	HiddenGroup() :
@@ -100,10 +64,26 @@ public:
 
 	virtual bool hiddenTripletsInRow(Cell* row)
 	{
+
+
 		return false;
 	}
 
 	virtual bool hiddenTripletsInField(Map* map, Field* temp, int temp_i, int temp_j)
+	{
+
+
+		return false;
+	}
+
+	virtual bool hiddenFoursomeInRow(Cell* row)
+	{
+
+
+		return false;
+	}
+
+	virtual bool hiddenFoursomeInField(Map* map, Field* temp, int temp_i, int temp_j)
 	{
 
 

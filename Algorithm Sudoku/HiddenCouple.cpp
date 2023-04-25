@@ -1,20 +1,5 @@
 #include "HiddenCouple.h"
 
-int* HiddenCouple::fillHiddenNumbersWithNumbers(int size)
-{
-	int* hiddenNumbers = new int[size] {};
-
-	for (int i{}, index{}; i < this->map_size; ++i)
-	{
-		if (this->numbers[i] == Groups::Couple)
-		{
-			hiddenNumbers[index++] = i + 1;
-		}
-	}
-
-	return hiddenNumbers;
-}
-
 bool HiddenCouple::ifPassRulesForHiddenCouples(Field* temp, int* hiddenNumbers, Point* array)
 {
 	int count{};
@@ -80,9 +65,9 @@ bool HiddenCouple::ifPassRulesForHiddenCouples(Cell* row, int* hiddenNumbers, in
 	return false;
 }
 
-bool HiddenCouple::findPossibleHiddenGroupInField(Field* temp, int count)
+bool HiddenCouple::findPossibleHiddenCoupleInField(Field* temp, int count)
 {
-	int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(count);
+	int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(count, Groups::Couple);
 
 	int* tempHiddenNumbers = new int[Groups::Couple];
 
@@ -116,9 +101,9 @@ bool HiddenCouple::findPossibleHiddenGroupInField(Field* temp, int count)
 	return false;
 }
 
-bool HiddenCouple::findPossibleHiddenGroupInRow(Cell* row, int count)
+bool HiddenCouple::findPossibleHiddenCoupleInRow(Cell* row, int count)
 {
-	int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(count);
+	int* hiddenNumbers = this->fillHiddenNumbersWithNumbers(count, Groups::Couple);
 
 	int* tempHiddenNumbers = new int[Groups::Couple];
 
@@ -177,7 +162,7 @@ bool HiddenCouple::hiddenCouplesInField(Map* map, Field* temp, int temp_i, int t
 		return false;
 	}
 
-	if (this->findPossibleHiddenGroupInField(temp, count))
+	if (this->findPossibleHiddenCoupleInField(temp, count))
 	{
 		map->takeField(temp, temp_i * 3, temp_j * 3);
 
@@ -192,22 +177,14 @@ bool HiddenCouple::hiddenCouplesInRow(Cell* row)
 	this->clearNumbers();
 	this->overrideNumbersWithRowNotes(row);
 
-	int count{};
-
-	for (int i{}; i < this->map_size; ++i)
-	{
-		if (this->numbers[i] == Groups::Couple)
-		{
-			++count;
-		}
-	}
+	int count = this->getCountOfHiddenNumbers(Groups::Couple);
 
 	if (count < Groups::Couple)
 	{
 		return false;
 	}
 	
-	if (this->findPossibleHiddenGroupInRow(row, count))
+	if (this->findPossibleHiddenCoupleInRow(row, count))
 	{
 		return true;
 	}

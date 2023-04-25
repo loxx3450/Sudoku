@@ -41,6 +41,8 @@ private:
 
 	bool checkHiddenTriplets();
 
+	bool checkHiddenFoursome();
+
 	bool hiddenNote();
 
 

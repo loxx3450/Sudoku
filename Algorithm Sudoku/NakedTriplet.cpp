@@ -1,7 +1,5 @@
 #include "NakedTriplet.h"
 
-
-
 bool NakedTriplet::findPossibleTripletsInField(Field* tempField)
 {
 	int size{ tempField->countOfEmptyCells() };
@@ -81,6 +79,7 @@ bool NakedTriplet::findPossibleTripletsInRow(Cell* row, int size)
 						temp_arrayIndexes[0] = arrayIndexes[i];
 						temp_arrayIndexes[1] = arrayIndexes[j];
 						temp_arrayIndexes[2] = arrayIndexes[g];
+
 						if (this->editNotesInRow(row, temp_arrayCells, temp_arrayIndexes, Groups::Triplet))
 						{
 							delete[] temp_arrayCells;

@@ -5,6 +5,8 @@
 #include "HiddenGroup.h"
 #include "HiddenCouple.h"
 #include "HiddenTriplet.h"
+#include "HiddenFoursome.h"
+
 
 class InsaneMethod : public Method
 {
@@ -19,5 +21,9 @@ public:
 	bool hiddenTripletsInField(Map* map, Field* temp, int temp_i, int temp_j);
 
 	bool hiddenTripletsInRow(Cell* row);
+
+	bool hiddenFoursomeInField(Map* map, Field* temp, int temp_i, int temp_j);
+	
+	bool hiddenFoursomeInRow(Cell* row);
 };
 

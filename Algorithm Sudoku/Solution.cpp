@@ -155,3 +155,23 @@ bool Solution::hiddenTripletsInRow(Cell* row)
 
     return false;
 }
+
+bool Solution::hiddenFoursomeInField(Map* map, Field* temp, int temp_i, int temp_j)
+{
+    if (this->methods5.hiddenFoursomeInField(map, temp, temp_i, temp_j))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Solution::hiddenFoursomeInRow(Cell* row)
+{
+    if (this->methods5.hiddenFoursomeInRow(row))
+    {
+        return true;
+    }
+
+    return false;
+}

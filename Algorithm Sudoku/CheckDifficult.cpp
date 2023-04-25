@@ -185,6 +185,10 @@ void CheckDifficult::makeNotes()
 		{
 			continue;
 		}
+		if (this->checkHiddenFoursome())
+		{
+			continue;
+		}
 
 		break;
 	}
@@ -402,8 +406,6 @@ bool CheckDifficult::checkHiddenCouples()
 
 bool CheckDifficult::checkHiddenTriplets()
 {
-	int count{};
-
 	Field* tempField = new Field{};
 
 	for (int i{}; i < this->field_size; ++i)
@@ -427,7 +429,7 @@ bool CheckDifficult::checkHiddenTriplets()
 	{
 		if (solution.hiddenTripletsInRow(this->map->getString(i)))
 		{
-			++count;
+			return true;
 		}
 	}
 
@@ -440,6 +442,59 @@ bool CheckDifficult::checkHiddenTriplets()
 		if (solution.hiddenTripletsInRow(tempRow))
 		{
 			map->setColumn(tempRow, i);
+
+			delete[] tempRow;
+
+			return true;
+		}
+
+		delete[] tempRow;
+	}
+
+	return false;
+}
+
+bool CheckDifficult::checkHiddenFoursome()
+{
+	Field* tempField = new Field{};
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
+			if (solution.hiddenFoursomeInField(map, tempField, i, j))
+			{
+				delete tempField;
+
+				return true;
+			}
+		}
+	}
+
+	delete tempField;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		if (solution.hiddenFoursomeInRow(this->map->getString(i)))
+		{
+			return true;
+		}
+	}
+
+	Cell* tempRow = nullptr;
+
+	for (int i{}; i < this->map_size; ++i)
+	{
+		tempRow = map->getColumn(i);
+
+		if (solution.hiddenFoursomeInRow(tempRow))
+		{
+			map->setColumn(tempRow, i);
+
+			delete[] tempRow;
+
+			return true;
 		}
 
 		delete[] tempRow;
@@ -556,6 +611,7 @@ bool CheckDifficult::checkExtreme()
 		}
 		return true;
 	}
+	
 
 	return false;
 }

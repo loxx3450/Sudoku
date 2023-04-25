@@ -76,6 +76,9 @@
     <Filter Include="Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenTriplet">
       <UniqueIdentifier>{5fbfe502-baee-456b-85a0-1233d46a4321}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenFoursome">
+      <UniqueIdentifier>{a8663ce0-7998-4db5-a279-649ba7bf46e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -143,6 +146,15 @@
     </ClCompile>
     <ClCompile Include="HiddenTriplet.cpp">
       <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenTriplet</Filter>
+    </ClCompile>
+    <ClCompile Include="NakedGroup.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="HiddenFoursome.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="HiddenGroup.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="HiddenTriplet.h">
       <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenTriplet</Filter>
+    </ClInclude>
+    <ClInclude Include="HiddenFoursome.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

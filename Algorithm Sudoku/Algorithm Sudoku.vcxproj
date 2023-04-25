@@ -150,6 +150,8 @@
     <ClCompile Include="ExtremeMethod.cpp" />
     <ClCompile Include="HardMethod.cpp" />
     <ClCompile Include="HiddenCouple.cpp" />
+    <ClCompile Include="HiddenFoursome.cpp" />
+    <ClCompile Include="HiddenGroup.cpp" />
     <ClCompile Include="HiddenTriplet.cpp" />
     <ClCompile Include="InsaneMethod.cpp" />
     <ClCompile Include="LevelCreation.cpp" />
@@ -159,6 +161,7 @@
     <ClCompile Include="Method.cpp" />
     <ClCompile Include="NakedCouple.cpp" />
     <ClCompile Include="NakedFoursome.cpp" />
+    <ClCompile Include="NakedGroup.cpp" />
     <ClCompile Include="NakedTriplet.cpp" />
     <ClCompile Include="NormalMethod.cpp" />
     <ClCompile Include="Solution.cpp" />
@@ -176,6 +179,7 @@
     <ClInclude Include="Field.h" />
     <ClInclude Include="HardMethod.h" />
     <ClInclude Include="HiddenCouple.h" />
+    <ClInclude Include="HiddenFoursome.h" />
     <ClInclude Include="HiddenGroup.h" />
     <ClInclude Include="HiddenTriplet.h" />
     <ClInclude Include="InsaneMethod.h" />
