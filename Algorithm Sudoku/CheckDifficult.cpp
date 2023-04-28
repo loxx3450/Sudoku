@@ -503,6 +503,107 @@ bool CheckDifficult::checkHiddenFoursome()
 	return false;
 }
 
+bool CheckDifficult::checkPointingGroup()
+{
+	Field* temp = new Field{};
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			temp->generate(map->getArr(), i * this->field_size, j * this->field_size);
+
+			if (solution.pointingGroupInField(map, temp, i, j, Groups::Couple))
+			{
+				delete temp;
+
+				return true;
+			}
+		}
+	}
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			temp->generate(map->getArr(), i * this->field_size, j * this->field_size);
+
+			if (solution.pointingGroupInField(map, temp, i, j, Groups::Triplet))
+			{
+				delete temp;
+
+				return true;
+			}
+		}
+	}
+
+	delete temp;
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			if (solution.pointingGroupInString(this->map, this->map->getString(i * 3 + j), i, j, Groups::Couple))
+			{
+				return true;
+			}
+		}
+	}
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			if (solution.pointingGroupInString(this->map, this->map->getString(i * 3 + j), i, j, Groups::Triplet))
+			{
+				return true;
+			}
+		}
+	}
+
+	Cell* column = nullptr;
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			column = this->map->getColumn(i * 3 + j);
+
+			if (solution.pointingGroupInColumn(this->map, column, i, j, Groups::Couple))
+			{
+				this->map->setColumn(column, i * 3 + j);
+
+				delete[] column;
+
+				return true;
+			}
+
+			delete[] column;
+		}
+	}
+
+	for (int i{}; i < this->field_size; ++i)
+	{
+		for (int j{}; j < this->field_size; ++j)
+		{
+			column = this->map->getColumn(i * 3 + j);
+
+			if (solution.pointingGroupInColumn(this->map, column, i, j, Groups::Triplet))
+			{
+				this->map->setColumn(column, i * 3 + j);
+
+				delete[] column;
+
+				return true;
+			}
+
+			delete[] column;
+		}
+	}
+
+	return false;
+}
+
 bool CheckDifficult::hiddenNote()
 {
 	if (solution.hiddenNote(this->map))
@@ -611,7 +712,14 @@ bool CheckDifficult::checkExtreme()
 		}
 		return true;
 	}
-	
+
+	while (true)
+	{
+		if (!this->checkPointingGroup())
+		{
+			break;
+		}
+	}
 
 	return false;
 }

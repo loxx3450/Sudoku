@@ -1,7 +1,7 @@
 #pragma once
-#include "NakedGroup.h"
+#include "ExtendedNakedGroup.h"
 
-class NakedTriplet : public NakedGroup
+class NakedTriplet : public ExtendedNakedGroup
 {
 private:
 

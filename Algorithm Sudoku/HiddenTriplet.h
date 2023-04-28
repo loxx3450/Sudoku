@@ -1,9 +1,9 @@
 #pragma once
-#include "HiddenGroup.h"
+#include "ExtendedHiddenGroup.h"
 #include "common.h"
 #include "Point.h"
 
-class HiddenTriplet : public HiddenGroup
+class HiddenTriplet : public ExtendedHiddenGroup
 {
 private:
 

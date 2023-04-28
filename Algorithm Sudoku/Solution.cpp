@@ -175,3 +175,33 @@ bool Solution::hiddenFoursomeInRow(Cell* row)
 
     return false;
 }
+
+bool Solution::pointingGroupInField(Map* map, Field* temp, int temp_i, int temp_j, int size)
+{
+    if (this->methods5.pointingGroupInField(map, temp, temp_i, temp_j, size))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Solution::pointingGroupInString(Map* map, Cell* string, int temp_i, int string_i, int size)
+{
+    if (this->methods5.pointingGroupInString(map, string, temp_i, string_i, size))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Solution::pointingGroupInColumn(Map* map, Cell* string, int temp_j, int column_j, int size)
+{
+    if (this->methods5.pointingGroupInColumn(map, string, temp_j, column_j, size))
+    {
+        return true;
+    }
+
+    return false;
+}

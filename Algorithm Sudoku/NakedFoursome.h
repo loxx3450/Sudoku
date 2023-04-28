@@ -1,8 +1,8 @@
 #pragma once
-#include "NakedGroup.h"
+#include "ExtendedNakedGroup.h"
 
 
-class NakedFoursome : public NakedGroup
+class NakedFoursome : public ExtendedNakedGroup
 {
 private:
 

@@ -43,6 +43,8 @@ private:
 
 	bool checkHiddenFoursome();
 
+	bool checkPointingGroup();
+
 	bool hiddenNote();
 
 

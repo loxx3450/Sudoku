@@ -1,8 +1,8 @@
 #pragma once
-#include "HiddenGroup.h"
+#include "ExtendedHiddenGroup.h"
 #include "common.h"
 
-class HiddenFoursome : public HiddenGroup
+class HiddenFoursome : public ExtendedHiddenGroup
 {
 private:
 

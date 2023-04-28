@@ -1,4 +1,6 @@
-#include "NakedGroup.h"
+#include "ExtendedNakedGroup.h"
+
+
 
 int ExtendedNakedGroup::fillRemainingNotes(Cell* array, int* remainingNotes, int size)
 {

@@ -145,8 +145,11 @@
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="CheckDifficult.cpp" />
     <ClCompile Include="CheckMap.cpp" />
+    <ClCompile Include="CommonGroup.cpp" />
     <ClCompile Include="EasyMethod.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="ExtendedHiddenGroup.cpp" />
+    <ClCompile Include="ExtendedNakedGroup.cpp" />
     <ClCompile Include="ExtremeMethod.cpp" />
     <ClCompile Include="HardMethod.cpp" />
     <ClCompile Include="HiddenCouple.cpp" />
@@ -161,9 +164,9 @@
     <ClCompile Include="Method.cpp" />
     <ClCompile Include="NakedCouple.cpp" />
     <ClCompile Include="NakedFoursome.cpp" />
-    <ClCompile Include="NakedGroup.cpp" />
     <ClCompile Include="NakedTriplet.cpp" />
     <ClCompile Include="NormalMethod.cpp" />
+    <ClCompile Include="PointingGroup.cpp" />
     <ClCompile Include="Solution.cpp" />
     <ClCompile Include="sqlite\shell.c" />
     <ClCompile Include="sqlite\sqlite3.c" />
@@ -173,8 +176,11 @@
     <ClInclude Include="CheckDifficult.h" />
     <ClInclude Include="CheckMap.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="CommonGroup.h" />
     <ClInclude Include="EasyMethod.h" />
     <ClInclude Include="Exception.h" />
+    <ClInclude Include="ExtendedHiddenGroup.h" />
+    <ClInclude Include="ExtendedNakedGroup.h" />
     <ClInclude Include="ExtremeMethod.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="HardMethod.h" />
@@ -192,6 +198,7 @@
     <ClInclude Include="NakedTriplet.h" />
     <ClInclude Include="NormalMethod.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="PointingGroup.h" />
     <ClInclude Include="Solution.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

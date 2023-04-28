@@ -79,6 +79,12 @@
     <Filter Include="Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenFoursome">
       <UniqueIdentifier>{a8663ce0-7998-4db5-a279-649ba7bf46e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Solution\InsaneMethod\PointingGroup">
+      <UniqueIdentifier>{1c09458d-78a8-4c09-a221-594867523787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Solution\InsaneMethod\CommonGroup">
+      <UniqueIdentifier>{e9f4720b-d4d6-4a32-8fb7-55b5d46e3c3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -129,12 +135,6 @@
     <ClCompile Include="NakedTriplet.cpp">
       <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup\NakedTriplet</Filter>
     </ClCompile>
-    <ClCompile Include="sqlite\shell.c">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="sqlite\sqlite3.c">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="InsaneMethod.cpp">
       <Filter>Исходные файлы\Solution\InsaneMethod</Filter>
     </ClCompile>
@@ -147,14 +147,29 @@
     <ClCompile Include="HiddenTriplet.cpp">
       <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenTriplet</Filter>
     </ClCompile>
-    <ClCompile Include="NakedGroup.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="HiddenGroup.cpp">
+      <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup</Filter>
     </ClCompile>
     <ClCompile Include="HiddenFoursome.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenFoursome</Filter>
     </ClCompile>
-    <ClCompile Include="HiddenGroup.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="ExtendedHiddenGroup.cpp">
+      <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite\shell.c">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite\sqlite3.c">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtendedNakedGroup.cpp">
+      <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="PointingGroup.cpp">
+      <Filter>Исходные файлы\Solution\InsaneMethod\PointingGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonGroup.cpp">
+      <Filter>Исходные файлы\Solution\InsaneMethod\CommonGroup</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,9 +212,6 @@
     <ClInclude Include="ExtremeMethod.h">
       <Filter>Исходные файлы\Solution\ExtremeMethod</Filter>
     </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="NakedGroup.h">
       <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup</Filter>
     </ClInclude>
@@ -211,9 +223,6 @@
     </ClInclude>
     <ClInclude Include="InsaneMethod.h">
       <Filter>Исходные файлы\Solution\InsaneMethod</Filter>
-    </ClInclude>
-    <ClInclude Include="common.h">
-      <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="HiddenGroup.h">
       <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup</Filter>
@@ -228,7 +237,25 @@
       <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenTriplet</Filter>
     </ClInclude>
     <ClInclude Include="HiddenFoursome.h">
+      <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup\HiddenFoursome</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedHiddenGroup.h">
+      <Filter>Исходные файлы\Solution\InsaneMethod\HiddenGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedNakedGroup.h">
+      <Filter>Исходные файлы\Solution\ExtremeMethod\NakedGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="PointingGroup.h">
+      <Filter>Исходные файлы\Solution\InsaneMethod\PointingGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonGroup.h">
+      <Filter>Исходные файлы\Solution\InsaneMethod\CommonGroup</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
