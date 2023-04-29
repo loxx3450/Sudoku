@@ -1,5 +1,5 @@
 #pragma once
-#include "Field.h"
+#include "Map.h"
 #include "Method.h"
 
 class EasyMethod : private Method
@@ -17,8 +17,8 @@ public:
 	EasyMethod():
 		Method{}
 	{}
-	
-	bool lastInField(Field* temp);
+
+	bool lastInField(Map* map, Field* temp, int temp_i, int temp_j);
 
 	bool lastInRow(Cell* arr);
 

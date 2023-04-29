@@ -4,7 +4,7 @@ Map* LevelCreation::generate(int value)
 {
 	this->map->generate();
 
-	int count = rand() % 3 + (42 - 5 * (value + 1));
+	int count = rand() % 3 + (45 - 4 * (value + 1));
 
 	int x{}, y{}, old_value{}, size{ 81 }, attempts{};
 
@@ -12,7 +12,7 @@ Map* LevelCreation::generate(int value)
 
 	while (true)
 	{
-		if (attempts == 10 || size == 19)
+		if (attempts == 15 || size == 16)
 		{
 			delete temp;
 

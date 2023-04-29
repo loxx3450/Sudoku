@@ -1,6 +1,6 @@
 #include "CheckDifficult.h"
 
-bool CheckDifficult::checkFields()
+bool CheckDifficult::methodForField(Solution* obj, bool (Solution::* func)(Map*, Field*, int, int))
 {
 	Field* temp = new Field{};
 
@@ -8,12 +8,10 @@ bool CheckDifficult::checkFields()
 	{
 		for (int j{}; j < this->field_size; ++j)
 		{
-			temp->generate(map->getArr(), i * this->field_size, j * this->field_size);
+			temp->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
 
-			if (solution.lastInField(temp))
+			if ((obj->*func)(this->map, temp, i, j))
 			{
-				this->map->takeField(temp, i * this->field_size, j * this->field_size);
-
 				delete temp;
 
 				return true;
@@ -26,11 +24,11 @@ bool CheckDifficult::checkFields()
 	return false;
 }
 
-bool CheckDifficult::checkStrings()
+bool CheckDifficult::methodForString(Solution* obj, bool (Solution::* func)(Cell*))
 {
 	for (int i{}; i < this->map_size; ++i)
 	{
-		if (solution.lastInRow(this->map->getString(i)))
+		if ((obj->*func)(this->map->getString(i)))
 		{
 			return true;
 		}
@@ -39,24 +37,54 @@ bool CheckDifficult::checkStrings()
 	return false;
 }
 
-bool CheckDifficult::checkColumns()
+bool CheckDifficult::methodForColumn(Solution* obj, bool (Solution::* func)(Cell*))
 {
-	Cell* tmp;
+	Cell* tempRow = nullptr;
 
 	for (int i{}; i < this->map_size; ++i)
 	{
-		tmp = this->map->getColumn(i);
+		tempRow = map->getColumn(i);
 
-		if (solution.lastInRow(tmp))
+		if ((obj->*func)(tempRow))
 		{
-			this->map->setColumn(tmp, i);
+			map->setColumn(tempRow, i);
 
-			delete[] tmp;
+			delete[] tempRow;
 
 			return true;
 		}
 
-		delete[] tmp;
+		delete[] tempRow;
+	}
+
+	return false;
+}
+
+bool CheckDifficult::checkFields()
+{
+	if (this->methodForField(this->solution, &Solution::lastInField))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CheckDifficult::checkStrings()
+{
+	if (this->methodForString(this->solution, &Solution::lastInRow))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CheckDifficult::checkColumns()
+{
+	if (this->methodForColumn(this->solution, &Solution::lastInRow))
+	{
+		return true;
 	}
 
 	return false;
@@ -72,7 +100,7 @@ bool CheckDifficult::checkExceptInField()
 		{
 			temp->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
 
-			if (solution.exceptionInField(this->map->getArr(), temp, i, j))
+			if (solution->exceptionInField(this->map->getArr(), temp, i, j))
 			{
 				delete temp;
 
@@ -90,7 +118,7 @@ bool CheckDifficult::checkExceptInString()
 {
 	for (int i{}; i < this->map_size; ++i)
 	{
-		if (solution.exceptionInString(this->map->getArr(), this->map->getString(i), i))
+		if (solution->exceptionInString(this->map->getArr(), this->map->getString(i), i))
 		{
 			return true;
 		}
@@ -108,7 +136,7 @@ bool CheckDifficult::checkExceptInColumn()
 	{
 		temp_arr = this->map->getColumn(i);
 
-		if (solution.exceptionInColumn(this->map->getArr(), temp_arr, i))
+		if (solution->exceptionInColumn(this->map->getArr(), temp_arr, i))
 		{
 			this->map->setColumn(temp_arr, i);
 
@@ -125,26 +153,46 @@ bool CheckDifficult::checkExceptInColumn()
 
 bool CheckDifficult::checkExceptInStr_Col_Field()
 {
-	Field* temp = new Field{};
-
-	for (int i{}; i < this->field_size; ++i)
+	if (this->methodForField(this->solution, &Solution::lastNumberInStr_Col_Field))
 	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			temp->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
-
-			if (solution.lastNumberInStr_Col_Field(this->map, temp, i, j))
-			{
-				delete temp;
-
-				return true;
-			}
-		}
+		return true;
 	}
 
-	delete temp;
-
 	return false;
+}
+
+void CheckDifficult::extremeMethodForNotes()
+{
+	while (true)
+	{
+		if (this->checkNakedCouples() || this->checkNakedTriplets() || this->checkNakedFoursome())
+		{
+			continue;
+		}
+
+		break;
+	}
+}
+
+void CheckDifficult::insaneMethodForNotes()
+{
+	while (true)
+	{
+		if (this->checkNakedCouples() || this->checkNakedTriplets() || this->checkNakedFoursome())
+		{
+			continue;
+		}
+		if (this->checkHiddenCouples() || this->checkHiddenTriplets() || this->checkHiddenFoursome())
+		{
+			continue;
+		}
+		if (this->checkPointingGroup(Groups::Couple) || this->checkPointingGroup(Groups::Triplet))
+		{
+			continue;
+		}
+
+		break;
+	}
 }
 
 void CheckDifficult::makeNotes()
@@ -157,88 +205,28 @@ void CheckDifficult::makeNotes()
 		{
 			temp->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
 
-			solution.makeNotes(this->map, temp, i, j);
+			solution->makeNotes(this->map, temp, i, j);
 		}
 	}
 
 	delete temp;
-
-	while (true)
-	{
-		if (this->checkNakedCouples())
-		{
-			continue;
-		}
-		if (this->checkNakedTriplets())
-		{
-			continue;
-		}
-		if (this->checkNakedFoursome())
-		{
-			continue;
-		}
-		if (this->checkHiddenCouples())
-		{
-			continue;
-		}
-		if (this->checkHiddenTriplets())
-		{
-			continue;
-		}
-		if (this->checkHiddenFoursome())
-		{
-			continue;
-		}
-
-		break;
-	}
 }
 
 bool CheckDifficult::checkNakedCouples()
 {
-	Field* tempField = new Field{};
-
-	for (int i{}; i < this->field_size; ++i)
+	if (this->methodForField(this->solution, &Solution::nakedCouplesInField))
 	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
-
-			if (solution.nakedCouplesInField(map, tempField, i, j))
-			{
-				delete tempField;
-
-				return true;
-			}
-		}
+		return true;
 	}
 
-	delete tempField;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForString(this->solution, &Solution::nakedCouplesInRow))
 	{
-		if (solution.nakedCouplesInRow(map->getString(i)))
-		{
-			return true;
-		}
+		return true;
 	}
 
-	Cell* tempRow = nullptr;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForColumn(this->solution, &Solution::nakedCouplesInRow))
 	{
-		tempRow = map->getColumn(i);
-
-		if (solution.nakedCouplesInRow(tempRow))
-		{
-			map->setColumn(tempRow, i);
-
-			delete[] tempRow;
-
-			return true;
-		}
-
-		delete[] tempRow;
+		return true;
 	}
 
 	return false;
@@ -246,49 +234,19 @@ bool CheckDifficult::checkNakedCouples()
 
 bool CheckDifficult::checkNakedTriplets()
 {
-	Field* tempField = new Field{};
-
-	for (int i{}; i < this->field_size; ++i)
+	if (this->methodForField(this->solution, &Solution::nakedTripletsInField))
 	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
-
-			if (solution.nakedTripletsInField(map, tempField, i, j))
-			{
-				delete tempField;
-
-				return true;
-			}
-		}
+		return true;
 	}
 
-	delete tempField;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForString(this->solution, &Solution::nakedTripletsInRow))
 	{
-		if (solution.nakedTripletsInRow(map->getString(i)))
-		{
-			return true;
-		}
+		return true;
 	}
 
-	Cell* tempRow = nullptr;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForColumn(this->solution, &Solution::nakedTripletsInRow))
 	{
-		tempRow = map->getColumn(i);
-
-		if (solution.nakedTripletsInRow(tempRow))
-		{
-			map->setColumn(tempRow, i);
-
-			delete[] tempRow;
-
-			return true;
-		}
-
-		delete[] tempRow;
+		return true;
 	}
 
 	return false;
@@ -296,49 +254,19 @@ bool CheckDifficult::checkNakedTriplets()
 
 bool CheckDifficult::checkNakedFoursome()
 {
-	Field* tempField = new Field{};
-
-	for (int i{}; i < this->field_size; ++i)
+	if (this->methodForField(this->solution, &Solution::nakedFoursomeInField))
 	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
-
-			if (solution.nakedFoursomeInField(map, tempField, i, j))
-			{
-				delete tempField;
-
-				return true;
-			}
-		}
+		return true;
 	}
 
-	delete tempField;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForString(this->solution, &Solution::nakedFoursomeInRow))
 	{
-		if (solution.nakedFoursomeInRow(map->getString(i)))
-		{
-			return true;
-		}
+		return true;
 	}
 
-	Cell* tempRow = nullptr;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForColumn(this->solution, &Solution::nakedFoursomeInRow))
 	{
-		tempRow = map->getColumn(i);
-
-		if (solution.nakedFoursomeInRow(tempRow))
-		{
-			map->setColumn(tempRow, i);
-
-			delete[] tempRow;
-
-			return true;
-		}
-
-		delete[] tempRow;
+		return true;
 	}
 
 	return false;
@@ -346,7 +274,7 @@ bool CheckDifficult::checkNakedFoursome()
 
 bool CheckDifficult::isOnlyOneNote()
 {
-	if (solution.onlyOneNote(this->map))
+	if (solution->onlyOneNote(this->map))
 	{
 		return true;
 	}
@@ -356,49 +284,19 @@ bool CheckDifficult::isOnlyOneNote()
 
 bool CheckDifficult::checkHiddenCouples()
 {
-	Field* tempField = new Field{};
-
-	for (int i{}; i < this->field_size; ++i)
+	if (this->methodForField(this->solution, &Solution::hiddenCouplesInField))
 	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
-
-			if (solution.hiddenCouplesInField(map, tempField, i, j))
-			{
-				delete tempField;
-
-				return true;
-			}
-		}
+		return true;
 	}
 
-	delete tempField;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForString(this->solution, &Solution::hiddenCouplesInRow))
 	{
-		if (solution.hiddenCouplesInRow(this->map->getString(i)))
-		{
-			return true;
-		}
+		return true;
 	}
 
-	Cell* tempRow = nullptr;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForColumn(this->solution, &Solution::hiddenCouplesInRow))
 	{
-		tempRow = map->getColumn(i);
-
-		if (solution.hiddenCouplesInRow(tempRow))
-		{
-			map->setColumn(tempRow, i);
-
-			delete[] tempRow;
-
-			return true;
-		}
-
-		delete[] tempRow;
+		return true;
 	}
 
 	return false;
@@ -406,49 +304,19 @@ bool CheckDifficult::checkHiddenCouples()
 
 bool CheckDifficult::checkHiddenTriplets()
 {
-	Field* tempField = new Field{};
-
-	for (int i{}; i < this->field_size; ++i)
+	if (this->methodForField(this->solution, &Solution::hiddenTripletsInField))
 	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
-
-			if (solution.hiddenTripletsInField(map, tempField, i, j))
-			{
-				delete tempField;
-
-				return true;
-			}
-		}
+		return true;
 	}
 
-	delete tempField;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForString(this->solution, &Solution::hiddenTripletsInRow))
 	{
-		if (solution.hiddenTripletsInRow(this->map->getString(i)))
-		{
-			return true;
-		}
+		return true;
 	}
 
-	Cell* tempRow = nullptr;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForColumn(this->solution, &Solution::hiddenTripletsInRow))
 	{
-		tempRow = map->getColumn(i);
-
-		if (solution.hiddenTripletsInRow(tempRow))
-		{
-			map->setColumn(tempRow, i);
-
-			delete[] tempRow;
-
-			return true;
-		}
-
-		delete[] tempRow;
+		return true;
 	}
 
 	return false;
@@ -456,54 +324,25 @@ bool CheckDifficult::checkHiddenTriplets()
 
 bool CheckDifficult::checkHiddenFoursome()
 {
-	Field* tempField = new Field{};
-
-	for (int i{}; i < this->field_size; ++i)
+	if (this->methodForField(this->solution, &Solution::hiddenFoursomeInField))
 	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			tempField->generate(this->map->getArr(), i * this->field_size, j * this->field_size);
-			if (solution.hiddenFoursomeInField(map, tempField, i, j))
-			{
-				delete tempField;
-
-				return true;
-			}
-		}
+		return true;
 	}
 
-	delete tempField;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForString(this->solution, &Solution::hiddenFoursomeInRow))
 	{
-		if (solution.hiddenFoursomeInRow(this->map->getString(i)))
-		{
-			return true;
-		}
+		return true;
 	}
 
-	Cell* tempRow = nullptr;
-
-	for (int i{}; i < this->map_size; ++i)
+	if (this->methodForColumn(this->solution, &Solution::hiddenFoursomeInRow))
 	{
-		tempRow = map->getColumn(i);
-
-		if (solution.hiddenFoursomeInRow(tempRow))
-		{
-			map->setColumn(tempRow, i);
-
-			delete[] tempRow;
-
-			return true;
-		}
-
-		delete[] tempRow;
+		return true;
 	}
 
 	return false;
 }
 
-bool CheckDifficult::checkPointingGroup()
+bool CheckDifficult::checkPointingGroup(int size)
 {
 	Field* temp = new Field{};
 
@@ -513,22 +352,7 @@ bool CheckDifficult::checkPointingGroup()
 		{
 			temp->generate(map->getArr(), i * this->field_size, j * this->field_size);
 
-			if (solution.pointingGroupInField(map, temp, i, j, Groups::Couple))
-			{
-				delete temp;
-
-				return true;
-			}
-		}
-	}
-
-	for (int i{}; i < this->field_size; ++i)
-	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			temp->generate(map->getArr(), i * this->field_size, j * this->field_size);
-
-			if (solution.pointingGroupInField(map, temp, i, j, Groups::Triplet))
+			if (solution->pointingGroupInField(map, temp, i, j, size))
 			{
 				delete temp;
 
@@ -543,18 +367,7 @@ bool CheckDifficult::checkPointingGroup()
 	{
 		for (int j{}; j < this->field_size; ++j)
 		{
-			if (solution.pointingGroupInString(this->map, this->map->getString(i * 3 + j), i, j, Groups::Couple))
-			{
-				return true;
-			}
-		}
-	}
-
-	for (int i{}; i < this->field_size; ++i)
-	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			if (solution.pointingGroupInString(this->map, this->map->getString(i * 3 + j), i, j, Groups::Triplet))
+			if (solution->pointingGroupInString(this->map, this->map->getString(i * 3 + j), i, j, size))
 			{
 				return true;
 			}
@@ -569,26 +382,7 @@ bool CheckDifficult::checkPointingGroup()
 		{
 			column = this->map->getColumn(i * 3 + j);
 
-			if (solution.pointingGroupInColumn(this->map, column, i, j, Groups::Couple))
-			{
-				this->map->setColumn(column, i * 3 + j);
-
-				delete[] column;
-
-				return true;
-			}
-
-			delete[] column;
-		}
-	}
-
-	for (int i{}; i < this->field_size; ++i)
-	{
-		for (int j{}; j < this->field_size; ++j)
-		{
-			column = this->map->getColumn(i * 3 + j);
-
-			if (solution.pointingGroupInColumn(this->map, column, i, j, Groups::Triplet))
+			if (solution->pointingGroupInColumn(this->map, column, i, j, size))
 			{
 				this->map->setColumn(column, i * 3 + j);
 
@@ -606,7 +400,7 @@ bool CheckDifficult::checkPointingGroup()
 
 bool CheckDifficult::hiddenNote()
 {
-	if (solution.hiddenNote(this->map))
+	if (solution->hiddenNote(this->map))
 	{
 		return true;
 	}
@@ -614,26 +408,16 @@ bool CheckDifficult::hiddenNote()
 	return false;
 }
 
+
+
 bool CheckDifficult::checkEasy()
 {
-	if (this->checkFields())
+	if (this->checkFields() || this->checkStrings() || this->checkColumns())
 	{
-		//std::cout << "LastInField\n";
-		return true;
-	}
-	if (this->checkStrings())
-	{
-		//std::cout << "LastInString\n";
-		return true;
-	}
-	if (this->checkColumns())
-	{
-		//std::cout << "LastInColumn\n";
 		return true;
 	}
 	if (this->checkExceptInField())
 	{
-		//std::cout << "ExceptionInField\n";
 		return true;
 	}
 
@@ -646,18 +430,8 @@ bool CheckDifficult::checkMedium()
 	{
 		return true;
 	}
-	if (this->checkExceptInString())
+	if (this->checkExceptInString() || this->checkExceptInColumn())
 	{
-		//std::cout << "ExceptionInString\n";
-		if (this->complexity < 1)
-		{
-			this->complexity = 1;
-		}
-		return true;
-	}
-	if (this->checkExceptInColumn())
-	{
-		//std::cout << "ExceptionInColumn\n";
 		if (this->complexity < 1)
 		{
 			this->complexity = 1;
@@ -676,7 +450,6 @@ bool CheckDifficult::checkHard()
 	}
 	if (this->checkExceptInStr_Col_Field())
 	{
-		//std::cout << "LastNumberInString_Column_Field\n";
 		if (this->complexity < 2)
 		{
 			this->complexity = 2;
@@ -693,10 +466,14 @@ bool CheckDifficult::checkExtreme()
 	{
 		return true;
 	}
+
 	this->makeNotes();
+
+	this->extremeMethodForNotes();
+
 	if (this->isOnlyOneNote())
 	{
-		std::cout << "OnlyOneNote\n";
+		//std::cout << "OnlyOneNote\n";
 		if (this->complexity < 3)
 		{
 			this->complexity = 3;
@@ -705,7 +482,7 @@ bool CheckDifficult::checkExtreme()
 	}
 	if (this->hiddenNote())
 	{
-		std::cout << "HiddenNote\n";
+		//std::cout << "HiddenNote\n";
 		if (this->complexity < 3)
 		{
 			this->complexity = 3;
@@ -713,16 +490,42 @@ bool CheckDifficult::checkExtreme()
 		return true;
 	}
 
-	while (true)
+	return false;
+}
+
+bool CheckDifficult::checkInsane()
+{
+	if (this->checkHard())
 	{
-		if (!this->checkPointingGroup())
+		return true;
+	}
+
+	this->makeNotes();
+
+	this->insaneMethodForNotes();
+
+	if (this->isOnlyOneNote())
+	{
+		//std::cout << "OnlyOneNote\n";
+		if (this->complexity < 4)
 		{
-			break;
+			this->complexity = 4;
 		}
+		return true;
+	}
+	if (this->hiddenNote())
+	{
+		//std::cout << "HiddenNote\n";
+		if (this->complexity < 4)
+		{
+			this->complexity = 4;
+		}
+		return true;
 	}
 
 	return false;
 }
+
 
 
 bool CheckDifficult::checkComplexity(int complexity)
@@ -757,6 +560,11 @@ bool CheckDifficult::checkComplexity(int complexity)
 					return false;
 				}
 				break;
+			case 4:
+				if (!this->checkInsane())
+				{
+					return false;
+				}
 		}
 	}
 

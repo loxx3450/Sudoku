@@ -24,7 +24,7 @@ public:
         numbers{new int [this->map_size]{}}
     {}
 
-    bool lastInField(Field* temp);
+    bool lastInField(Map* map, Field* temp, int temp_i, int temp_j);
 
     bool lastInRow(Cell* arr);
 

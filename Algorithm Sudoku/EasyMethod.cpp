@@ -43,7 +43,7 @@ int EasyMethod::findExceptValue()
     }
 }
 
-bool EasyMethod::lastInField(Field* temp)
+bool EasyMethod::lastInField(Map* map, Field* temp, int temp_i, int temp_j)
 {
     if (!temp->isFull())
     {
@@ -66,6 +66,8 @@ bool EasyMethod::lastInField(Field* temp)
                     if (temp->getNum(i, j) == 0)
                     {
                         temp->setNum(value, i, j);
+
+                        map->takeField(temp, temp_i * 3, temp_j * 3);
 
                         return true;
                     }

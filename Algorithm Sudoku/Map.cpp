@@ -69,12 +69,12 @@ void Map::generate()
             {
                 this->arr[i][j].setNum(rand() % this->map_size + 1);
 
-                if (value >= 12)
+                if (value >= 18)
                 {
                     return this->generate();
                 }
 
-                if (this->check())
+                if (this->checking.checkColumns(this->getArr(), this->map_numbers) && this->checking.checkStrings(this->getArr(), this->map_numbers) && this->checking.checkFields(this->getArr()))
                 {
                     break;
                 }
@@ -85,7 +85,6 @@ void Map::generate()
             value = 0;
         }
     }
-    
 }
 
 void Map::show()

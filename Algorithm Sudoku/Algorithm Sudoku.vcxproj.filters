@@ -257,5 +257,11 @@
     <ClInclude Include="CommonGroup.h">
       <Filter>Исходные файлы\Solution\InsaneMethod\CommonGroup</Filter>
     </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Creator.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

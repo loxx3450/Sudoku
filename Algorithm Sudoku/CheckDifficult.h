@@ -9,9 +9,14 @@ private:
 	const int field_size = 3;
 
 	Map* map;
-	Solution solution;
+	Solution* solution;
 	int complexity = 0;
-	bool isNotes = 0;
+
+	bool methodForField(Solution* obj, bool(Solution::* func)(Map*, Field*, int, int));
+
+	bool methodForString(Solution* obj, bool(Solution::* func)(Cell*));
+
+	bool methodForColumn(Solution* obj, bool(Solution::* func)(Cell*));
 
 	bool checkFields();
 
@@ -26,6 +31,10 @@ private:
 	bool checkExceptInColumn();
 
 	bool checkExceptInStr_Col_Field();
+
+	void extremeMethodForNotes();
+
+	void insaneMethodForNotes();
 
 	void makeNotes();
 
@@ -43,7 +52,7 @@ private:
 
 	bool checkHiddenFoursome();
 
-	bool checkPointingGroup();
+	bool checkPointingGroup(int size);
 
 	bool hiddenNote();
 
@@ -56,10 +65,13 @@ private:
 
 	bool checkExtreme();
 
+	bool checkInsane();
+
 public:
 	CheckDifficult(Map* map)
 	{
 		this->map = new Map{ *map };
+		this->solution = new Solution{};
 	}
 
 	bool checkComplexity(int complexity);
@@ -70,6 +82,9 @@ public:
 	{
 		if (this->map != nullptr) {
 			delete this->map;
+		}
+		if (this->solution != nullptr) {
+			delete this->solution;
 		}
 	}
 };

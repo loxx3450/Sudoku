@@ -1,8 +1,8 @@
 #include "Solution.h"
 
-bool Solution::lastInField(Field* temp)
+bool Solution::lastInField(Map* map, Field* temp, int temp_i, int temp_j)
 {
-    if (this->methods1.lastInField(temp))
+    if (this->methods1.lastInField(map, temp, temp_i, temp_j))
     {
         return true;
     }
